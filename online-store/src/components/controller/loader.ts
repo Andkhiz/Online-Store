@@ -1,17 +1,15 @@
-import db from "./db.json";
-import * as myType from "../../interfase";
+import db from './db.json';
+import * as myType from '../../interfase';
 
 export class Loader {
-  loadProducts(): myType.IProducts {
-    return {products: db.products.map( (product) => { return Object.assign(product, { onCart: false }) })};
-  }
-  
-  parceFilterString(filterString: string ): Partial<myType.TFilter>|null {
-  
-    let st = filterString.replaceAll("&",'"],"')
-             .replaceAll("=",'":["')
-             .replaceAll("↕",'","');
-    return st?JSON.parse('{"' + st + '"]}'):{};
+  loadProducts (): myType.IProducts {
+    return { products: db.products.map((product) => { return Object.assign(product, { onCart: false }); }) };
   }
 
+  parceFilterString (filterString: string): Partial<myType.TFilter> | null {
+    const st = filterString.replaceAll('&', '"],"')
+      .replaceAll('=', '":["')
+      .replaceAll('↕', '","');
+    return st === '' ? JSON.parse('{"' + st + '"]}') : {};
+  }
 }
