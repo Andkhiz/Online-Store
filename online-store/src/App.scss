@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
-}
+$background-color: #fff;
+$border-color: #818181;
+$font-color: rgb(22, 22, 22);
+$active-input: rgb(41, 241, 141);
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body{
+  background-color: $background-color;
+  color: $font-color;
+}
+.App{
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+header{
+  margin: 0 40px 60px;
+  nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 60px;
+    // width:%;
+    border-bottom: 1px solid $border-color;
+  }
+  h1{
+    font-size: 20px;
+  }
+  .cart{
+    display: flex;
+    align-items: center;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+main{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0 40px;
 }
+.main-info{
+  height: 100%;
 
-.App-link {
-  color: #61dafb;
-}
+  .main-info-header{
+    border: 1px solid $border-color;
+    border-radius: 20px  20px  0 0;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+    input{
+      margin: 10px;
+      height: 30px;
+      border: none;
+      border-radius: 20px;
+    }
+    input:focus{
+      outline: 2px solid $active-input;
+      background-color: darken(#fff, 10%);
+    }
   }
-  to {
-    transform: rotate(360deg);
+  .main-info-content{
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+
+    .item{
+      padding: 10px;
+      height: 270px;
+      width: 240px;
+      border-radius: 10px;
+      transition: all 0.5s ease-in-out;
+    }
+    .item:hover{
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px $border-color;
+    }
   }
+
 }
