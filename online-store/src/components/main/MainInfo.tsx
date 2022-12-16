@@ -1,5 +1,5 @@
 import React from 'react';
-import CardItem from './CardItem';
+import CardItem from './Item';
 
 function MainInfo (): JSX.Element {
   const array = [1, 2, 3, 4, 5];

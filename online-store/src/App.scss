@@ -75,3 +75,37 @@ main{
   }
 
 }
+.cart{
+  display: flex;
+}
+.cart-items-conrainer{
+  width: 70%;
+  margin: 0 20px;
+  padding: 20px;
+  border: 1px solid $border-color;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-around;
+
+    .item-id{
+      width: 50px;
+    }
+
+    img{
+      width: 200px;
+    }
+
+    .cart-item-description{
+      flex: 1;
+    }
+    .counter{
+      display: flex;
+      justify-content: space-between;
+    }
+}
+
+.cart-items-header{
+  display: flex;
+  justify-content: space-between;
+}

@@ -3,7 +3,7 @@ interface StandardComponentProps {
   num: number
 }
 // сделала для проверки потом перенесем в интерфейсы
-function cardItem ({ num }: StandardComponentProps): JSX.Element {
+function Item ({ num }: StandardComponentProps): JSX.Element {
   return (
     <div className="item">
     <img src="" alt="" />
@@ -18,4 +18,4 @@ function cardItem ({ num }: StandardComponentProps): JSX.Element {
     </div>
   );
 }
-export default cardItem;
+export default Item;
