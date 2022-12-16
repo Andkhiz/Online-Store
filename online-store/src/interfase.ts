@@ -14,7 +14,7 @@ export interface IProduct {
   onCart: boolean;
 };
 
-export type IProducts = { products: IProduct []};
+export interface IProducts { products: IProduct []};
 
 interface ICart {
   id: number;
