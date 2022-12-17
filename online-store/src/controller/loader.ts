@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 export default class Loader {
   loadProducts (): myType.IProducts {
     const myProduct = { products: db.products.map((product) => { return Object.assign(product, { onCart: false }); }) };
-    const [searchParams, setSearchParams] = useSearchParams();
+    const searchParams = useSearchParams()[0];
     const BreakError: Error = { name: 'continue', message: 'myMessage' };
 
     searchParams.forEach((el, key) => {
