@@ -1,25 +1,25 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import './App.scss';
+import LayoutPage from './pages/LayoutPage';
+import MainPage from './pages/MainPage';
+import CartPage from './pages/CartPage';
+import ProductPage from './pages/ProductPage';
+import ErrorPage from './pages/ErrorPage';
 
 function App (): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <h1>ghfjggf</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LayoutPage />}>
+          <Route index element={<MainPage />} />
+          <Route path="product" element={<ProductPage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;
