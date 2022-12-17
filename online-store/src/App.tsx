@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.scss';
 import Header from './components/Header';
-import MainPage from './components/MainPage';
-import CartPage from './components/CartPage';
-import ProductPage from './components/ProductPage';
-import ErrorPage from './components/ErrorPage';
+import MainPage from './pages/MainPage';
+import CartPage from './pages/CartPage';
+import ProductPage from './pages/ProductPage';
+import ErrorPage from './pages/ErrorPage';
 
 function App (): JSX.Element {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
-import MainInfo from './main/MainInfo';
-import MyFilter from './main/MyFilter';
-import MyInputRange from './main/MyInputRange';
+import MainInfo from '../components/main/MainInfo';
+import MyFilter from '../components/main/MyFilter';
+import MyInputRange from '../components/main/MyInputRange';
 
 function MainPage (): JSX.Element {
   return (

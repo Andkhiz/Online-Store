@@ -1,6 +1,6 @@
 import React from 'react';
-import CartItem from './cart/CartItem';
-import CartSummury from './cart/CartSummury';
+import CartItem from '../components/cart/CartItem';
+import CartSummury from '../components/cart/CartSummury';
 
 function CartPage (): JSX.Element {
   return (
