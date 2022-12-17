@@ -49,7 +49,7 @@ type TDiscounts = IDiscount[];
 
 interface IElementFilterCategory {
   name: string;
-  filerCount: number;
+  filterCount: number;
   count: number;
 }
 
