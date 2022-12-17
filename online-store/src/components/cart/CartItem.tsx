@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function CartItem (): JSX.Element {
+  const [counter, setCounter] = useState<number>(0);
+
   return (
     <div className="cart-item">
       <div className="item-id">1</div>
@@ -16,9 +18,9 @@ function CartItem (): JSX.Element {
       <div className="purchase-data">
         <div className="stock"></div>
         <div className="counter">
-            <button>+</button>
-            <p></p>
-            <button>-</button>
+            <button onClick={() => setCounter(counter + 1)}>+</button>
+            <p>{counter}</p>
+            <button onClick={() => counter <= 0 ? setCounter(counter) : setCounter(counter - 1)}>-</button>
         </div>
         <div className="price">5 money</div>
       </div>

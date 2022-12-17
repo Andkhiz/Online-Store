@@ -14,9 +14,9 @@ function MainInfo (): JSX.Element {
         <div className="view-options"></div>
       </div>
       <div className="main-info-content">
-        {arr.products.map((el, i) => <CardItem
-        key={i}
-        id={i}
+        {arr.products.map((el) => <CardItem
+        key={el.id}
+        id={el.id}
         title={el.title}
         price={el.price}
 
