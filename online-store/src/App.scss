@@ -109,3 +109,21 @@ main{
   display: flex;
   justify-content: space-between;
 }
+
+.product{
+  flex-direction: column;
+  .product-path{
+    margin: 20px auto;
+  }
+  .product-container{
+    width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .product-purchase{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

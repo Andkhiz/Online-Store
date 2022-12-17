@@ -1,5 +1,6 @@
 import React from 'react';
 import { IRenderProduct } from '../../interfase';
+import { Link } from 'react-router-dom';
 
 // сделала для проверки потом перенесем в интерфейсы
 function Item ({ title, price, id }: IRenderProduct): JSX.Element {
@@ -12,7 +13,7 @@ function Item ({ title, price, id }: IRenderProduct): JSX.Element {
       </div>
       <div className="buttons">
           <button>Add</button>
-          <button>Info</button>
+          <button><Link to="/product">Info</Link></button>
       </div>
     </div>
   );

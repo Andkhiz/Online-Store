@@ -1,12 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header (): JSX.Element {
   return (
     <header>
       <nav>
-        <h1>Online Store</h1>
+        <Link to='/'><h1>Online Store</h1></Link>
         <div className="cart">
-          <img src="" alt="Cart" />
+          <Link to="cart">
+            <img src="" alt="Cart" />
+          </Link>
           <p>Total: <span>5</span></p>
         </div>
       </nav>
