@@ -61,10 +61,10 @@ interface IElementFilterMinMax {
 export type TSort = null|"price-ASC"|"price-DESC"|"rating-ASC"|"ratng-DESC"|"discount-ASC"|"discount-DESC";
 
 export type TFilter = {
-  brands: string[];
-  categories: string[];
-  prices: [number, number];
-  stocks: [number, number];
+  brand: string[];
+  category: string[];
+  price: [number, number];
+  stock: [number, number];
   sort: TSort;
   filter: string;
 }
@@ -77,4 +77,4 @@ export type TFilterReturn = {
   stocks: IElementFilterMinMax;
   sort: TSort;
   filter: string;
-}
+};
