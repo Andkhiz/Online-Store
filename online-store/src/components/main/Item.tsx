@@ -1,15 +1,14 @@
 import React from 'react';
-interface StandardComponentProps {
-  num: number
-}
+import { IRenderProduct } from '../../interfase';
+
 // сделала для проверки потом перенесем в интерфейсы
-function Item ({ num }: StandardComponentProps): JSX.Element {
+function Item ({ title, price, id }: IRenderProduct): JSX.Element {
   return (
     <div className="item">
     <img src="" alt="" />
       <div className="description">
-        <p>Title</p>
-        <p>price{num}</p>
+        <p>{title}</p>
+        <p>Price: {price}</p>
       </div>
       <div className="buttons">
           <button>Add</button>

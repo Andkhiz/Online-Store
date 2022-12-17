@@ -1,7 +1,7 @@
 import db from './db.json';
 import * as myType from '../interfase';
 
-export class Loader {
+export default class Loader {
   loadProducts (): myType.IProducts {
     return { products: db.products.map((product) => { return Object.assign(product, { onCart: false }); }) };
   }

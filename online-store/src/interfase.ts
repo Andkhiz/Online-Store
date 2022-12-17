@@ -16,6 +16,21 @@ export interface IProduct {
 
 export interface IProducts { products: IProduct []};
 
+export interface IRenderProduct {
+  id: number;
+  title: string;
+  description?: string;
+  price: number;
+  discountPercentage?: number;
+  rating?: number;
+  stock?: number;
+  brand?: string;
+  category?: string;
+  thumbnail?: string;
+  images?: string [];
+  onCart?: boolean;
+};
+
 interface ICart {
   id: number;
   count: number;
