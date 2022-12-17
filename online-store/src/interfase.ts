@@ -54,6 +54,8 @@ interface IElementFilterCategory {
 }
 
 interface IElementFilterMinMax {
+  startMin: number;
+  startMax: number;
   min: number;
   max: number;
 }
