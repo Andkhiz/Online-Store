@@ -10,9 +10,18 @@ export default class Loader {
   loadProducts (): myType.IProducts {
     // в корзину для теста положено 2 продукта, нужно удалить
     localStorage.setItem('myCart', JSON.stringify([{ id: 1, count: 5, price: 4.8 }, { id: 8, count: 10, price: 20.8 }]));
-    const productsCart = this.loadProductsCart();
+
+    const productsCart = cart();
     console.log(productsCart);
-    const myProduct = { products: db.products.map((product) => { return Object.assign(product, { onCart: 0 }); }) };
+
+    const myProduct = {
+      products: db.products.map((product) => {
+        const cart = productsCart.find(el => el.id === product.id);
+        const cartCount = cart === undefined ? 0 : cart.count;
+        return Object.assign(product, { onCart: cartCount });
+      })
+    };
+
     const searchParams = useSearchParams()[0];
     const BreakError: Error = { name: 'continue', message: 'myMessage' };
 
