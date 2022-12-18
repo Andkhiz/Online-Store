@@ -26,9 +26,9 @@ export default class StartLoader {
       if (stockMin > product.stock) stockMin = product.price;
       if (stockMax < product.stock) stockMax = product.price;
     });
-    brand.sort( (a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0 });
-    category.sort( (a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0 });
-    
+    brand.sort((a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0; });
+    category.sort((a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0; });
+
     console.log('create StartFilter');
     return {
       brands: brand,
