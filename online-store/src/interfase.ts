@@ -11,7 +11,7 @@ export interface IProduct {
   category: string;
   thumbnail: string;
   images: string [];
-  onCart?: boolean;
+  onCart?: number;
 };
 
 export interface IProducts { products: IProduct []};

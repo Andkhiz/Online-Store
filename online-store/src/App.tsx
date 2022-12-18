@@ -9,6 +9,7 @@ import ProductPage from './pages/ProductPage';
 import ErrorPage from './pages/ErrorPage';
 
 function App (): JSX.Element {
+  console.log('Вызываем app');
   return (
     <BrowserRouter>
       <Routes>

@@ -4,10 +4,10 @@ import { useSearchParams } from 'react-router-dom';
 import StartLoader from './startLoader';
 
 export default class Loader {
-  startFilter = new StartLoader().loadStartFilter();
+  static startFilter = new StartLoader().loadStartFilter();
 
   loadProducts (): myType.IProducts {
-    const myProduct = { products: db.products.map((product) => { return Object.assign(product, { onCart: false }); }) };
+    const myProduct = { products: db.products.map((product) => { return Object.assign(product, { onCart: 0 }); }) };
     const searchParams = useSearchParams()[0];
     const BreakError: Error = { name: 'continue', message: 'myMessage' };
 
@@ -58,8 +58,13 @@ export default class Loader {
   }
 
   loadFilters (): myType.TFilterReturn {
-    console.log(this.startFilter);
-    return this.startFilter;
+    console.log(Loader.startFilter);
+    return Loader.startFilter;
+  }
+
+  loadProduct (idProduct: number): Partial<myType.IProduct> {
+    const product = db.products.find(prod => prod.id === idProduct);
+    return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: 0 });
   }
   /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
