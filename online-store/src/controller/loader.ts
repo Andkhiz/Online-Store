@@ -54,10 +54,13 @@ export default class Loader {
         if (er !== BreakError) throw er;
       }
     });
-    console.log(this.startFilter);
     return myProduct;
   }
 
+  loadFilters (): myType.TFilterReturn {
+    console.log(this.startFilter);
+    return this.startFilter;
+  }
   /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     if (st === '') return {};
