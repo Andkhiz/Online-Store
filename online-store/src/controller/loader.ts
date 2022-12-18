@@ -1,16 +1,17 @@
 import db from './db.json';
 import * as myType from '../interfase';
 import { useSearchParams } from 'react-router-dom';
+import StartLoader from './startLoader';
 
 export default class Loader {
+  startFilter = new StartLoader().loadStartFilter();
+
   loadProducts (): myType.IProducts {
     const myProduct = { products: db.products.map((product) => { return Object.assign(product, { onCart: false }); }) };
     const searchParams = useSearchParams()[0];
     const BreakError: Error = { name: 'continue', message: 'myMessage' };
 
     searchParams.forEach((el, key) => {
-      console.log(el);
-      console.log(key);
       try {
         const arr = el.split('↕');
         if (key === 'brand' || key === 'category') {
@@ -53,6 +54,7 @@ export default class Loader {
         if (er !== BreakError) throw er;
       }
     });
+    console.log(this.startFilter);
     return myProduct;
   }
 
