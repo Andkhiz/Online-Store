@@ -2,11 +2,16 @@ import db from './db.json';
 import * as myType from '../interfase';
 import { useSearchParams } from 'react-router-dom';
 import StartLoader from './startLoader';
+import cart from './cart/cart';
 
 export default class Loader {
   static startFilter = new StartLoader().loadStartFilter();
 
   loadProducts (): myType.IProducts {
+    // в корзину для теста положено 2 продукта, нужно удалить
+    localStorage.setItem('myCart', JSON.stringify([{ id: 1, count: 5, price: 4.8 }, { id: 8, count: 10, price: 20.8 }]));
+    const productsCart = this.loadProductsCart();
+    console.log(productsCart);
     const myProduct = { products: db.products.map((product) => { return Object.assign(product, { onCart: 0 }); }) };
     const searchParams = useSearchParams()[0];
     const BreakError: Error = { name: 'continue', message: 'myMessage' };
@@ -65,6 +70,16 @@ export default class Loader {
   loadProduct (idProduct: number): Partial<myType.IProduct> {
     const product = db.products.find(prod => prod.id === idProduct);
     return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: 0 });
+  }
+
+  loadProductsCart (): myType.IProductsCart {
+    const myCart = cart();
+    const arr: myType.IProductsCart = { productsCart: [] };
+    myCart.forEach(cart => {
+      const elem = db.products.find(el => el.id === cart.id);
+      if (elem !== undefined) arr.productsCart.push({ ...elem, ...{ onCart: cart.count } });
+    });
+    return arr;
   }
   /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';

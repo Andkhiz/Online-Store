@@ -37,7 +37,9 @@ interface ICart {
   price: number;
 };
 
-export type ICarts = ICart[];
+export type TCarts = ICart[];
+
+export interface IProductsCart { productsCart: IProduct [] }
 
 interface IDiscount {
   id: string;
