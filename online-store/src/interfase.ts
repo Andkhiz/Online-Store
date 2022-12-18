@@ -11,7 +11,7 @@ export interface IProduct {
   category: string;
   thumbnail: string;
   images: string [];
-  onCart: boolean;
+  onCart?: boolean;
 };
 
 export interface IProducts { products: IProduct []};
@@ -47,18 +47,20 @@ interface IDiscount {
 
 type TDiscounts = IDiscount[];
 
-interface IElementFilterCategory {
+export interface IElementFilterCategory {
   name: string;
-  filerCount: number;
+  filterCount: number;
   count: number;
 }
 
 interface IElementFilterMinMax {
+  startMin: number;
+  startMax: number;
   min: number;
   max: number;
 }
 
-export type TSort = null|"price-ASC"|"price-DESC"|"rating-ASC"|"ratng-DESC"|"discount-ASC"|"discount-DESC";
+export type TSort = ''|"price-ASC"|"price-DESC"|"rating-ASC"|"rating-DESC"|"discount-ASC"|"discount-DESC";
 
 export type TFilter = {
   brand: string[];
