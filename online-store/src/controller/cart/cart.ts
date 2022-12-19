@@ -24,6 +24,14 @@ class Cart {
     return arr;
   }
 
+  loadTotalCartData (): myType.ICartTotal {
+    return this.loadCart().reduce((sum, el) => {
+      return {
+        totalCount: sum.totalCount + el.count, totalSum: sum.totalSum + el.count * el.price
+      };
+    }, { totalCount: 0, totalSum: 0 });
+  }
+
   addProdurt (idProduct: number, priceProduct: number, stock: number): void {
     const myCart = this.loadCart();
     const itemCart = myCart.findIndex(el => el.id === idProduct);
@@ -37,7 +45,7 @@ class Cart {
     localStorage.setItem('myCart', JSON.stringify(myCart));
   }
 
-  deсreaseProduct (idProduct: number): void {
+  decreaseProduct (idProduct: number): void {
     const myCart = this.loadCart();
     const itemCart = myCart.findIndex(el => el.id === idProduct);
     if (itemCart !== -1) {

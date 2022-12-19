@@ -99,7 +99,8 @@ export default class Loader {
     const cartCount = myCart === undefined ? 0 : myCart.count;
     return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: Boolean(cartCount), cartCount });
   }
-  /* parceFilterString (): Partial<myType.TFilter> | null {
+
+/* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     if (st === '') return {};
     st = st.replaceAll('&', '"],"')

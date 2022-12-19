@@ -42,6 +42,11 @@ export type TCarts = ICart[];
 
 export interface IProductsCart { productsCart: IProduct [] }
 
+export interface ICartTotal { 
+  totalCount: number;
+  totalSum: number;
+}
+
 interface IDiscount {
   id: string;
   name: string;
