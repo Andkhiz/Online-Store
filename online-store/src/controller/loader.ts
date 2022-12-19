@@ -94,7 +94,9 @@ export default class Loader {
 
   loadProduct (idProduct: number): Partial<myType.IProduct> {
     const product = db.products.find(prod => prod.id === idProduct);
-    return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: 0 });
+    const myCart = cart().find(el => el.id === idProduct);
+    const cartCount = myCart === undefined ? 0 : myCart.count;
+    return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: cartCount });
   }
 
   loadProductsCart (): myType.IProductsCart {
