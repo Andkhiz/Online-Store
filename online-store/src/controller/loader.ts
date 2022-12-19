@@ -81,8 +81,8 @@ export default class Loader {
     myFilter.stocks.max = myProduct.products[0].stock;
     myFilter.stocks.min = myProduct.products[0].stock;
     myProduct.products.forEach(product => {
-      myFilter.brands[myFilter.brands.findIndex(el => el.name = product.brand)].filterCount++;
-      myFilter.categories[myFilter.categories.findIndex(el => el.name = product.category)].filterCount++;
+      myFilter.brands[myFilter.brands.findIndex(el => el.name === product.brand)].filterCount++;
+      myFilter.categories[myFilter.categories.findIndex(el => el.name === product.category)].filterCount++;
       if (myFilter.prices.min > product.price) myFilter.prices.min = product.price;
       if (myFilter.prices.max < product.price) myFilter.prices.max = product.price;
       if (myFilter.stocks.min > product.stock) myFilter.stocks.min = product.price;
