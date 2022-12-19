@@ -1,6 +1,65 @@
 import * as myType from '../../interfase';
+import db from '../db.json';
 
-function cart (): myType.TCarts {
+class Cart {
+  loadCart (): myType.TCarts {
+    const cart = localStorage.getItem('myCart');
+    if (cart !== null) {
+      try {
+        return JSON.parse(cart);
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  }
+
+  loadProductsCart (): myType.IProductsCart {
+    const myCart = this.loadCart();
+    const arr: myType.IProductsCart = { productsCart: [] };
+    myCart.forEach(cart => {
+      const elem = db.products.find(el => el.id === cart.id);
+      if (elem !== undefined) arr.productsCart.push({ ...elem, ...{ onCart: cart.count } });
+    });
+    return arr;
+  }
+
+  addProdurt (idProduct: number, priceProduct: number, stock: number): void {
+    const myCart = this.loadCart();
+    const itemCart = myCart.findIndex(el => el.id === idProduct);
+    if (itemCart === -1) {
+      myCart.push({ id: idProduct, count: 1, price: priceProduct });
+    } else {
+      if (stock > myCart[itemCart].count) {
+        myCart[itemCart].count++;
+      }
+    }
+    localStorage.setItem('myCart', JSON.stringify(myCart));
+  }
+
+  deсreaseProduct (idProduct: number): void {
+    const myCart = this.loadCart();
+    const itemCart = myCart.findIndex(el => el.id === idProduct);
+    if (itemCart !== -1) {
+      if (myCart[itemCart].count === 1) {
+        myCart.splice(itemCart);
+      } else {
+        myCart[itemCart].count--;
+      }
+      localStorage.setItem('myCart', JSON.stringify(myCart));
+    }
+  }
+
+  deleteProduct (idProduct: number): void {
+    const myCart = this.loadCart();
+    const itemCart = myCart.findIndex(el => el.id === idProduct);
+    if (itemCart !== -1) {
+      myCart.splice(itemCart);
+      localStorage.setItem('myCart', JSON.stringify(myCart));
+    }
+  }
+}
+/* function cart (): myType.TCarts {
   const cart = localStorage.getItem('myCart');
   if (cart !== null) {
     try {
@@ -11,5 +70,5 @@ function cart (): myType.TCarts {
   }
   return [];
 }
-
-export default cart;
+*/
+export default Cart;

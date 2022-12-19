@@ -2,16 +2,17 @@ import db from './db.json';
 import * as myType from '../interfase';
 import { useSearchParams } from 'react-router-dom';
 import StartLoader from './startLoader';
-import cart from './cart/cart';
+import Cart from './cart/cart';
 
 export default class Loader {
   static startFilter = new StartLoader().loadStartFilter();
+  Cart = new Cart();
 
   loadProducts (): myType.IProducts {
     // в корзину для теста положено 2 продукта, нужно удалить
     localStorage.setItem('myCart', JSON.stringify([{ id: 1, count: 5, price: 4.8 }, { id: 8, count: 10, price: 20.8 }]));
 
-    const productsCart = cart();
+    const productsCart = this.Cart.loadCart();
     console.log(productsCart);
 
     const myProduct = {
@@ -94,19 +95,9 @@ export default class Loader {
 
   loadProduct (idProduct: number): Partial<myType.IProduct> {
     const product = db.products.find(prod => prod.id === idProduct);
-    const myCart = cart().find(el => el.id === idProduct);
+    const myCart = this.Cart.loadCart().find(el => el.id === idProduct);
     const cartCount = myCart === undefined ? 0 : myCart.count;
     return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: cartCount });
-  }
-
-  loadProductsCart (): myType.IProductsCart {
-    const myCart = cart();
-    const arr: myType.IProductsCart = { productsCart: [] };
-    myCart.forEach(cart => {
-      const elem = db.products.find(el => el.id === cart.id);
-      if (elem !== undefined) arr.productsCart.push({ ...elem, ...{ onCart: cart.count } });
-    });
-    return arr;
   }
   /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
