@@ -2,12 +2,27 @@ import db from './db.json';
 import * as myType from '../interfase';
 import { useSearchParams } from 'react-router-dom';
 import StartLoader from './startLoader';
+import Cart from './cart/cart';
 
 export default class Loader {
-  startFilter = new StartLoader().loadStartFilter();
+  static startFilter = new StartLoader().loadStartFilter();
+  Cart = new Cart();
 
   loadProducts (): myType.IProducts {
-    const myProduct = { products: db.products.map((product) => { return Object.assign(product, { onCart: false }); }) };
+    // в корзину для теста положено 2 продукта, нужно удалить
+    localStorage.setItem('myCart', JSON.stringify([{ id: 1, count: 5, price: 4.8 }, { id: 8, count: 10, price: 20.8 }]));
+
+    const productsCart = this.Cart.loadCart();
+    console.log(productsCart);
+
+    const myProduct = {
+      products: db.products.map((product) => {
+        const cart = productsCart.find(el => el.id === product.id);
+        const cartCount = cart === undefined ? 0 : cart.count;
+        return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
+      })
+    };
+
     const searchParams = useSearchParams()[0];
     const BreakError: Error = { name: 'continue', message: 'myMessage' };
 
@@ -58,10 +73,34 @@ export default class Loader {
   }
 
   loadFilters (): myType.TFilterReturn {
-    console.log(this.startFilter);
-    return this.startFilter;
+    const myFilter = Loader.startFilter;
+    console.log(myFilter);
+    const myProduct = this.loadProducts();
+
+    myFilter.prices.max = myProduct.products[0].price;
+    myFilter.prices.min = myProduct.products[0].price;
+    myFilter.stocks.max = myProduct.products[0].stock;
+    myFilter.stocks.min = myProduct.products[0].stock;
+    myProduct.products.forEach(product => {
+      myFilter.brands[myFilter.brands.findIndex(el => el.name === product.brand)].filterCount++;
+      myFilter.categories[myFilter.categories.findIndex(el => el.name === product.category)].filterCount++;
+      if (myFilter.prices.min > product.price) myFilter.prices.min = product.price;
+      if (myFilter.prices.max < product.price) myFilter.prices.max = product.price;
+      if (myFilter.stocks.min > product.stock) myFilter.stocks.min = product.price;
+      if (myFilter.stocks.max < product.stock) myFilter.stocks.max = product.price;
+    });
+
+    return myFilter;
   }
-  /* parceFilterString (): Partial<myType.TFilter> | null {
+
+  loadProduct (idProduct: number): Partial<myType.IProduct> {
+    const product = db.products.find(prod => prod.id === idProduct);
+    const myCart = this.Cart.loadCart().find(el => el.id === idProduct);
+    const cartCount = myCart === undefined ? 0 : myCart.count;
+    return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: Boolean(cartCount), cartCount });
+  }
+
+/* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     if (st === '') return {};
     st = st.replaceAll('&', '"],"')

@@ -12,6 +12,7 @@ export interface IProduct {
   thumbnail: string;
   images: string [];
   onCart?: boolean;
+  cartCount?: number;
 };
 
 export interface IProducts { products: IProduct []};
@@ -37,7 +38,14 @@ interface ICart {
   price: number;
 };
 
-export type ICarts = ICart[];
+export type TCarts = ICart[];
+
+export interface IProductsCart { productsCart: IProduct [] }
+
+export interface ICartTotal { 
+  totalCount: number;
+  totalSum: number;
+}
 
 interface IDiscount {
   id: string;
