@@ -72,8 +72,24 @@ export default class Loader {
   }
 
   loadFilters (): myType.TFilterReturn {
-    console.log(Loader.startFilter);
-    return Loader.startFilter;
+    const myFilter = Loader.startFilter;
+    console.log(myFilter);
+    const myProduct = this.loadProducts();
+
+    myFilter.prices.max = myProduct.products[0].price;
+    myFilter.prices.min = myProduct.products[0].price;
+    myFilter.stocks.max = myProduct.products[0].stock;
+    myFilter.stocks.min = myProduct.products[0].stock;
+    myProduct.products.forEach(product => {
+      myFilter.brands[myFilter.brands.findIndex(el => el.name = product.brand)].filterCount++;
+      myFilter.categories[myFilter.categories.findIndex(el => el.name = product.category)].filterCount++;
+      if (myFilter.prices.min > product.price) myFilter.prices.min = product.price;
+      if (myFilter.prices.max < product.price) myFilter.prices.max = product.price;
+      if (myFilter.stocks.min > product.stock) myFilter.stocks.min = product.price;
+      if (myFilter.stocks.max < product.stock) myFilter.stocks.max = product.price;
+    });
+
+    return myFilter;
   }
 
   loadProduct (idProduct: number): Partial<myType.IProduct> {
