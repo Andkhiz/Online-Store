@@ -15,7 +15,7 @@ function App (): JSX.Element {
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route index element={<MainPage />} />
-          <Route path="product" element={<ProductPage />} />
+          <Route path="product/:id" element={<ProductPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>

@@ -1,31 +1,27 @@
 import React from 'react';
+import ProductInfo from '../components/product/ProductInfo';
+import { useParams } from 'react-router-dom';
+import Loader from '../controller/loader';
 
 function ProductPage (): JSX.Element {
+  const params = useParams();
+  const loader = new Loader();
+  console.log(params);
+  const item = loader.loadProduct(Number(params.id));
   return (
     <main className='product'>
       <div className="product-path">
         store---smartphones---apple
       </div>
-      <div className="product-container">
-        <div className="product-img-container">
-          <div className="aside-img"></div>
-          <div className="main-img"></div>
-        </div>
-        <div className="product-description-container">
-          <p>title</p>
-          <p>descr</p>
-          <p>discount</p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-        </div>
-        <div className="product-purchase">
-          <p></p>
-          <button>add to cart</button>
-          <button>buy now</button>
-        </div>
-      </div>
+      <ProductInfo
+      id={Number(item.id)}
+      title={item.title}
+      description={item.description}
+      price={item.price}
+      discountPercentage={item.discountPercentage}
+      category={item.category}
+      images={item.images![0]}
+      />
     </main>
   );
 }

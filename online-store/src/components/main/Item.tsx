@@ -13,7 +13,7 @@ function Item ({ title, price, id }: IRenderProduct): JSX.Element {
       </div>
       <div className="buttons">
           <button>Add</button>
-          <button><Link to="/product">Info</Link></button>
+          <button><Link to={`/product/${id}`}>Info</Link></button>
       </div>
     </div>
   );
