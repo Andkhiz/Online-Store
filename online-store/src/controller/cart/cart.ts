@@ -19,7 +19,7 @@ class Cart {
     const arr: myType.IProductsCart = { productsCart: [] };
     myCart.forEach(cart => {
       const elem = db.products.find(el => el.id === cart.id);
-      if (elem !== undefined) arr.productsCart.push({ ...elem, ...{ onCart: cart.count } });
+      if (elem !== undefined) arr.productsCart.push({ ...elem, ...{ onCart: Boolean(cart.count), cartCount: cart.count } });
     });
     return arr;
   }

@@ -19,7 +19,7 @@ export default class Loader {
       products: db.products.map((product) => {
         const cart = productsCart.find(el => el.id === product.id);
         const cartCount = cart === undefined ? 0 : cart.count;
-        return Object.assign(product, { onCart: cartCount });
+        return Object.assign(product, { onCart: Boolean(cartCount), cartCount: cartCount });
       })
     };
 
@@ -97,7 +97,7 @@ export default class Loader {
     const product = db.products.find(prod => prod.id === idProduct);
     const myCart = this.Cart.loadCart().find(el => el.id === idProduct);
     const cartCount = myCart === undefined ? 0 : myCart.count;
-    return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: cartCount });
+    return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: Boolean(cartCount), cartCount: cartCount });
   }
   /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
