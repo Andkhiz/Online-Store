@@ -6,15 +6,16 @@ import Cart from '../controller/cart/cart';
 function CartPage (): JSX.Element {
   const cart = new Cart();
   const cartData = cart.loadProductsCart();
-  console.log(cartData);
+  const totalCartData = cart.loadTotalCartData();
+  console.log(totalCartData);
   return (
     <main className='cart'>
       <div className="cart-items-conrainer">
         <div className="cart-items-header">
           <h2>products in cart</h2>
           <div className="cart-state">
-            <p>items</p>
-            <p>page</p>
+            <p>items {totalCartData.totalCount}</p>
+            <p>page: 1</p>
           </div>
         </div>
         <div className="cart-items-body">
@@ -35,7 +36,7 @@ function CartPage (): JSX.Element {
             />)}
         </div>
       </div>
-      <CartSummury/>
+      <CartSummury totalPrice={totalCartData.totalSum}/>
     </main>
   );
 }

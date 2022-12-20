@@ -10,7 +10,7 @@ function Header (): JSX.Element {
           <Link to="cart">
             <img src="" alt="Cart" />
           </Link>
-          <p>Total: <span>5</span></p>
+          <p>Total: {1}</p>
         </div>
       </nav>
     </header>

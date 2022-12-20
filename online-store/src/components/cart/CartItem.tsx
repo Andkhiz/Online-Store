@@ -30,6 +30,7 @@ function CartItem ({ id, title, description, rating, discountPercentage, price, 
             // console.log(plusProduct);
             setCounter(counter + 1);
             setFinalPrice(finalPrice + price);
+            cart.loadTotalCartData();
           }}>+</button>
           <p>{counter}</p>
           <button onClick={() => {
@@ -40,6 +41,7 @@ function CartItem ({ id, title, description, rating, discountPercentage, price, 
               cart.decreaseProduct(id);
               setCounter(counter - 1);
               setFinalPrice(finalPrice - price);
+              cart.loadTotalCartData();
             }
           }}
           >-</button>
