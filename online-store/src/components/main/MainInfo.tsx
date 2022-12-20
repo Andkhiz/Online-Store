@@ -5,7 +5,6 @@ import Loader from '../../controller/loader';
 function MainInfo (): JSX.Element {
   const loader = new Loader();
   const arr = loader.loadProducts();
-  console.log(arr);
   return (
     <section className='main-info'>
       <div className="main-info-header">
@@ -19,7 +18,9 @@ function MainInfo (): JSX.Element {
         id={el.id}
         title={el.title}
         price={el.price}
-
+        images={el.images[0]}
+        quantity={el.id}
+        description={el.description}
         />)}
       </div>
     </section>

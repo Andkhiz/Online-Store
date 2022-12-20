@@ -3,16 +3,16 @@ import * as myType from '../interfase';
 
 export default class StartLoader {
   loadStartFilter (): myType.TFilterReturn {
-    const myProduct: myType.IProducts = { products: db.products };
+    const myProduct: myType.IProductDB [] = db.products;
 
     const category: myType.IElementFilterCategory [] = [];
     const brand: myType.IElementFilterCategory [] = [];
-    let priceMin = myProduct.products[0].price;
-    let priceMax = myProduct.products[0].price;
-    let stockMin = myProduct.products[0].stock;
-    let stockMax = myProduct.products[0].stock;
+    let priceMin = myProduct[0].price;
+    let priceMax = myProduct[0].price;
+    let stockMin = myProduct[0].stock;
+    let stockMax = myProduct[0].stock;
 
-    myProduct.products.forEach(product => {
+    myProduct.forEach(product => {
       let prod = (category.findIndex(el => el.name === product.category));
       if (prod >= 0) category[prod].count++;
       else category.push({ name: product.category, filterCount: 0, count: 1 });
