@@ -1,10 +1,11 @@
 import React from 'react';
+import { IRenderProduct } from '../../interfase';
 
-function CheckItem (): JSX.Element {
+function CheckItem ({ category }: IRenderProduct): JSX.Element {
   return (
     <div className="check-item">
       <input type="checkbox" id="1"/>
-      <label htmlFor="1">value1</label>
+      <label htmlFor="1">{category}</label>
     </div>
   );
 }

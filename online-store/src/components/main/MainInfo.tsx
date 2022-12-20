@@ -5,6 +5,7 @@ import Loader from '../../controller/loader';
 function MainInfo (): JSX.Element {
   const loader = new Loader();
   const arr = loader.loadProducts();
+  // console.log(arr.products);
   return (
     <section className='main-info'>
       <div className="main-info-header">

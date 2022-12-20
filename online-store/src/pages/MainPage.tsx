@@ -11,8 +11,8 @@ function MainPage (): JSX.Element {
           <button>Reset filter</button>
           <button>Copy link</button>
         </div>
-        <MyFilter title='Category'/>
-        <MyFilter title='brand'/>
+        <MyFilter category='' title='Category'/>
+        <MyFilter category='' title='brand'/>
         <MyInputRange title='Price'/>
         <MyInputRange title='Stock'/>
       </aside>

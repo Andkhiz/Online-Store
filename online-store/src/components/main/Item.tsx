@@ -3,7 +3,6 @@ import { IProduct } from '../../interfase';
 import { Link } from 'react-router-dom';
 import Cart from '../../controller/cart/cart';
 
-// сделала для проверки потом перенесем в интерфейсы
 function Item ({ title, price, id, cartCount, stock }: IProduct): JSX.Element {
   const cart = new Cart();
   return (

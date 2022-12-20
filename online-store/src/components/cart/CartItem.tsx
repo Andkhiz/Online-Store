@@ -34,6 +34,7 @@ function CartItem ({ id, title, description, rating, discountPercentage, price, 
           <p>{counter}</p>
           <button onClick={() => {
             if (counter <= 0) {
+              cart.deleteProduct(id);
               setCounter(counter);
             } else {
               cart.decreaseProduct(id);

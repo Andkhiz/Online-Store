@@ -1,17 +1,23 @@
 import React from 'react';
 import CheckItem from './CheckItem';
-interface StandardComponentProps {
-  title?: string
-}
-// сделала для проверки потом перенесем в интерфейсы
+import { IRenderProduct } from '../../interfase';
+import Loader from '../../controller/loader';
 
-function MyInputRange ({ title }: StandardComponentProps): JSX.Element {
+function MyInputRange ({ title }: IRenderProduct): JSX.Element {
+  const loader = new Loader();
+  const arr = loader.loadProducts();
+  const categories = Array.from(new Set(arr.products.map(el => el.category)));
+  const brands = Array.from(new Set(arr.products.map(el => el.brand)));
+  const filters = [categories, brands];
+
   return (
     <div className="input-container">
-      <div className="title">{title}</div>
-      <CheckItem/>
-      <CheckItem/>
-      <CheckItem/>
+      {filters.map(el => el.map(item => <CheckItem
+      key={item}
+      category={item}
+      title={title}
+      />)
+      )}
     </div>
   );
 }
