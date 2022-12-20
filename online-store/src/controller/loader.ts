@@ -93,11 +93,12 @@ export default class Loader {
     return myFilter;
   }
 
-  loadProduct (idProduct: number): Partial<myType.IProduct> {
+  loadProduct (idProduct: number): myType.IProduct | undefined {
     const product = db.products.find(prod => prod.id === idProduct);
+    if (product ===  undefined) return undefined;
     const myCart = this.Cart.loadCart().find(el => el.id === idProduct);
     const cartCount = myCart === undefined ? 0 : myCart.count;
-    return typeof product === 'undefined' ? {} : Object.assign(product, { onCart: Boolean(cartCount), cartCount });
+    return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
   }
 
 /* parceFilterString (): Partial<myType.TFilter> | null {

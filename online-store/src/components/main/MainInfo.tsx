@@ -19,6 +19,7 @@ function MainInfo (): JSX.Element {
         title={el.title}
         price={el.price}
         images={el.images[0]}
+        quantity={el.id}
         />)}
       </div>
     </section>

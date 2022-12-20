@@ -19,9 +19,9 @@ export interface IProducts { products: IProduct []};
 
 export interface IRenderProduct {
   id: number;
-  title?: string;
-  description?: string;
-  price?: number;
+  title: string;
+  description: string;
+  price: number;
   discountPercentage?: number;
   rating?: number;
   stock?: number;
@@ -30,6 +30,7 @@ export interface IRenderProduct {
   thumbnail?: string;
   images?: string;
   onCart?: boolean;
+  quantity: number;
 };
 
 interface ICart {

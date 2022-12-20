@@ -15,9 +15,9 @@ function ProductPage (): JSX.Element {
       </div>
       <ProductInfo
       id={Number(item.id)}
-      title={item.title}
-      description={item.description}
-      price={item.price}
+      title={item.title ? item.title : 'not found'}
+      description={item.description ? item.description : 'desc'}
+      price={item.price ? item.price : 0}
       discountPercentage={item.discountPercentage}
       category={item.category}
       images={item.images![0]}
