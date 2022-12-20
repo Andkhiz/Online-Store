@@ -1,5 +1,4 @@
-
-export interface IProduct {
+export interface IProductDB {
   id: number;
   title: string;
   description: string;
@@ -11,6 +10,9 @@ export interface IProduct {
   category: string;
   thumbnail: string;
   images: string [];
+}
+
+export interface IProduct extends IProductDB {
   onCart?: boolean;
   cartCount: number;
 };
