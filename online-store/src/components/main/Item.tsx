@@ -13,7 +13,7 @@ function Item ({ title, price, id, cartCount, stock, thumbnail }: IProduct): JSX
         <p>Price: {price}</p>
       </div>
       <div className="buttons">
-          <button onClick={() => cart.addProdurt(id, cartCount, stock)}>Add</button>
+          <button onClick={() => cart.addProdurt(id, price, stock)}>Add</button>
           <button><Link to={`/product/${id}`}>Info</Link></button>
       </div>
     </div>

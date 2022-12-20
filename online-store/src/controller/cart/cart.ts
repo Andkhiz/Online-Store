@@ -50,7 +50,7 @@ class Cart {
     const itemCart = myCart.findIndex(el => el.id === idProduct);
     if (itemCart !== -1) {
       if (myCart[itemCart].count === 1) {
-        myCart.splice(itemCart);
+        myCart.splice(itemCart, 1);
       } else {
         myCart[itemCart].count--;
       }
@@ -62,7 +62,7 @@ class Cart {
     const myCart = this.loadCart();
     const itemCart = myCart.findIndex(el => el.id === idProduct);
     if (itemCart !== -1) {
-      myCart.splice(itemCart);
+      myCart.splice(itemCart, 1);
       localStorage.setItem('myCart', JSON.stringify(myCart));
     }
   }
