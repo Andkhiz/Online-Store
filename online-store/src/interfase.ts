@@ -80,3 +80,27 @@ export type TFilterReturn = {
   sort: TSort;
   filter: string;
 };
+
+
+export interface ICartClass {
+  loadCart (): TCarts;
+  loadProductsCart (): IProductsCart;
+  loadTotalCartData (): ICartTotal;
+  addProdurt (idProduct: number, priceProduct: number, stock: number): void;
+  decreaseProduct (idProduct: number): void;
+  deleteProduct (idProduct: number): void;
+}
+
+export interface IStartLoaderClass {
+  loadStartFilter (): TFilterReturn;
+}
+
+export interface ILoaderClass {
+  // startFilter: TFilterReturn;
+  Cart: ICartClass;
+  loadProducts (): IProducts;
+  loadFilters (): TFilterReturn;
+  loadProduct (idProduct: number): IProduct | undefined;
+}
+
+export interface ILoaderClassObj { loader: ILoaderClass }

@@ -2,13 +2,14 @@ import React from 'react';
 import ProductInfo from '../components/product/ProductInfo';
 import ProductInfoNotFound from '../components/product/productInfoNotFound';
 import { useParams } from 'react-router-dom';
-import Loader from '../controller/loader';
+// import Loader from '../controller/loader';
+import { ILoaderClassObj } from '../interfase';
 
-function ProductPage (): JSX.Element {
+function ProductPage (loader: ILoaderClassObj): JSX.Element {
   const params = useParams();
-  const loader = new Loader();
+  // const loader = new Loader();
   console.log(params);
-  const item = loader.loadProduct(Number(params.id));
+  const item = loader.loader.loadProduct(Number(params.id));
   return (
     <main className='product'>
       <div className="product-path">
