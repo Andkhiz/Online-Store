@@ -1,13 +1,13 @@
 import React from 'react';
-import { IRenderProduct } from '../../interfase';
+import { IProduct } from '../../interfase';
 
-export default function ProductInfo ({ title, description, id, price, brand, category, discountPercentage, images }: IRenderProduct): JSX.Element {
+export default function ProductInfo ({ title, description, id, price, brand, category, discountPercentage, images, thumbnail }: IProduct): JSX.Element {
   return (
     <div className="product-container">
       <div className="product-img-container">
         <div className="aside-img"></div>
         <div className="main-img">
-          <img src={images} alt={title} width='200' height='200' />
+          <img src={thumbnail} alt={title} width='200' height='200' />
         </div>
       </div>
       <div className="product-description-container">

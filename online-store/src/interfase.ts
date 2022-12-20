@@ -12,7 +12,7 @@ export interface IProduct {
   thumbnail: string;
   images: string [];
   onCart?: boolean;
-  cartCount?: number;
+  cartCount: number;
 };
 
 export interface IProducts { products: IProduct []};

@@ -95,7 +95,7 @@ export default class Loader {
 
   loadProduct (idProduct: number): myType.IProduct | undefined {
     const product = db.products.find(prod => prod.id === idProduct);
-    if (product ===  undefined) return undefined;
+    if (product === undefined) return undefined;
     const myCart = this.Cart.loadCart().find(el => el.id === idProduct);
     const cartCount = myCart === undefined ? 0 : myCart.count;
     return Object.assign(product, { onCart: Boolean(cartCount), cartCount });

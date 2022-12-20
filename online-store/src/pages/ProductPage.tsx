@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductInfo from '../components/product/ProductInfo';
+import ProductInfoNotFound from '../components/product/productInfoNotFound';
 import { useParams } from 'react-router-dom';
 import Loader from '../controller/loader';
 
@@ -13,15 +14,24 @@ function ProductPage (): JSX.Element {
       <div className="product-path">
         store---smartphones---apple
       </div>
-      <ProductInfo
-      id={Number(item.id)}
-      title={item.title ? item.title : 'not found'}
-      description={item.description ? item.description : 'desc'}
-      price={item.price ? item.price : 0}
-      discountPercentage={item.discountPercentage}
-      category={item.category}
-      images={item.images![0]}
-      />
+      {
+        item !== undefined
+          ? <ProductInfo
+          id={Number(item.id)}
+          title={item.title}
+          description={item.description}
+          price={item.price}
+          discountPercentage={item.discountPercentage}
+          category={item.category}
+          images={item.images}
+          cartCount={item.cartCount}
+          stock={item.stock}
+          brand={item.brand}
+          thumbnail={item.thumbnail}
+          rating={item.rating}
+        />
+          : <ProductInfoNotFound/>
+      }
     </main>
   );
 }

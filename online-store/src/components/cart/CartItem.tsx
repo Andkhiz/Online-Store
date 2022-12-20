@@ -6,7 +6,7 @@ function CartItem ({ title, description, rating, discountPercentage, price, cart
   const cart = new Cart();
   const cartData = cart.loadProductsCart();
 
-  const [counter, setCounter] = useState<number>(cartCount!);
+  const [counter, setCounter] = useState<number>(cartCount);
   const [finalPrice, setFinalPrice] = useState<number>(price * cartCount);
 
   return (
@@ -26,10 +26,18 @@ function CartItem ({ title, description, rating, discountPercentage, price, cart
         <div className="counter">
           <button onClick={() => {
             setCounter(counter + 1);
-            setFinalPrice(finalPrice + 1);
+            setFinalPrice(finalPrice + price);
           }}>+</button>
           <p>{counter}</p>
-          <button onClick={() => counter <= 0 ? setCounter(counter) : setCounter(counter - 1)}>-</button>
+          <button onClick={() => {
+            if (counter <= 0) {
+              setCounter(counter);
+            } else {
+              setCounter(counter - 1);
+              setFinalPrice(finalPrice - price);
+            }
+          }}
+          >-</button>
         </div>
         <div className="price">{finalPrice}</div>
       </div>

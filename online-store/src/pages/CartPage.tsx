@@ -26,7 +26,12 @@ function CartPage (): JSX.Element {
             discountPercentage={el.discountPercentage}
             rating={el.rating}
             price={el.price}
-            quantity={el.cartCount}
+            cartCount={el.cartCount}
+            stock={el.stock}
+            brand={el.brand}
+            category={el.category}
+            thumbnail={el.thumbnail}
+            images={el.images}
             />)}
         </div>
       </div>
