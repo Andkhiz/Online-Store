@@ -17,10 +17,16 @@ function MainInfo (): JSX.Element {
         key={el.id}
         id={el.id}
         title={el.title}
-        price={el.price}
-        images={el.images[0]}
-        quantity={el.id}
         description={el.description}
+        discountPercentage={el.discountPercentage}
+        rating={el.rating}
+        price={el.price}
+        cartCount={el.cartCount}
+        stock={el.stock}
+        brand={el.brand}
+        category={el.category}
+        thumbnail={el.thumbnail}
+        images={el.images}
         />)}
       </div>
     </section>
