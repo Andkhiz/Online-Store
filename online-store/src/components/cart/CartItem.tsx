@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { IProduct } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 
-function CartItem ({ title, description, rating, discountPercentage, price, cartCount }: IProduct): JSX.Element {
+function CartItem ({ id, title, description, rating, discountPercentage, price, cartCount, thumbnail, stock }: IProduct): JSX.Element {
   const cart = new Cart();
-  const cartData = cart.loadProductsCart();
+  // const minusProduct = ;
+  // console.log(typeof minusProduct);
 
   const [counter, setCounter] = useState<number>(cartCount);
   const [finalPrice, setFinalPrice] = useState<number>(price * cartCount);
@@ -12,7 +13,7 @@ function CartItem ({ title, description, rating, discountPercentage, price, cart
   return (
     <div className="cart-item">
       <div className="item-id">1</div>
-      <img src="" alt="" />
+      <img src={thumbnail} alt="" />
       <div className="cart-item-description">
         <h5>{title}</h5>
         <p>{description}</p>
@@ -25,6 +26,8 @@ function CartItem ({ title, description, rating, discountPercentage, price, cart
         <div className="stock"></div>
         <div className="counter">
           <button onClick={() => {
+            cart.addProdurt(id, price, stock);
+            // console.log(plusProduct);
             setCounter(counter + 1);
             setFinalPrice(finalPrice + price);
           }}>+</button>
@@ -33,6 +36,7 @@ function CartItem ({ title, description, rating, discountPercentage, price, cart
             if (counter <= 0) {
               setCounter(counter);
             } else {
+              cart.decreaseProduct(id);
               setCounter(counter - 1);
               setFinalPrice(finalPrice - price);
             }
