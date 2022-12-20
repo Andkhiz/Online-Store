@@ -1,5 +1,5 @@
 import React from 'react';
-import CardItem from './Item';
+import Item from './Item';
 import Loader from '../../controller/loader';
 
 function MainInfo (): JSX.Element {
@@ -14,7 +14,7 @@ function MainInfo (): JSX.Element {
         <div className="view-options"></div>
       </div>
       <div className="main-info-content">
-        {arr.products.map((el) => <CardItem
+        {arr.products.map((el) => <Item
         key={el.id}
         id={el.id}
         title={el.title}
