@@ -10,6 +10,7 @@ export default class Loader {
 
   loadProducts (): myType.IProducts {
     const productsCart = this.Cart.loadCart();
+    console.log('Load Products');
     console.log(productsCart);
 
     const myProduct = {
@@ -71,6 +72,7 @@ export default class Loader {
 
   loadFilters (): myType.TFilterReturn {
     const myFilter = Loader.startFilter;
+    console.log('Load Filters');
     console.log(myFilter);
     const myProduct = this.loadProducts();
 
