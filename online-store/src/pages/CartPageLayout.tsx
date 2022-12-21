@@ -4,7 +4,7 @@ import CartItemsContainer from '../components/cart/CartItemsContainer';
 import Cart from '../controller/cart/cart';
 import { ICartLayout } from '../interfase';
 
-function CartPage (): JSX.Element {
+function CartPageLayout (): JSX.Element {
   const cart = new Cart();
   const [cartPageData, setCartPageData] = useState(cart.loadProductsCart().productsCart);
   console.log(cartPageData);
@@ -19,4 +19,4 @@ function CartPage (): JSX.Element {
     </>
   );
 }
-export default CartPage;
+export default CartPageLayout;

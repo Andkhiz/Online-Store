@@ -34,6 +34,10 @@ export type TCarts = ICart[];
 
 export interface IProductsCart { productsCart: IProduct [] }
 
+export interface IProductsCartRender extends IProduct {
+  setCartItemsState: Function;
+}
+
 export interface ICartTotal {
   totalCount: number;
   totalSum: number;
@@ -80,3 +84,8 @@ export type TFilterReturn = {
   sort: TSort;
   filter: string;
 };
+
+export interface ICartLayout {
+  // isEmpty: boolean;
+  setCartPageData: Function;
+}

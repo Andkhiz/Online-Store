@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CartItem from './CartItem';
 import CartSummury from './CartSummury';
 import Cart from '../../controller/cart/cart';
+import { ICartLayout } from '../../interfase';
 
-export default function CartItemsContainer (): JSX.Element {
+export default function CartItemsContainer ({ setCartPageData }: ICartLayout): JSX.Element {
   const cart = new Cart();
   const cartData = cart.loadProductsCart();
   const totalCartData = cart.loadTotalCartData();
-  console.log(totalCartData);
+  const cartItems = cartData.productsCart;
+  const [cartItemsState, setCartItemsState] = useState([cartData.productsCart]);
+  useEffect(() => {
+    setCartPageData(cartItemsState);
+  }, [cartItemsState]);
+
   return (
     <main className='cart'>
       <div className="cart-items-conrainer">
@@ -19,7 +25,7 @@ export default function CartItemsContainer (): JSX.Element {
         </div>
       </div>
       <div className="cart-items-body">
-        {cartData.productsCart.map((el) => <CartItem
+        {cartItems.map((el) => <CartItem
           key={el.id}
           id={el.id}
           title={el.title}
@@ -33,6 +39,7 @@ export default function CartItemsContainer (): JSX.Element {
           category={el.category}
           thumbnail={el.thumbnail}
           images={el.images}
+          setCartItemsState={setCartItemsState}
           />)}
       </div>
       </div>
