@@ -9,7 +9,8 @@ function ProductPage (loader: ILoaderClassObj): JSX.Element {
   const params = useParams();
   // const loader = new Loader();
   console.log(params);
-  const item = loader.loader.loadProduct(Number(params.id));
+  // const item = loader.loader.loadProduct(Number(params.id));
+  const item = loader.loader.products.products.find(prod => prod.id === Number(params.id));
   return (
     <main className='product'>
       <div className="product-path">

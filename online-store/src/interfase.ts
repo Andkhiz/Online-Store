@@ -81,6 +81,7 @@ export type TFilterReturn = {
   filter: string;
 };
 
+export type TFilterQuery = { key: string, value: string };
 
 export interface ICartClass {
   loadCart (): TCarts;
@@ -97,7 +98,14 @@ export interface IStartLoaderClass {
 
 export interface ILoaderClass {
   // startFilter: TFilterReturn;
+  // Cart: ICartClass;
   Cart: ICartClass;
+  products: IProducts;
+  filter: TFilterReturn;
+  cartProduts: IProductsCart;
+  cartTotalData: ICartTotal;
+  cart: TCarts;
+
   loadProducts (): IProducts;
   loadFilters (): TFilterReturn;
   loadProduct (idProduct: number): IProduct | undefined;

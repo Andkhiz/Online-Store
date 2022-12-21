@@ -7,9 +7,11 @@ import { ILoaderClassObj } from '../interfase';
 function CartPage (loader: ILoaderClassObj): JSX.Element {
   // const cart = new Cart();
   // const cart = loader.loader.Cart;
-  const cartData = loader.loader.Cart.loadProductsCart();
-  const totalCartData = loader.loader.Cart.loadTotalCartData();
-  console.log(totalCartData);
+  // const cartData = loader.loader.Cart.loadProductsCart();
+  // const totalCartData = loader.loader.Cart.loadTotalCartData();
+  const cartData = loader.loader.cartProduts;
+  const totalCartData = loader.loader.cartTotalData;
+  // console.log(totalCartData);
   return (
     <main className='cart'>
       <div className="cart-items-conrainer">

@@ -6,10 +6,27 @@ import Cart from './cart/cart';
 
 export default class Loader {
   static startFilter = new StartLoader().loadStartFilter();
-  Cart = new Cart();
+  // Cart: myType.ICartClass;
+  // Cart = new Cart();
+  // Cart = new Cart();
+  Cart: myType.ICartClass;
+  products: myType.IProducts;
+  filter: myType.TFilterReturn;
+  cartProduts: myType.IProductsCart;
+  cartTotalData: myType.ICartTotal;
+  cart: myType.TCarts;
+
+  constructor () {
+    this.Cart = new Cart();
+    this.products = this.loadProducts();
+    this.filter = this.loadFilters();
+    this.cartProduts = this.Cart.loadProductsCart();
+    this.cartTotalData = this.Cart.loadTotalCartData();
+    this.cart = this.Cart.loadCart();
+  }
 
   loadProducts (): myType.IProducts {
-    const productsCart = this.Cart.loadCart();
+    const productsCart = this.cart === undefined ? this.Cart.loadCart() : this.cart;
     console.log('Load Products');
     console.log(productsCart);
 
@@ -21,50 +38,60 @@ export default class Loader {
       })
     };
 
-    const searchParams = useSearchParams()[0];
+    const searchParams = this.parceFilterString();
+    console.log('searchParams');
+    console.log(searchParams);
+    // const searchParams = useSearchParams()[0];
     const BreakError: Error = { name: 'continue', message: 'myMessage' };
 
-    searchParams.forEach((el, key) => {
-      try {
-        const arr = el.split('↕');
-        if (key === 'brand' || key === 'category') {
-          myProduct.products = myProduct.products.filter(product => arr.includes(product[key]));
-          throw BreakError;
-        }
-        if (key === 'price' || key === 'stock') {
-          if (arr.length === 2) {
-            const arrPar = arr.map(el => Number(el));
-            myProduct.products = myProduct.products.filter(product => product[key] >= arrPar[0] && product[key] <= arrPar[1]);
+    searchParams.forEach(el => {
+      if (el !== undefined) {
+        try {
+          console.log('//////////////');
+          const key = el.key;
+          console.log(el);
+          console.log(key);
+          const arr = el.value.split('%E2%86%95'/* '↕' */);
+          console.log(arr);
+          if (key === 'brand' || key === 'category') {
+            myProduct.products = myProduct.products.filter(product => arr.includes(product[key]));
             throw BreakError;
           }
-        }
-        if (key === 'sort') {
-          const arSort = el.split('-');
-          if (arSort[0] === 'discount') arSort[0] = 'discountPercentage';
-          if (arSort.length === 2 &&
-              (arSort[0] === 'price' || arSort[0] === 'rating' || arSort[0] === 'discountPercentage') &&
-              (arSort[1] === 'ASC' || arSort[1] === 'DESC')) {
-            const e = arSort[0];
-            if (arSort[1] === 'ASC') {
-              myProduct.products.sort((a, b) => a[e] - b[e]);
-            } else {
-              myProduct.products.sort((a, b) => b[e] - a[e]);
+          if (key === 'price' || key === 'stock') {
+            if (arr.length === 2) {
+              const arrPar = arr.map(el => Number(el));
+              myProduct.products = myProduct.products.filter(product => product[key] >= arrPar[0] && product[key] <= arrPar[1]);
+              throw BreakError;
             }
+          }
+          if (el.key === 'sort') {
+            const arSort = el.value.split('-');
+            if (arSort[0] === 'discount') arSort[0] = 'discountPercentage';
+            if (arSort.length === 2 &&
+                (arSort[0] === 'price' || arSort[0] === 'rating' || arSort[0] === 'discountPercentage') &&
+                (arSort[1] === 'ASC' || arSort[1] === 'DESC')) {
+              const e = arSort[0];
+              if (arSort[1] === 'ASC') {
+                myProduct.products.sort((a, b) => a[e] - b[e]);
+              } else {
+                myProduct.products.sort((a, b) => b[e] - a[e]);
+              }
+              throw BreakError;
+            }
+          }
+          if (el.key === 'filter') {
+            myProduct.products = myProduct.products.filter(product => product.brand.includes(el.value) ||
+              product.category.includes(el.value) || product.description.includes(el.value) ||
+              product.title.includes(el.value) || String(product.price).includes(el.value) ||
+              String(product.discountPercentage).includes(el.value) || String(product.rating).includes(el.value) ||
+              String(product.stock).includes(el.value));
             throw BreakError;
           }
+          console.log('error');
+          myProduct.products = [];
+        } catch (er) {
+          if (er !== BreakError) throw er;
         }
-        if (key === 'filter') {
-          myProduct.products = myProduct.products.filter(product => product.brand.includes(el) ||
-            product.category.includes(el) || product.description.includes(el) ||
-            product.title.includes(el) || String(product.price).includes(el) ||
-            String(product.discountPercentage).includes(el) || String(product.rating).includes(el) ||
-            String(product.stock).includes(el));
-          throw BreakError;
-        }
-        console.log('error');
-        myProduct.products = [];
-      } catch (er) {
-        if (er !== BreakError) throw er;
       }
     });
     return myProduct;
@@ -74,7 +101,8 @@ export default class Loader {
     const myFilter = Loader.startFilter;
     console.log('Load Filters');
     console.log(myFilter);
-    const myProduct = this.loadProducts();
+    // const myProduct = this.loadProducts();
+    const myProduct = this.products === undefined ? this.loadProducts() : this.products;
 
     myFilter.prices.max = myProduct.products[0].price;
     myFilter.prices.min = myProduct.products[0].price;
@@ -95,11 +123,26 @@ export default class Loader {
   loadProduct (idProduct: number): myType.IProduct | undefined {
     const product = db.products.find(prod => prod.id === idProduct);
     if (product === undefined) return undefined;
-    const myCart = this.Cart.loadCart().find(el => el.id === idProduct);
+    const cartStorange = this.cart === undefined ? this.Cart.loadCart() : this.cart;
+    const myCart = cartStorange.find(el => el.id === idProduct);
     const cartCount = myCart === undefined ? 0 : myCart.count;
     return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
   }
 
+  parceFilterString (): myType.TFilterQuery [] {
+    let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
+    if (st === '') return [];
+    st = st.replaceAll('&', '"}, { "key":"')
+      .replaceAll('=', '", "value":"');
+    // .replaceAll('%E2%86%95', '","');
+    st = '[{"key":"' + st + '"}]';
+    console.log('st = ' + st);
+    try {
+      return JSON.parse(st);
+    } catch (error) {
+      return [];
+    }
+  }
 /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     if (st === '') return {};

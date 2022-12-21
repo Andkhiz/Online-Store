@@ -6,7 +6,7 @@ import { ILoaderClassObj } from '../../interfase';
 function MainInfo (loader: ILoaderClassObj): JSX.Element {
   // const loader = new Loader();
   console.log('MainInfo');
-  const arr = loader.loader.loadProducts();
+  const arr = loader.loader.products;
   // console.log(arr.products);
   return (
     <section className='main-info'>

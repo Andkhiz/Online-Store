@@ -16,7 +16,7 @@ function MainPage (loader: ILoaderClassObj): JSX.Element {
           <button>Copy link</button>
         </div>
         <MyCategoriesFilter category='' title='Category' { ...loader }/>
-        <MyBrandsFilter category='' title='Brands'/>
+        <MyBrandsFilter category='' title='Brands' { ...loader }/>
         <MyInputRange title='Price'/>
         <MyInputRange title='Stock'/>
       </aside>
