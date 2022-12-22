@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Cart from '../controller/cart/cart';
+import { ICartLayout } from '../interfase';
 
 function Header (): JSX.Element {
+  const cart = new Cart();
+  const totalCartData = cart.loadTotalCartData();
+
   return (
     <header>
       <nav>
@@ -10,7 +15,8 @@ function Header (): JSX.Element {
           <Link to="cart">
             <img src="" alt="Cart" />
           </Link>
-          <p>Total: {1}</p>
+          <p>Total: {totalCartData.totalCount}</p>
+          <p>Sum: {totalCartData.totalSum}</p>
         </div>
       </nav>
     </header>

@@ -3,8 +3,9 @@ import MainInfo from '../components/main/MainInfo';
 import MyCategoriesFilter from '../components/main/MyCategoriesFilter';
 import MyBrandsFilter from '../components/main/MyBrandsFilter';
 import MyInputRange from '../components/main/MyInputRange';
+import { ICartLayout } from '../interfase';
 
-function MainPage (): JSX.Element {
+function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
   return (
     <main>
       <aside className='side-bar'>
@@ -17,7 +18,7 @@ function MainPage (): JSX.Element {
         <MyInputRange title='Price'/>
         <MyInputRange title='Stock'/>
       </aside>
-      <MainInfo/>
+      <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData}/>
     </main>
   );
 }

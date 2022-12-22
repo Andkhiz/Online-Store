@@ -1,8 +1,9 @@
 import React from 'react';
 import Item from './Item';
 import Loader from '../../controller/loader';
+import { ICartLayout } from '../../interfase';
 
-function MainInfo (): JSX.Element {
+function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
   const loader = new Loader();
   const arr = loader.loadProducts();
   // console.log(arr.products);
@@ -28,6 +29,7 @@ function MainInfo (): JSX.Element {
         category={el.category}
         thumbnail={el.thumbnail}
         images={el.images}
+        setState={setCartPageData}
         />)}
       </div>
     </section>

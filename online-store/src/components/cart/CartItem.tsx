@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IProductsCartRender } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 
-function CartItem ({ id, title, description, rating, discountPercentage, price, cartCount, thumbnail, stock, setCartItemsState }: IProductsCartRender): JSX.Element {
+function CartItem ({ id, title, description, rating, discountPercentage, price, cartCount, thumbnail, stock, setState }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
   const cartData = cart.loadProductsCart();
 
@@ -19,18 +19,24 @@ function CartItem ({ id, title, description, rating, discountPercentage, price, 
         <div>
           <p>rating: {rating}</p>
           <p>discount: {discountPercentage}</p>
+          <p>{stock} left</p>
         </div>
       </div>
       <div className="purchase-data">
         <div className="stock"></div>
         <div className="counter">
           <button onClick={() => {
-            cart.addProdurt(id, price, stock);
-            // console.log(plusProduct);
-            setCounter(counter + 1);
-            setFinalPrice(finalPrice + price);
-            cart.loadTotalCartData();
-            // setCartItem(cart.loadProductsCart().productsCart);
+            if (stock <= cartCount) {
+              console.log(stock, cartCount);
+              setCounter(counter);
+              setState(cart.loadProductsCart().productsCart);
+            } else {
+              setCounter(counter + 1);
+              setFinalPrice(finalPrice + price);
+              cart.loadTotalCartData();
+              setState(cart.loadProductsCart().productsCart);
+              cart.addProdurt(id, price, stock);
+            }
           }}>+</button>
           <p>{counter}</p>
           <button onClick={() => {
@@ -38,14 +44,14 @@ function CartItem ({ id, title, description, rating, discountPercentage, price, 
               cart.decreaseProduct(id);
               setCounter(counter);
               console.log('from cart item', cart.loadProductsCart().productsCart);
-              setCartItemsState(cart.loadProductsCart().productsCart);
+              setState(cart.loadProductsCart().productsCart);
             } else {
               cart.decreaseProduct(id);
               setCounter(counter - 1);
               setFinalPrice(finalPrice - price);
               cart.loadTotalCartData();
               console.log('from cart item', cart.loadProductsCart().productsCart);
-              setCartItemsState(cart.loadProductsCart().productsCart);
+              setState(cart.loadProductsCart().productsCart);
             }
           }}
           >-</button>

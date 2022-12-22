@@ -39,7 +39,7 @@ export default function CartItemsContainer ({ setCartPageData }: ICartLayout): J
           category={el.category}
           thumbnail={el.thumbnail}
           images={el.images}
-          setCartItemsState={setCartItemsState}
+          setState={setCartItemsState}
           />)}
       </div>
       </div>

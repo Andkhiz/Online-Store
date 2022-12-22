@@ -35,7 +35,7 @@ export type TCarts = ICart[];
 export interface IProductsCart { productsCart: IProduct [] }
 
 export interface IProductsCartRender extends IProduct {
-  setCartItemsState: Function;
+  setState: Function;
 }
 
 export interface ICartTotal {
@@ -88,4 +88,11 @@ export type TFilterReturn = {
 export interface ICartLayout {
   // isEmpty: boolean;
   setCartPageData: Function;
+  cartPageData: IProduct[];
+}
+
+export interface IPromo {
+  title: string;
+  discount: number;
+  setPromocodeUsed: Function;
 }
