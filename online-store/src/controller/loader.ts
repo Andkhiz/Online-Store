@@ -32,7 +32,7 @@ export default class Loader {
         }
         if (key === 'price' || key === 'stock') {
           if (arr.length === 2) {
-            const arrPar = arr.map(el => Number(el));
+            const arrPar = arr.map(el => Number.parseInt(el));
             myProduct.products = myProduct.products.filter(product => product[key] >= arrPar[0] && product[key] <= arrPar[1]);
             throw BreakError;
           }
@@ -87,6 +87,28 @@ export default class Loader {
       if (myFilter.stocks.max < product.stock) myFilter.stocks.max = product.price;
     });
 
+    const searchParams = useSearchParams()[0];
+    searchParams.forEach((el, key) => {
+      if (key === 'brand' || key === 'category') {
+        const prop = key === 'brand' ? 'brands' : 'categories';
+        el.split('↕').forEach(brandFilter => { myFilter[prop][myFilter[prop].findIndex(b => b.name === brandFilter)].onChecked = true; });
+      }
+      if (key === 'price' || key === 'stock') {
+        const arr = el.split('↕').map(el => Number.parseInt(el));
+        if (arr.length === 2) {
+          const prop = key === 'price' ? 'prices' : 'stocks';
+          myFilter[prop].min = arr[0];
+          myFilter[prop].max = arr[1];
+        }
+      }
+      if (key === 'sort' && (el === 'price-ASC' || el === 'price-DESC' ||
+        el === 'rating-ASC' || el === 'rating-DESC' || el === 'discount-ASC' || el === 'discount-DESC')) {
+        myFilter.sort = el;
+      }
+      if (key === 'filter') {
+        myFilter.filter = el;
+      }
+    });
     return myFilter;
   }
 
