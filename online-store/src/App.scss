@@ -1,4 +1,4 @@
-$background-color: #fff;
+$background-color: #f1f1f1;
 $border-color: #818181;
 $font-color: rgb(22, 22, 22);
 $active-input: rgb(41, 241, 141);
@@ -33,6 +33,11 @@ header{
 main{
   display: flex;
   margin: 0 40px;
+
+  .filter-body{
+    height: 200px;
+    overflow-y: scroll;
+  }
 }
 .main-info{
   height: 100%;
@@ -55,6 +60,7 @@ main{
       background-color: darken(#fff, 10%);
     }
   }
+
   .main-info-content{
     margin: 20px 0;
     display: flex;

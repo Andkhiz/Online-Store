@@ -1,9 +1,11 @@
 import React from 'react';
 import MainInfo from '../components/main/MainInfo';
-import MyFilter from '../components/main/MyFilter';
+import MyCategoriesFilter from '../components/main/MyCategoriesFilter';
+import MyBrandsFilter from '../components/main/MyBrandsFilter';
 import MyInputRange from '../components/main/MyInputRange';
+import { ICartLayout } from '../interfase';
 
-function MainPage (): JSX.Element {
+function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
   return (
     <main>
       <aside className='side-bar'>
@@ -11,12 +13,12 @@ function MainPage (): JSX.Element {
           <button>Reset filter</button>
           <button>Copy link</button>
         </div>
-        <MyFilter title='Category'/>
-        <MyFilter title='brand'/>
+        <MyCategoriesFilter category='' title='Category'/>
+        <MyBrandsFilter category='' title='brand'/>
         <MyInputRange title='Price'/>
         <MyInputRange title='Stock'/>
       </aside>
-      <MainInfo/>
+      <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData}/>
     </main>
   );
 }

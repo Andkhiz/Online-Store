@@ -9,9 +9,6 @@ export default class Loader {
   Cart = new Cart();
 
   loadProducts (): myType.IProducts {
-    // в корзину для теста положено 2 продукта, нужно удалить
-    localStorage.setItem('myCart', JSON.stringify([{ id: 1, count: 5, price: 4.8 }, { id: 8, count: 10, price: 20.8 }]));
-
     const productsCart = this.Cart.loadCart();
     console.log(productsCart);
 

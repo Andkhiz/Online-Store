@@ -20,19 +20,8 @@ export interface IProduct extends IProductDB {
 export interface IProducts { products: IProduct []};
 
 export interface IRenderProduct {
-  id: number;
   title: string;
-  description: string;
-  price: number;
-  discountPercentage?: number;
-  rating?: number;
-  stock?: number;
-  brand?: string;
-  category?: string;
-  thumbnail?: string;
-  images?: string;
-  onCart?: boolean;
-  quantity: number;
+  category: string;
 };
 
 interface ICart {
@@ -45,7 +34,11 @@ export type TCarts = ICart[];
 
 export interface IProductsCart { productsCart: IProduct [] }
 
-export interface ICartTotal { 
+export interface IProductsCartRender extends IProduct {
+  setState: Function;
+}
+
+export interface ICartTotal {
   totalCount: number;
   totalSum: number;
 }
@@ -91,3 +84,15 @@ export type TFilterReturn = {
   sort: TSort;
   filter: string;
 };
+
+export interface ICartLayout {
+  // isEmpty: boolean;
+  setCartPageData: Function;
+  cartPageData: IProduct[];
+}
+
+export interface IPromo {
+  title: string;
+  discount: number;
+  setPromocodeUsed: Function;
+}

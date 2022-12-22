@@ -1,18 +1,23 @@
 import React from 'react';
-import { IRenderProduct } from '../../interfase';
+import { IProductsCartRender } from '../../interfase';
 import { Link } from 'react-router-dom';
+import Cart from '../../controller/cart/cart';
 
-// сделала для проверки потом перенесем в интерфейсы
-function Item ({ title, price, id }: IRenderProduct): JSX.Element {
+function Item ({ title, price, id, cartCount, stock, thumbnail, setState }: IProductsCartRender): JSX.Element {
+  const cart = new Cart();
   return (
     <div className="item">
-    <img src="" alt="" />
+    <img src={thumbnail} alt={title} width={150} height={150}/>
       <div className="description">
         <p>{title}</p>
         <p>Price: {price}</p>
+        <p>{stock}</p>
       </div>
       <div className="buttons">
-          <button>Add</button>
+          <button onClick={() => {
+            cart.addProdurt(id, price, stock);
+            setState(cart.loadTotalCartData());
+          }}>Add</button>
           <button><Link to={`/product/${id}`}>Info</Link></button>
       </div>
     </div>
