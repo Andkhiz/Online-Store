@@ -1,17 +1,10 @@
 import * as myType from '../../interfase';
 import db from '../db.json';
+import { loadLocalStorage, saveLocalStorange } from './localStorage';
 
 class Cart {
   loadCart (): myType.TCarts {
-    const cart = localStorage.getItem('myCart');
-    if (cart !== null) {
-      try {
-        return JSON.parse(cart);
-      } catch {
-        return [];
-      }
-    }
-    return [];
+    return loadLocalStorage('myCart');
   }
 
   loadProductsCart (): myType.IProductsCart {
@@ -42,7 +35,7 @@ class Cart {
         myCart[itemCart].count++;
       }
     }
-    localStorage.setItem('myCart', JSON.stringify(myCart));
+    saveLocalStorange('myCart', myCart);
   }
 
   decreaseProduct (idProduct: number): void {
@@ -54,7 +47,7 @@ class Cart {
       } else {
         myCart[itemCart].count--;
       }
-      localStorage.setItem('myCart', JSON.stringify(myCart));
+      saveLocalStorange('myCart', myCart);
     }
   }
 
@@ -63,20 +56,9 @@ class Cart {
     const itemCart = myCart.findIndex(el => el.id === idProduct);
     if (itemCart !== -1) {
       myCart.splice(itemCart, 1);
-      localStorage.setItem('myCart', JSON.stringify(myCart));
+      saveLocalStorange('myCart', myCart);
     }
   }
 }
-/* function cart (): myType.TCarts {
-  const cart = localStorage.getItem('myCart');
-  if (cart !== null) {
-    try {
-      return JSON.parse(cart);
-    } catch {
-      return [];
-    }
-  }
-  return [];
-}
-*/
+
 export default Cart;

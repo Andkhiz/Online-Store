@@ -49,7 +49,7 @@ interface IDiscount {
   discount: number;
 } 
 
-type TDiscounts = IDiscount[];
+export type TDiscounts = IDiscount[];
 
 export interface IElementFilterCategory {
   name: string;
