@@ -32,7 +32,7 @@ export default class Loader {
         }
         if (key === 'price' || key === 'stock') {
           if (arr.length === 2) {
-            const arrPar = arr.map(el => Number(el));
+            const arrPar = arr.map(el => Number.parseInt(el));
             myProduct.products = myProduct.products.filter(product => product[key] >= arrPar[0] && product[key] <= arrPar[1]);
             throw BreakError;
           }
@@ -87,6 +87,28 @@ export default class Loader {
       if (myFilter.stocks.max < product.stock) myFilter.stocks.max = product.price;
     });
 
+    const searchParams = useSearchParams()[0];
+    searchParams.forEach((el, key) => {
+      if (key === 'brand' || key === 'category') {
+        const prop = key === 'brand' ? 'brands' : 'categories';
+        el.split('↕').forEach(brandFilter => { myFilter[prop][myFilter[prop].findIndex(b => b.name === brandFilter)].onChecked = true; });
+      }
+      if (key === 'price' || key === 'stock') {
+        const arr = el.split('↕').map(el => Number.parseInt(el));
+        if (arr.length === 2) {
+          const prop = key === 'price' ? 'prices' : 'stocks';
+          myFilter[prop].min = arr[0];
+          myFilter[prop].max = arr[1];
+        }
+      }
+      if (key === 'sort' && (el === 'price-ASC' || el === 'price-DESC' ||
+        el === 'rating-ASC' || el === 'rating-DESC' || el === 'discount-ASC' || el === 'discount-DESC')) {
+        myFilter.sort = el;
+      }
+      if (key === 'filter') {
+        myFilter.filter = el;
+      }
+    });
     return myFilter;
   }
 
@@ -98,6 +120,41 @@ export default class Loader {
     return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
   }
 
+  loadQuery (pathTo: string, category: string, value: string, onVisible: boolean): string {
+    let myPath = '';
+    const oldQuery = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
+    const arr = oldQuery.split('&');
+    let use = false;
+    myPath = arr.reduce((query, el) => {
+      const myParam = el.split('=');
+      if (myParam[0] === category) {
+        use = true;
+        if (category === 'brand' || category === 'category') {
+          if (onVisible) {
+            query += el + '↕' + value + '&';
+          } else {
+            const myValues = myParam[1].split('%E2%86%95');
+            myValues.splice(myValues.findIndex(item => item === value), 1);
+            if (myValues.length > 0) {
+              query += category + '=' + myValues.join('↕') + '&';
+            }
+          }
+        }
+        if (category === 'price' || category === 'stock' || category === 'sort' || category === 'filter') {
+          if (onVisible) { query += category + '=' + value + '&'; }
+        }
+      } else {
+        query += el + (el === '' ? '' : '&');
+      }
+      return query;
+    }, '');
+    if (use) {
+      myPath = myPath.slice(0, -1);
+    } else {
+      if (onVisible) { myPath += category + '=' + value; }
+    }
+    return myPath === '' ? pathTo : pathTo + '/?' + myPath;
+  }
 /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     if (st === '') return {};
