@@ -133,3 +133,18 @@ main{
     }
   }
 }
+.modal-content{
+  input {
+    border: 1px solid $border-color;
+    outline: none;
+  }
+  input:focus {
+    border: 1px solid green;
+    outline: none;
+  }
+  input:invalid {
+    border: red solid 1px;
+    outline: none;
+  }
+}
+
