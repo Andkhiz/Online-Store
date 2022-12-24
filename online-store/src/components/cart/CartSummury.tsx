@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
+import Modal from '../modal/Modal';
 import Promocode from './Promocode';
 interface total {
   totalPrice: number
@@ -28,6 +29,7 @@ function CartSummury ({ totalPrice }: total): JSX.Element {
       <p>total {totalPrice}</p>
       <input type="text" id="promoCode" name='input' onChange={handleChange}/>
       <label htmlFor="promoCode">Promo for test: RS, EPM</label>
+      <Modal/>
       {/* <Promocode title={'your discount'} discount={10} setPromocodeUsed={setPromocodeUsed}/>
       <Promocode title={'your discount'} discount={10} setPromocodeUsed={setPromocodeUsed}/> */}
       {/* {discount.length > 0 && promocodeUsed
