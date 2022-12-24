@@ -13,7 +13,6 @@ export function createValidator (id: string, regExp: string) {
         if (document.getElementById(id + 'Error') === null) {
           tel.parentElement?.append(createLabelError(id));
         }
-        console.log(tel.oninput);
         if (tel.oninput === null) {
           tel.oninput = createValidator(id, regExp);
         }

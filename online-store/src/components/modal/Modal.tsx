@@ -66,7 +66,26 @@ function Modal (): JSX.Element {
           <h6>Credit card details</h6>
           <div className="card-data-container">
             <img src="" alt="" />
-            <input type="text" min={0}/>
+            <input type="text" id='card-number' placeholder='Card number'
+              onBlur={createValidator('card-number', '([0-9]{4,4}( (?!$)|$)){4,4}')}
+              onInput={function (): void {
+                const cardNumber = document.getElementById('card-number');
+                if (cardNumber instanceof HTMLInputElement) {
+                  let text = cardNumber.value;
+                  text = text.replaceAll(' ', '');
+                  text = text.split('')
+                    .filter(el => el === String(Number.parseInt(el)))
+                    .splice(0, 16)
+                    .reduce((str, el) => {
+                      console.log(str.length);
+                      str = str + (((str.length - Math.floor(str.length / 5) + 1) % 4 === 0 && str.length !== 0 && str.length < 17) ? String(el) + ' ' : String(el));
+                      return str;
+                    }, '');
+                  cardNumber.value = text;
+                }
+              }}
+              // pattern="[0-9]{16,16}"
+            />
             <div className="card-valid">
               <label htmlFor="validDate">Expire Date: </label>
               <input type="month" name="validDate" id="validDate"/>
