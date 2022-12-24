@@ -12,7 +12,7 @@ function Modal (): JSX.Element {
         <h5>Personal details</h5>
         <div className="personal-data">
           <div className="personal-data-item">
-            <input type="text" id='name' placeholder='Enter name' pattern="\w{3,} \w{3,}"/>
+            <input type="text" id='name' placeholder='Enter name' pattern="([A-Za-z0-9А-Яа-я]{3,}( (?!$)|$)){2,}"/>
             {/* <label htmlFor="name">Enter name</label> */}
           </div>
           <div className="personal-data-item">
@@ -40,7 +40,7 @@ function Modal (): JSX.Element {
                 aria-label="4-digit number"
                 size={6} />
             </label> */}
-            <input type="tel" id='phoneNumber' placeholder='+375(25)39490090' pattern="\+\d{3,3}\(\d{2,2}\)\d{7,7}"/>
+            <input type="tel" id='phoneNumber' placeholder='+123456789' pattern="\+\d{9,}"/>
             {/* <label htmlFor="phoneNumber">Enter name</label> */}
           </div>
           <div className="personal-data-item">
