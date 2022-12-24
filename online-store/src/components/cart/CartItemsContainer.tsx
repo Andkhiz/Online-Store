@@ -43,7 +43,7 @@ export default function CartItemsContainer ({ setCartPageData }: ICartLayout): J
           />)}
       </div>
       </div>
-      <CartSummury totalPrice={totalCartData.totalSum}/>
+      <CartSummury totalSum={totalCartData.totalSum} totalCount={totalCartData.totalCount}/>
     </main>
   );
 }

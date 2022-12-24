@@ -47,7 +47,7 @@ interface IDiscount {
   id: string;
   name: string;
   discount: number;
-} 
+}
 
 export type TDiscounts = IDiscount[];
 
@@ -93,7 +93,13 @@ export interface ICartLayout {
 }
 
 export interface IPromo {
-  title: string;
-  discount: number;
+  id: string;
+  name: string;
+  discountPercentage: number;
+  promocodeUsed: Array<string>;
   setPromocodeUsed: Function;
+}
+export interface modalId {
+  isOpened: boolean;
+  setIsOpened: Function;
 }
