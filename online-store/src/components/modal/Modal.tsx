@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import { createValidator } from './validate';
 
 function Modal (): JSX.Element {
   const maxLength = (event: ChangeEvent<HTMLInputElement>): string | undefined => {
@@ -12,7 +13,10 @@ function Modal (): JSX.Element {
         <h5>Personal details</h5>
         <div className="personal-data">
           <div className="personal-data-item">
-            <input type="text" id='name' placeholder='Enter name' pattern="([A-Za-z0-9А-Яа-я]{3,}( (?!$)|$)){2,}"/>
+            <input type="text" id='name' placeholder='Enter name'
+              onBlur={createValidator('name', '^([A-Za-z0-9А-Яа-я]{3,}( (?!$)|$)){2,}$')}
+              // pattern="([A-Za-z0-9А-Яа-я]{3,}( (?!$)|$)){2,}"
+            />
             {/* <label htmlFor="name">Enter name</label> */}
           </div>
           <div className="personal-data-item">
@@ -40,15 +44,21 @@ function Modal (): JSX.Element {
                 aria-label="4-digit number"
                 size={6} />
             </label> */}
-            <input type="tel" id='phoneNumber' placeholder='+123456789' pattern="\+\d{9,}"/>
-            {/* <label htmlFor="phoneNumber">Enter name</label> */}
+            <input type="tel" id='phoneNumber' placeholder='+123456789'
+              onBlur={createValidator('phoneNumber', '^[+][0-9]{9,}$')}/>
           </div>
           <div className="personal-data-item">
-            <input type="text" id='deliveryAdress' placeholder='Enter delivery adress' pattern="\w{5,} \w{5,} \w{5,} \w{5,} \w{5,}"/>
+            <input type="text" id='deliveryAdress' placeholder='Enter delivery adress'
+              onBlur={createValidator('deliveryAdress', '^([A-Za-z0-9А-Яа-я]{5,}( (?!$)|$)){3,}$')}
+            // pattern="([A-Za-z0-9А-Яа-я]{5,}( (?!$)|$)){3,}"
+            />
             {/* <label htmlFor="deliveryAdress">Enter name</label> */}
           </div>
           <div className="personal-data-item">
-            <input type="email" id='email' placeholder='Enter email'/>
+            <input type="text" id='email' placeholder='Enter email'
+            onBlur={createValidator('email', '^[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}([.][A-Za-z0-9]{2,}){1,}$')}
+            // pattern="\w{1,}@\w{1,}\.\w{2,}"
+            />
             {/* <label htmlFor="name">Enter name</label> */}
           </div>
         </div>
@@ -56,7 +66,7 @@ function Modal (): JSX.Element {
           <h6>Credit card details</h6>
           <div className="card-data-container">
             <img src="" alt="" />
-            <input type="number" min={0}/>
+            <input type="text" min={0}/>
             <div className="card-valid">
               <label htmlFor="validDate">Expire Date: </label>
               <input type="month" name="validDate" id="validDate"/>
