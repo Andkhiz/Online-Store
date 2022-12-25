@@ -73,7 +73,7 @@ function Modal (): JSX.Element {
                   const cardNumber = document.getElementById('card-number');
                   if (cardNumber instanceof HTMLInputElement) {
                     let text = cardNumber.value;
-                    text = text.replaceAll(' ', '');
+                    // text = text.replaceAll(' ', '');
                     text = text.split('')
                       .filter(el => el === String(Number.parseInt(el)))
                       .splice(0, 16)
@@ -127,7 +127,9 @@ function Modal (): JSX.Element {
             </div>
           </div>
         </div>
-        <button>Confirm</button>
+        <button className='buyProduct' onClick={(): void => {
+          console.log('fff');
+        }}>Confirm</button>
       </div>
     </dialog>
   );
