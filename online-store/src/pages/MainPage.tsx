@@ -4,16 +4,17 @@ import MyCategoriesFilter from '../components/main/MyCategoriesFilter';
 import MyBrandsFilter from '../components/main/MyBrandsFilter';
 import MyInputRange from '../components/main/MyInputRange';
 import { ICartLayout } from '../interfase';
-import StartLoader from '../controller/startLoader';
+// import StartLoader from '../controller/startLoader';
+import Loader from '../controller/loader';
 
 function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
-  const loader = new StartLoader();
-  const brands = loader.loadStartFilter().brands;
-  const categories = loader.loadStartFilter().categories;
-  const prices = loader.loadStartFilter().prices;
-  const stocks = loader.loadStartFilter().stocks;
-  const sort = loader.loadStartFilter().sort;
-  const filter = loader.loadStartFilter().filter;
+  const loader = new Loader();
+  const brands = loader.loadFilters().brands;
+  const categories = loader.loadFilters().categories;
+  const prices = loader.loadFilters().prices;
+  const stocks = loader.loadFilters().stocks;
+  const sort = loader.loadFilters().sort;
+  const filter = loader.loadFilters().filter;
   return (
     <main>
       <aside className='side-bar'>

@@ -13,7 +13,7 @@ function MyCategoriesFilter ({ categories }: TFilterReturn): JSX.Element {
         filterCount={item.filterCount}
         count={item.count}
         checked={item.checked}
-        category={'categories'}
+        category={'category'}
       />)}
       </div>
     </div>

@@ -13,7 +13,7 @@ function MyBrandsFilter ({ brands }: TFilterReturn): JSX.Element {
         filterCount={item.filterCount}
         count={item.count}
         checked={item.checked}
-        category={'brands'}
+        category={'brand'}
       />)}
       </div>
     </div>
