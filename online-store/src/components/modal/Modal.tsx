@@ -64,64 +64,66 @@ function Modal (): JSX.Element {
         </div>
         <div className="card-data">
           <h6>Credit card details</h6>
-          <div className="card-data-container">
-            <img src="" alt="" />
-            <input type="text" id='card-number' placeholder='Card number'
-              onBlur={createValidator('card-number', '[0-9]{16,16}' /* '([0-9]{4,4}( (?!$)|$)){4,4}' */, 'Error card number')}
-              onInput={(): void => {
-                const cardNumber = document.getElementById('card-number');
-                if (cardNumber instanceof HTMLInputElement) {
-                  let text = cardNumber.value;
-                  text = text.replaceAll(' ', '');
-                  text = text.split('')
-                    .filter(el => el === String(Number.parseInt(el)))
-                    .splice(0, 16)
-                    .join('');
-                  /* .reduce((str, el) => {
-                      console.log(str.length);
-                      str = str + (((str.length - Math.floor(str.length / 5) + 1) % 4 === 0 && str.length !== 0 && str.length < 17) ? String(el) + ' ' : String(el));
-                      return str;
-                    }, ''); */
-                  cardNumber.value = text;
-                }
-              }}
-              // pattern="[0-9]{16,16}"
-            />
-            <div className="card-valid">
-              <label htmlFor="validDate">Expire Date: </label>
-              <input type="text" placeholder='mm/yy' id="validDate"
-                onBlur={createValidator('validDate', '^(([0](?=[1-9])|([1](?=[0-2])))[0-9]([/]))([0-9]{2})', 'Error expire date', 3)}
-                // pattern ="^(([0](?=[1-9])|([1](?=[0-2])))[0-9]([/]))([0-9]{2})"
+          <div className="card-error">
+            <div className="card-data-container">
+              <img src="" alt="" />
+              <input type="text" id='card-number' placeholder='Card number'
+                onBlur={createValidator('card-number', '[0-9]{16,16}' /* '([0-9]{4,4}( (?!$)|$)){4,4}' */, 'Error card number')}
                 onInput={(): void => {
-                  const cardNumber = document.getElementById('validDate');
+                  const cardNumber = document.getElementById('card-number');
                   if (cardNumber instanceof HTMLInputElement) {
                     let text = cardNumber.value;
-                    const arr = text.split('')
-                      .filter(el => el === String(Number.parseInt(el)) || el === '/')
-                      .splice(0, 5);
-                    if (arr.length === 2 && arr.findIndex(el => el === '/') === -1) {
-                      arr.push('/');
-                    }
-                    text = arr.join('');
-                    cardNumber.value = text;
-                  }
-                }}
-              />
-              <label htmlFor="cvv">CVV: </label>
-              <input type="text" name="cvv" id="cvv"
-                onBlur={createValidator('cvv', '^([0-9]{3})', 'Error cvv', 4)}
-                onInput={(): void => {
-                  const cardNumber = document.getElementById('cvv');
-                  if (cardNumber instanceof HTMLInputElement) {
-                    const text = cardNumber.value
-                      .split('')
+                    text = text.replaceAll(' ', '');
+                    text = text.split('')
                       .filter(el => el === String(Number.parseInt(el)))
-                      .splice(0, 3)
+                      .splice(0, 16)
                       .join('');
+                    /* .reduce((str, el) => {
+                        console.log(str.length);
+                        str = str + (((str.length - Math.floor(str.length / 5) + 1) % 4 === 0 && str.length !== 0 && str.length < 17) ? String(el) + ' ' : String(el));
+                        return str;
+                      }, ''); */
                     cardNumber.value = text;
                   }
                 }}
+                // pattern="[0-9]{16,16}"
               />
+              <div className="card-valid">
+                <label htmlFor="validDate">Expire Date: </label>
+                <input type="text" placeholder='mm/yy' id="validDate"
+                  onBlur={createValidator('validDate', '^(([0](?=[1-9])|([1](?=[0-2])))[0-9]([/]))([0-9]{2})', 'Error expire date', 3)}
+                  // pattern ="^(([0](?=[1-9])|([1](?=[0-2])))[0-9]([/]))([0-9]{2})"
+                  onInput={(): void => {
+                    const cardNumber = document.getElementById('validDate');
+                    if (cardNumber instanceof HTMLInputElement) {
+                      let text = cardNumber.value;
+                      const arr = text.split('')
+                        .filter(el => el === String(Number.parseInt(el)) || el === '/')
+                        .splice(0, 5);
+                      if (arr.length === 2 && arr.findIndex(el => el === '/') === -1) {
+                        arr.push('/');
+                      }
+                      text = arr.join('');
+                      cardNumber.value = text;
+                    }
+                  }}
+                />
+                <label htmlFor="cvv">CVV: </label>
+                <input type="text" name="cvv" id="cvv"
+                  onBlur={createValidator('cvv', '^([0-9]{3})', 'Error cvv', 4)}
+                  onInput={(): void => {
+                    const cardNumber = document.getElementById('cvv');
+                    if (cardNumber instanceof HTMLInputElement) {
+                      const text = cardNumber.value
+                        .split('')
+                        .filter(el => el === String(Number.parseInt(el)))
+                        .splice(0, 3)
+                        .join('');
+                      cardNumber.value = text;
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
