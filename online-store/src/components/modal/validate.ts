@@ -1,4 +1,4 @@
-export function createValidator (id: string, regExp: string) {
+export function createValidator (id: string, regExp: string, labelText: string, numberParent = 1) {
   return function (): void {
     const tel = document.getElementById(id);
     if (tel instanceof HTMLInputElement) {
@@ -11,20 +11,28 @@ export function createValidator (id: string, regExp: string) {
       } else {
         tel.setCustomValidity('error');
         if (document.getElementById(id + 'Error') === null) {
-          tel.parentElement?.append(createLabelError(id));
+          let parent: HTMLElement | null = null;
+          for (let i = 0; i < numberParent; i++) {
+            if (parent === null) {
+              parent = tel.parentElement;
+            } else {
+              parent = parent.parentElement;
+            }
+          }
+          parent?.append(createLabelError(id, labelText));
         }
         if (tel.oninput === null) {
-          tel.oninput = createValidator(id, regExp);
+          tel.oninput = createValidator(id, regExp, labelText, numberParent);
         }
       }
     }
   };
 }
 
-function createLabelError (idFor: string): HTMLElement {
+function createLabelError (idFor: string, labelText: string): HTMLElement {
   const lab = document.createElement('label');
   lab.id = idFor + 'Error';
   lab.htmlFor = idFor;
-  lab.innerHTML = 'Error';
+  lab.innerHTML = labelText;
   return lab;
 }
