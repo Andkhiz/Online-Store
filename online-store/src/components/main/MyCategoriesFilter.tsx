@@ -1,10 +1,13 @@
 import React from 'react';
 import CheckItem from './CheckItem';
 import { TFilterReturn } from '../../interfase';
+import { useSearchParams } from 'react-router-dom';
 
 function MyCategoriesFilter ({ categories }: TFilterReturn): JSX.Element {
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
   return (
-    <div className="filter-container">
+    <form className="filter-container">
       <h3>{'categories'}</h3>
       <div className="filter-body">
         {categories.map((item, id) => <CheckItem
@@ -14,9 +17,11 @@ function MyCategoriesFilter ({ categories }: TFilterReturn): JSX.Element {
         count={item.count}
         checked={item.checked}
         category={'category'}
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
       />)}
       </div>
-    </div>
+    </form>
   );
 }
 export default MyCategoriesFilter;
