@@ -55,7 +55,11 @@ export interface IElementFilterCategory {
   name: string;
   filterCount: number;
   count: number;
-  onChecked: boolean;
+  checked: boolean;
+}
+
+export interface IElementFilterCategoryRender extends IElementFilterCategory {
+  category: string;
 }
 
 interface IElementFilterMinMax {

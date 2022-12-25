@@ -15,11 +15,11 @@ export default class StartLoader {
     myProduct.forEach(product => {
       let prod = (category.findIndex(el => el.name === product.category));
       if (prod >= 0) category[prod].count++;
-      else category.push({ name: product.category, filterCount: 0, count: 1, onChecked: false });
+      else category.push({ name: product.category, filterCount: 0, count: 1, checked: false });
 
       prod = (brand.findIndex(el => el.name === product.brand));
       if (prod >= 0) brand[prod].count++;
-      else brand.push({ name: product.brand, filterCount: 0, count: 1, onChecked: false });
+      else brand.push({ name: product.brand, filterCount: 0, count: 1, checked: false });
 
       if (priceMin > product.price) priceMin = product.price;
       if (priceMax < product.price) priceMax = product.price;

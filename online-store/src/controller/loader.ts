@@ -91,7 +91,7 @@ export default class Loader {
     searchParams.forEach((el, key) => {
       if (key === 'brand' || key === 'category') {
         const prop = key === 'brand' ? 'brands' : 'categories';
-        el.split('↕').forEach(brandFilter => { myFilter[prop][myFilter[prop].findIndex(b => b.name === brandFilter)].onChecked = true; });
+        el.split('↕').forEach(brandFilter => { myFilter[prop][myFilter[prop].findIndex(b => b.name === brandFilter)].checked = true; });
       }
       if (key === 'price' || key === 'stock') {
         const arr = el.split('↕').map(el => Number.parseInt(el));

@@ -29,6 +29,7 @@
     "rules": {
         "@typescript-eslint/no-explicit-any": ["error"],
         "@typescript-eslint/semi": [2, "always"],
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "@typescript-eslint/strict-boolean-expressions": "warn"
     }
 }
