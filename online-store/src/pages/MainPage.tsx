@@ -11,12 +11,15 @@ import { useSearchParams } from 'react-router-dom';
 function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
   const loader = new Loader();
-  const brands = loader.loadFilters().brands;
+
+  // Why it is need?
+  const filters = loader.loadFilters();
+  /* const brands = loader.loadFilters().brands;
   const categories = loader.loadFilters().categories;
   const prices = loader.loadFilters().prices;
   const stocks = loader.loadFilters().stocks;
   const sort = loader.loadFilters().sort;
-  const filter = loader.loadFilters().filter;
+  const filter = loader.loadFilters().filter; */
   return (
     <main>
       <aside className='side-bar'>
@@ -26,8 +29,8 @@ function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
           }}>Reset filter</button>
           <button>Copy link</button>
         </div>
-        <MyCategoriesFilter brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter}/>
-        <MyBrandsFilter brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter}/>
+        <MyCategoriesFilter {...filters}/* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
+        <MyBrandsFilter {...filters} /* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
         <MyInputRange title='Price'/>
         <MyInputRange title='Stock'/>
       </aside>
