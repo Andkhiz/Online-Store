@@ -17,6 +17,7 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
     setInput(titleQuery.toLowerCase());
     const query = event.target.value.toLowerCase();
     setSearchParams({ filter: query });
+    // setSearchParams(loader.loadQuery('filter', query, true));
     // заменяет строку поиска полностью надо пофиксить
   };
   return (
