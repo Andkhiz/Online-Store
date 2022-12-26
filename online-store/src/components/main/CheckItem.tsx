@@ -11,7 +11,7 @@ function CheckItem ({ name, filterCount, count, checked, category }: IElementFil
     <div className="check-item">
       <input type="checkbox" id={name} defaultChecked={checked} onClick={() => {
         setIsChecked(!isChecked);
-        setSearchParams(loader.loadQuery('', category, name, !isChecked));
+        setSearchParams(loader.loadQuery(category, name, !isChecked));
       }}/>
       <label htmlFor={name}>{name}</label>
     </div>
