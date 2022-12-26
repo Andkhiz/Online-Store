@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainInfo from '../components/main/MainInfo';
 import MyCategoriesFilter from '../components/main/MyCategoriesFilter';
 import MyBrandsFilter from '../components/main/MyBrandsFilter';
@@ -6,8 +6,10 @@ import MyInputRange from '../components/main/MyInputRange';
 import { ICartLayout } from '../interfase';
 // import StartLoader from '../controller/startLoader';
 import Loader from '../controller/loader';
+import { useSearchParams } from 'react-router-dom';
 
 function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
+  const [searchParams, setSearchParams] = useSearchParams();
   const loader = new Loader();
   const brands = loader.loadFilters().brands;
   const categories = loader.loadFilters().categories;
@@ -19,7 +21,9 @@ function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
     <main>
       <aside className='side-bar'>
         <div className="side-buttons">
-          <button>Reset filter</button>
+          <button onClick={() => {
+            setSearchParams('');
+          }}>Reset filter</button>
           <button>Copy link</button>
         </div>
         <MyCategoriesFilter brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter}/>

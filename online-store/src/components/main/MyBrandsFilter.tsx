@@ -7,13 +7,15 @@ function MyBrandsFilter ({ brands }: TFilterReturn): JSX.Element {
     <div className="filter-container">
       <h3>{'brands'}</h3>
       <div className="filter-body">
-        {brands.map((item, id) => <CheckItem
-        key={id}
-        name={item.name}
-        filterCount={item.filterCount}
-        count={item.count}
-        checked={item.checked}
-        category={'brand'}
+        {brands.length <= 0
+          ? brands.length
+          : brands.map((item, id) => <CheckItem
+          key={id}
+          name={item.name}
+          filterCount={item.filterCount}
+          count={item.count}
+          checked={item.checked}
+          category={'brand'}
       />)}
       </div>
     </div>
