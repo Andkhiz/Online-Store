@@ -10,7 +10,7 @@ export default class Loader {
 
   loadProducts (): myType.IProducts {
     const productsCart = this.Cart.loadCart();
-    console.log(productsCart);
+    // console.log(productsCart);
 
     const myProduct = {
       products: db.products.map((product) => {
@@ -71,7 +71,7 @@ export default class Loader {
 
   loadFilters (): myType.TFilterReturn {
     const myFilter = Loader.startFilter;
-    console.log(myFilter);
+    // console.log(myFilter);
     const myProduct = this.loadProducts();
 
     myFilter.prices.max = myProduct.products[0].price;

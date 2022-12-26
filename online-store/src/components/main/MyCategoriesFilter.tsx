@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 
 function MyCategoriesFilter ({ categories }: TFilterReturn): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
+  // console.log(searchParams);
   return (
     <form className="filter-container">
       <h3>{'categories'}</h3>
