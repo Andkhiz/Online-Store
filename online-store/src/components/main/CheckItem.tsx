@@ -12,7 +12,7 @@ function CheckItem ({ name, filterCount, count, checked, category }: IElementFil
   // const setSearchParams = useSearchParams()[1];
   return (
     <div className="check-item">
-      <input type="checkbox" id={name} checked={checked} onChange={() => { const a = undefined; }} onClick={() => {
+      <input type="checkbox" id={name} checked={checked} readOnly /* onChange={() => { const a = undefined; }} */ onClick={() => {
         // setIsChecked(!isChecked);
         setSearchParams(loader.loadQuery(category, name, !checked));
       }}/>
