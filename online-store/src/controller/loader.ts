@@ -153,7 +153,7 @@ export default class Loader {
     } else {
       if (onVisible) { myPath += category + '=' + value; }
     }
-    return myPath === '' ? pathTo : pathTo + '/?' + myPath;
+    return myPath; // === '' ? pathTo : pathTo + '/?' + myPath;
   }
 /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';

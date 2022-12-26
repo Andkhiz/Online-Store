@@ -60,8 +60,8 @@ export interface IElementFilterCategory {
 
 export interface IElementFilterCategoryRender extends IElementFilterCategory {
   category: string;
-  searchParams: URLSearchParams;
-  setSearchParams: Function;
+  // searchParams: URLSearchParams;
+  // setSearchParams: Function;
 }
 
 interface IElementFilterMinMax {

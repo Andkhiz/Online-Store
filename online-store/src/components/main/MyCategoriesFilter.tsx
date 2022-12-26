@@ -4,7 +4,7 @@ import { TFilterReturn } from '../../interfase';
 import { useSearchParams } from 'react-router-dom';
 
 function MyCategoriesFilter ({ categories }: TFilterReturn): JSX.Element {
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   // console.log(searchParams);
   return (
     <form className="filter-container">
@@ -17,8 +17,8 @@ function MyCategoriesFilter ({ categories }: TFilterReturn): JSX.Element {
         count={item.count}
         checked={item.checked}
         category={'category'}
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
+        // searchParams={searchParams}
+        // setSearchParams={setSearchParams}
       />)}
       </div>
     </form>
