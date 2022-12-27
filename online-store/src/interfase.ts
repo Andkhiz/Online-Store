@@ -60,6 +60,7 @@ export interface IElementFilterCategory {
 
 export interface IElementFilterCategoryRender extends IElementFilterCategory {
   category: string;
+  loadQuery: Function;
   // searchParams: URLSearchParams;
   // setSearchParams: Function;
 }
@@ -108,4 +109,9 @@ export interface IPromo {
 export interface modalId {
   isOpened: boolean;
   setIsOpened: Function;
+}
+
+export interface IFilterData {
+  filterElements: IElementFilterCategory[];
+  loadQuery: Function;
 }

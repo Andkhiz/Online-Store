@@ -1,22 +1,24 @@
 import React from 'react';
 import CheckItem from './CheckItem';
-import { TFilterReturn } from '../../interfase';
-import { useSearchParams } from 'react-router-dom';
+import { TFilterReturn, IFilterData } from '../../interfase';
+// import { useSearchParams } from 'react-router-dom';
 
-function MyCategoriesFilter ({ categories }: TFilterReturn): JSX.Element {
+function MyCategoriesFilter ({ filterElements, loadQuery }: IFilterData): JSX.Element {
+  // console.log(loadQuery);
   return (
     <form className="filter-container">
       <h3>{'categories'}</h3>
       <div className="filter-body">
-        {categories.length <= 0
-          ? categories.length
-          : categories.map((item, id) => <CheckItem
+        {filterElements.length <= 0
+          ? filterElements.length
+          : filterElements.map((item, id) => <CheckItem
           key={id}
           name={item.name}
           filterCount={item.filterCount}
           count={item.count}
           checked={item.checked}
           category={'category'}
+          loadQuery={loadQuery}
       />)}
       </div>
     </form>

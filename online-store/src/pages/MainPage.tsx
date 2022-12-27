@@ -14,6 +14,7 @@ function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
 
   // Why it is need?
   const filters = loader.loadFilters();
+  // const loadQuery = loader.loadQuery;
   /* const brands = loader.loadFilters().brands;
   const categories = loader.loadFilters().categories;
   const prices = loader.loadFilters().prices;
@@ -29,8 +30,8 @@ function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
           }}>Reset filter</button>
           <button>Copy link</button>
         </div>
-        <MyCategoriesFilter {...filters}/* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
-        <MyBrandsFilter {...filters} /* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
+        <MyCategoriesFilter filterElements={filters.categories} loadQuery={loader.loadQuery}/* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
+        <MyBrandsFilter filterElements={filters.brands} loadQuery={loader.loadQuery} /* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
         <MyInputRange title='Price'/>
         <MyInputRange title='Stock'/>
       </aside>

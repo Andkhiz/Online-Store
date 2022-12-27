@@ -7,6 +7,7 @@ import Cart from './cart/cart';
 export default class Loader {
   static startFilter = new StartLoader().loadStartFilter();
   Cart = new Cart();
+  // loadQuer = this.loadQuery;
 
   loadProducts (): myType.IProducts {
     const productsCart = this.Cart.loadCart();
@@ -122,7 +123,7 @@ export default class Loader {
     return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
   }
 
-  loadQuery (category: string, value: string, onVisible: boolean): string {
+  loadQuery = function (category: string, value: string, onVisible: boolean): string {
     let myPath = '';
     const oldQuery = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     const arr = oldQuery.split('&');
@@ -156,7 +157,7 @@ export default class Loader {
       if (onVisible) { myPath += category + '=' + value; }
     }
     return myPath;
-  }
+  };
 /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     if (st === '') return {};

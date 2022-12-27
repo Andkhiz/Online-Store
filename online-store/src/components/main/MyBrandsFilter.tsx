@@ -1,21 +1,22 @@
 import React from 'react';
 import CheckItem from './CheckItem';
-import { TFilterReturn } from '../../interfase';
+import { TFilterReturn, IFilterData } from '../../interfase';
 
-function MyBrandsFilter ({ brands }: TFilterReturn): JSX.Element {
+function MyBrandsFilter ({ filterElements, loadQuery }: IFilterData): JSX.Element {
   return (
     <div className="filter-container">
       <h3>{'brands'}</h3>
       <div className="filter-body">
-        {brands.length <= 0
-          ? brands.length
-          : brands.map((item, id) => <CheckItem
+        {filterElements.length <= 0
+          ? filterElements.length
+          : filterElements.map((item, id) => <CheckItem
           key={id}
           name={item.name}
           filterCount={item.filterCount}
           count={item.count}
           checked={item.checked}
           category={'brand'}
+          loadQuery={loadQuery}
       />)}
       </div>
     </div>
