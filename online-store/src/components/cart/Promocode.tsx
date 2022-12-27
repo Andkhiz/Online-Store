@@ -8,7 +8,7 @@ export default function Promocode ({ id, name, discountPercentage, promocodeUsed
     <div>
       <p>your discount is {discountPercentage}%!</p>
       <button onClick={() => {
-        if (promocodeUsed.includes(id) === true) {
+        if (promocodeUsed.includes(id)) {
           discount.deleteDiscount(id);
           const discounts = discount.loadDiscounts().map(el => el.id);
           setPromocodeUsed(discounts);
@@ -17,7 +17,7 @@ export default function Promocode ({ id, name, discountPercentage, promocodeUsed
           const discounts = discount.loadDiscounts().map(el => el.id);
           setPromocodeUsed(discounts);
         }
-      }}>{promocodeUsed.includes(id) === true ? 'delete' : 'add'}</button>
+      }}>{promocodeUsed.includes(id) ? 'delete' : 'add'}</button>
     </div>
   );
 }

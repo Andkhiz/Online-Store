@@ -11,7 +11,6 @@ function Item ({ title, price, id, cartCount, stock, thumbnail, setState }: IPro
       <div className="description">
         <p>{title}</p>
         <p>Price: {price}</p>
-        <p>{stock}</p>
       </div>
       <div className="buttons">
           <button onClick={() => {

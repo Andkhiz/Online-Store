@@ -7,10 +7,11 @@ import Cart from './cart/cart';
 export default class Loader {
   static startFilter = new StartLoader().loadStartFilter();
   Cart = new Cart();
+  // loadQuer = this.loadQuery;
 
   loadProducts (): myType.IProducts {
     const productsCart = this.Cart.loadCart();
-    console.log(productsCart);
+    // console.log(productsCart);
 
     const myProduct = {
       products: db.products.map((product) => {
@@ -53,9 +54,9 @@ export default class Loader {
           }
         }
         if (key === 'filter') {
-          myProduct.products = myProduct.products.filter(product => product.brand.includes(el) ||
-            product.category.includes(el) || product.description.includes(el) ||
-            product.title.includes(el) || String(product.price).includes(el) ||
+          myProduct.products = myProduct.products.filter(product => product.brand.toLowerCase().includes(el) ||
+            product.category.toLowerCase().includes(el) || product.description.toLowerCase().includes(el) ||
+            product.title.toLowerCase().includes(el) || String(product.price).includes(el) ||
             String(product.discountPercentage).includes(el) || String(product.rating).includes(el) ||
             String(product.stock).includes(el));
           throw BreakError;
@@ -70,28 +71,30 @@ export default class Loader {
   }
 
   loadFilters (): myType.TFilterReturn {
-    const myFilter = Loader.startFilter;
-    console.log(myFilter);
+    const myFilter: myType.TFilterReturn = JSON.parse(JSON.stringify(Loader.startFilter));
+    // console.log(myFilter);
     const myProduct = this.loadProducts();
 
-    myFilter.prices.max = myProduct.products[0].price;
-    myFilter.prices.min = myProduct.products[0].price;
-    myFilter.stocks.max = myProduct.products[0].stock;
-    myFilter.stocks.min = myProduct.products[0].stock;
-    myProduct.products.forEach(product => {
-      myFilter.brands[myFilter.brands.findIndex(el => el.name === product.brand)].filterCount++;
-      myFilter.categories[myFilter.categories.findIndex(el => el.name === product.category)].filterCount++;
-      if (myFilter.prices.min > product.price) myFilter.prices.min = product.price;
-      if (myFilter.prices.max < product.price) myFilter.prices.max = product.price;
-      if (myFilter.stocks.min > product.stock) myFilter.stocks.min = product.price;
-      if (myFilter.stocks.max < product.stock) myFilter.stocks.max = product.price;
-    });
+    if (myProduct.products.length > 0) {
+      myFilter.prices.max = myProduct.products[0].price;
+      myFilter.prices.min = myProduct.products[0].price;
+      myFilter.stocks.max = myProduct.products[0].stock;
+      myFilter.stocks.min = myProduct.products[0].stock;
+      myProduct.products.forEach(product => {
+        myFilter.brands[myFilter.brands.findIndex(el => el.name === product.brand)].filterCount++;
+        myFilter.categories[myFilter.categories.findIndex(el => el.name === product.category)].filterCount++;
+        if (myFilter.prices.min > product.price) myFilter.prices.min = product.price;
+        if (myFilter.prices.max < product.price) myFilter.prices.max = product.price;
+        if (myFilter.stocks.min > product.stock) myFilter.stocks.min = product.price;
+        if (myFilter.stocks.max < product.stock) myFilter.stocks.max = product.price;
+      });
+    }
 
     const searchParams = useSearchParams()[0];
     searchParams.forEach((el, key) => {
       if (key === 'brand' || key === 'category') {
         const prop = key === 'brand' ? 'brands' : 'categories';
-        el.split('↕').forEach(brandFilter => { myFilter[prop][myFilter[prop].findIndex(b => b.name === brandFilter)].onChecked = true; });
+        el.split('↕').forEach(brandFilter => { myFilter[prop][myFilter[prop].findIndex(b => b.name === brandFilter)].checked = true; });
       }
       if (key === 'price' || key === 'stock') {
         const arr = el.split('↕').map(el => Number.parseInt(el));
@@ -120,7 +123,7 @@ export default class Loader {
     return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
   }
 
-  loadQuery (pathTo: string, category: string, value: string, onVisible: boolean): string {
+  loadQuery = function (category: string, value: string, onVisible: boolean): string {
     let myPath = '';
     const oldQuery = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     const arr = oldQuery.split('&');
@@ -153,8 +156,8 @@ export default class Loader {
     } else {
       if (onVisible) { myPath += category + '=' + value; }
     }
-    return myPath === '' ? pathTo : pathTo + '/?' + myPath;
-  }
+    return myPath;
+  };
 /* parceFilterString (): Partial<myType.TFilter> | null {
     let st = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
     if (st === '') return {};

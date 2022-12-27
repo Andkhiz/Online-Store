@@ -55,7 +55,14 @@ export interface IElementFilterCategory {
   name: string;
   filterCount: number;
   count: number;
-  onChecked: boolean;
+  checked: boolean;
+}
+
+export interface IElementFilterCategoryRender extends IElementFilterCategory {
+  category: string;
+  loadQuery: Function;
+  // searchParams: URLSearchParams;
+  // setSearchParams: Function;
 }
 
 interface IElementFilterMinMax {
@@ -92,6 +99,7 @@ export interface ICartLayout {
   cartPageData: IProduct[];
 }
 
+
 export interface IPromo {
   id: string;
   name: string;
@@ -102,4 +110,9 @@ export interface IPromo {
 export interface modalId {
   isOpened: boolean;
   setIsOpened: Function;
+}
+
+export interface IFilterData {
+  filterElements: IElementFilterCategory[];
+  loadQuery: Function;
 }
