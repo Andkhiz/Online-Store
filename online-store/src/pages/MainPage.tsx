@@ -11,7 +11,6 @@ import { useSearchParams } from 'react-router-dom';
 function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
   const loader = new Loader();
-
   // Why it is need?
   const filters = loader.loadFilters();
   // const loadQuery = loader.loadQuery;

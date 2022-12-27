@@ -8,31 +8,41 @@ import { useSearchParams } from 'react-router-dom';
 function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
   const loader = new Loader();
   const arr = loader.loadProducts();
-  // console.log(arr.products[0].title.toLowerCase());
   const [searchParams, setSearchParams] = useSearchParams();
-  const [input, setInput] = useState('');
-  const titleQuery = searchParams.get('filter') ?? '';
+  const [input, setInput] = useState(loader.loadFilters().filter);
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    console.log(event.target.value);
-    setInput(titleQuery.toLowerCase());
+    setInput(event.target.value.toLowerCase());
     const query = event.target.value.toLowerCase();
-    setSearchParams({ filter: query });
-    // setSearchParams(loader.loadQuery('filter', query, true));
-    // заменяет строку поиска полностью надо пофиксить
+    setSearchParams(loader.loadQuery('filter', query, true));
+  };
+  const [select, setSelect] = useState(searchParams.get('sort') ?? 'Select options');
+  console.log(select);
+  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>): void => {
+    setSearchParams(loader.loadQuery('sort', event.target.value, true));
+    setSelect(event.target.value);
+    console.log(event.target.value);
   };
   return (
     <section className='main-info'>
       <div className="main-info-header">
-        <select>
-          <option disabled defaultValue="Select options">Select options</option>
-        </select>
+        <form>
+          <select value={select} onChange={handleSelectChange}>
+            <option disabled value="Select options">Select options</option>
+            <option value="price-ASC">Price ASC</option>
+            <option value="price-DESC">Price DESC</option>
+            <option value="rating-ASC">Rating ASC</option>
+            <option value="rating-DESC">Rating DESC</option>
+            <option value="discount-ASC">Discount ASC</option>
+            <option value="discount-DESC">Discount DESC</option>
+          </select>
+        </form>
         <input type="search" placeholder='Search...' onChange={handleChange} value={input}/>
         <div className="view-options"></div>
       </div>
       <div className="main-info-content">
         {arr.products.length === 0
           ? <EmptyMain/>
-          : arr.products.filter(el => el.title.toLowerCase().includes(titleQuery)).map((el) => <Item
+          : arr.products.map((el) => <Item
           key={el.id}
           id={el.id}
           title={el.title}

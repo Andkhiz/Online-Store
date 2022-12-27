@@ -99,6 +99,7 @@ export interface ICartLayout {
   cartPageData: IProduct[];
 }
 
+
 export interface IPromo {
   id: string;
   name: string;

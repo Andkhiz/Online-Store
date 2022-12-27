@@ -54,9 +54,9 @@ export default class Loader {
           }
         }
         if (key === 'filter') {
-          myProduct.products = myProduct.products.filter(product => product.brand.includes(el) ||
-            product.category.includes(el) || product.description.includes(el) ||
-            product.title.includes(el) || String(product.price).includes(el) ||
+          myProduct.products = myProduct.products.filter(product => product.brand.toLowerCase().includes(el) ||
+            product.category.toLowerCase().includes(el) || product.description.toLowerCase().includes(el) ||
+            product.title.toLowerCase().includes(el) || String(product.price).includes(el) ||
             String(product.discountPercentage).includes(el) || String(product.rating).includes(el) ||
             String(product.stock).includes(el));
           throw BreakError;
