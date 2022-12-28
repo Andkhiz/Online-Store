@@ -13,3 +13,7 @@ export function loadLocalStorage <T> (key: string): T | [] {
 export function saveLocalStorange <T> (key: string, value: T): void {
   localStorage.setItem(key, JSON.stringify(value));
 }
+
+export function deleteLocalStorange (key: string): void {
+  localStorage.removeItem(key);
+}
