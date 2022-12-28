@@ -116,8 +116,9 @@ function Modal (): JSX.Element {
           validatorCVV();
 
           let mayBuy = true;
-          for (let i = 0; i < modul.getElementsByTagName('input').length; i += 1) {
-            if (!modul.getElementsByTagName('input')[i].validity.valid) {
+          const inputs = modul.getElementsByTagName('input');
+          for (let i = 0; i < inputs.length; i += 1) {
+            if (!inputs[i].validity.valid) {
               mayBuy = false;
               break;
             }
