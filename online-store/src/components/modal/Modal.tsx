@@ -1,5 +1,9 @@
-import React /*, { ChangeEvent } */ from 'react';
+import React, { useState } from 'react';
 import { createValidator } from './validate';
+import visa from './visa.png';
+import master from './mastercard.png';
+import america from './americanexpress.png';
+import bankcard from './bank-card.png';
 
 function Modal (): JSX.Element {
   /* const maxLength = (event: ChangeEvent<HTMLInputElement>): string | undefined => {
@@ -7,6 +11,8 @@ function Modal (): JSX.Element {
       return event.target.value.slice(0, 3);
     }
   }; */
+  const [imgCard, setImgCard] = useState(bankcard);
+
   const validatorName = createValidator('name', '^([A-Za-z0-9А-Яа-я]{3,}( (?!$)|$)){2,}$', 'Error');
   const validatorPhone = createValidator('phoneNumber', '^[+][0-9]{9,}$', 'Error');
   const validatorDeliveryAdress = createValidator('deliveryAdress', '^([A-Za-z0-9А-Яа-я]{5,}( (?!$)|$)){3,}$', 'Error');
@@ -30,6 +36,22 @@ function Modal (): JSX.Element {
           return str;
         }, ''); */
       cardNumber.value = text;
+
+      const paySystem = text.substring(0, 1);
+      console.log('paySystem');
+      switch (paySystem) {
+        case '4':
+          setImgCard(visa);
+          break;
+        case '5':
+          setImgCard(master);
+          break;
+        case '3':
+          setImgCard(america);
+          break;
+        default:
+          setImgCard(bankcard);
+      }
     }
   }
 
@@ -83,7 +105,7 @@ function Modal (): JSX.Element {
           <h6>Credit card details</h6>
           <div className="card-error">
             <div className="card-data-container">
-              <img src="" alt="" />
+              <img src={imgCard} alt="Pay system" id='imgBankCard'/>
               <input type="text" id='card-number' placeholder='Card number'
                 onBlur={validatorCardNumber}
                 onInput={inputCardNumber}
