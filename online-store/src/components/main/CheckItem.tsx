@@ -1,11 +1,22 @@
-import React from 'react';
-import { IRenderProduct } from '../../interfase';
+import React, { useState } from 'react';
+import { IElementFilterCategoryRender } from '../../interfase';
+import Loader from '../../controller/loader';
+import { useSearchParams, redirect } from 'react-router-dom';
 
-function CheckItem ({ category }: IRenderProduct): JSX.Element {
+function CheckItem ({ name, filterCount, count, checked, category, loadQuery }: IElementFilterCategoryRender): JSX.Element {
+  // console.log('checkItem');
+  // console.log(category, name, checked);
+  // const loader = new Loader();
+  // const [isChecked, setIsChecked] = useState(checked);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const setSearchParams = useSearchParams()[1];
   return (
     <div className="check-item">
-      <input type="checkbox" id="1"/>
-      <label htmlFor="1">{category}</label>
+      <input type="checkbox" id={name} checked={checked} readOnly /* onChange={() => { const a = undefined; }} */ onClick={() => {
+        // setIsChecked(!isChecked);
+        setSearchParams(loadQuery(category, name, !checked));
+      }}/>
+      <label htmlFor={name}>{name}</label>
     </div>
   );
 }

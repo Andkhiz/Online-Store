@@ -1,21 +1,22 @@
 import React from 'react';
 import CheckItem from './CheckItem';
-import { IRenderProduct } from '../../interfase';
-import Loader from '../../controller/loader';
+import { TFilterReturn, IFilterData } from '../../interfase';
 
-function MyBrandsFilter ({ title }: IRenderProduct): JSX.Element {
-  const loader = new Loader();
-  const arr = loader.loadProducts();
-  const brands = Array.from(new Set(arr.products.map(el => el.brand)));
-
+function MyBrandsFilter ({ filterElements, loadQuery }: IFilterData): JSX.Element {
   return (
     <div className="filter-container">
-      <h3>{title}</h3>
+      <h3>{'brands'}</h3>
       <div className="filter-body">
-        {brands.map(item => <CheckItem
-        key={item}
-        category={item}
-        title={title}
+        {filterElements.length <= 0
+          ? filterElements.length
+          : filterElements.map((item, id) => <CheckItem
+          key={id}
+          name={item.name}
+          filterCount={item.filterCount}
+          count={item.count}
+          checked={item.checked}
+          category={'brand'}
+          loadQuery={loadQuery}
       />)}
       </div>
     </div>

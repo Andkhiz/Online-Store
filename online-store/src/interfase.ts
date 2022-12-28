@@ -47,7 +47,7 @@ interface IDiscount {
   id: string;
   name: string;
   discount: number;
-} 
+}
 
 export type TDiscounts = IDiscount[];
 
@@ -55,7 +55,14 @@ export interface IElementFilterCategory {
   name: string;
   filterCount: number;
   count: number;
-  onChecked: boolean;
+  checked: boolean;
+}
+
+export interface IElementFilterCategoryRender extends IElementFilterCategory {
+  category: string;
+  loadQuery: Function;
+  // searchParams: URLSearchParams;
+  // setSearchParams: Function;
 }
 
 interface IElementFilterMinMax {
@@ -92,8 +99,20 @@ export interface ICartLayout {
   cartPageData: IProduct[];
 }
 
+
 export interface IPromo {
-  title: string;
-  discount: number;
+  id: string;
+  name: string;
+  discountPercentage: number;
+  promocodeUsed: Array<string>;
   setPromocodeUsed: Function;
+}
+export interface modalId {
+  isOpened: boolean;
+  setIsOpened: Function;
+}
+
+export interface IFilterData {
+  filterElements: IElementFilterCategory[];
+  loadQuery: Function;
 }

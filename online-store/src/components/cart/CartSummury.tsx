@@ -1,42 +1,37 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import Modal from '../modal/Modal';
 import Promocode from './Promocode';
-interface total {
-  totalPrice: number
-}
+import Discount from '../../controller/cart/discount';
+import { ICartTotal } from '../../interfase';
 
-function CartSummury ({ totalPrice }: total): JSX.Element {
+function CartSummury ({ totalSum, totalCount }: ICartTotal): JSX.Element {
+  const discount = new Discount();
+  const discounts = discount.loadDiscounts().map(el => el.id);
   const [input, setInput] = useState('');
-  const [discount, setDiscount] = useState('');
-  const [promocodeUsed, setPromocodeUsed] = useState([]);
+  const [isOpened, setIsOpened] = useState(false);
+  // const [discount, setDiscount] = useState('');
+  const [promocodeUsed, setPromocodeUsed] = useState(discounts);
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    useEffect(() => {
-      setInput(event.target.value.toLowerCase());
-    });
+    setInput(event.target.value.toLowerCase());
   };
-  // useEffect(() => {
-  //   if (input === 'rs' || input === 'epm') {
-  //     setDiscount(input);
-  //   } else {
-  //     setDiscount('');
-  //   }
-  // }, [input]);
-  // console.log(promocodeUsed);
   return (
     <div className="summary">
       <h1>Summury</h1>
-      <p>products</p>
-      <p>total {totalPrice}</p>
+      <p>products: {totalCount}</p>
+      <p>Total: {totalSum}</p>
+      {promocodeUsed.length > 0 &&
+        <p>Total: {Math.round(totalSum * (1 - discount.loadTotalDiscount() / 100))}</p>
+      }
       <input type="text" id="promoCode" name='input' onChange={handleChange}/>
       <label htmlFor="promoCode">Promo for test: RS, EPM</label>
-      <Modal/>
-      {/* <Promocode title={'your discount'} discount={10} setPromocodeUsed={setPromocodeUsed}/>
-      <Promocode title={'your discount'} discount={10} setPromocodeUsed={setPromocodeUsed}/> */}
-      {/* {discount.length > 0 && promocodeUsed
-        ? <Promocode title={'your discount'} discount={10} setPromocodeUsed={setPromocodeUsed}/>
-        : ''
-      } */}
-      <button>buy now</button>
+      <Modal isOpened={isOpened} setIsOpened={setIsOpened}/>
+      {(input === 'rs' || promocodeUsed.includes('1')) &&
+        <Promocode id='1' name='rs-discount' discountPercentage={10} promocodeUsed={promocodeUsed} setPromocodeUsed={setPromocodeUsed}/>
+      }
+      {(input === 'epm' || promocodeUsed.includes('2')) &&
+        <Promocode id='2' name='epam-discount' discountPercentage={10} promocodeUsed={promocodeUsed} setPromocodeUsed={setPromocodeUsed}/>
+      }
+      <button onClick={() => setIsOpened(true)}>buy now</button>
     </div>
   );
 }

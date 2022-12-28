@@ -2,11 +2,11 @@ import * as myType from '../../interfase';
 import { loadLocalStorage, saveLocalStorange } from './localStorage';
 
 class Discount {
-  loadDiscounts(): myType.TDiscounts {
+  loadDiscounts (): myType.TDiscounts {
     return loadLocalStorage('myDiscount');
   }
 
-  addDiscount(id: string, name: string, discount: number): void {
+  addDiscount (id: string, name: string, discount: number): void {
     const myDiscount = this.loadDiscounts();
     const itemDiscount = myDiscount.findIndex(el => el.id === id);
     if (itemDiscount === -1) {
@@ -15,7 +15,7 @@ class Discount {
     }
   }
 
-  deleteDiscount(id: string): void {
+  deleteDiscount (id: string): void {
     const myDiscount = this.loadDiscounts();
     const itemDiscount = myDiscount.findIndex(el => el.id === id);
     if (itemDiscount !== -1) {
@@ -25,6 +25,8 @@ class Discount {
   }
 
   loadTotalDiscount (): number {
-    return this.loadDiscounts().reduce((sum, el) => sum + el.discount, 0 );
+    return this.loadDiscounts().reduce((sum, el) => sum + el.discount, 0);
   }
 }
+
+export default Discount;
