@@ -16,7 +16,6 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
     setSearchParams(loader.loadQuery('filter', query, true));
   };
   const [select, setSelect] = useState(searchParams.get('sort') ?? 'Select options');
-  console.log(select);
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>): void => {
     setSearchParams(loader.loadQuery('sort', event.target.value, true));
     setSelect(event.target.value);

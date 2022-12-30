@@ -116,3 +116,7 @@ export interface IFilterData {
   filterElements: IElementFilterCategory[];
   loadQuery: Function;
 }
+
+export interface IRange {
+  title: string;
+}
