@@ -1,6 +1,6 @@
 import * as myType from '../../interfase';
 import db from '../db.json';
-import { loadLocalStorage, saveLocalStorange } from './localStorage';
+import { loadLocalStorage, saveLocalStorange, deleteLocalStorange } from './localStorage';
 
 class Cart {
   loadCart (): myType.TCarts {
@@ -58,6 +58,10 @@ class Cart {
       myCart.splice(itemCart, 1);
       saveLocalStorange('myCart', myCart);
     }
+  }
+
+  deleteAllProdurt = (): void => {
+    deleteLocalStorange('myCart');
   }
 }
 

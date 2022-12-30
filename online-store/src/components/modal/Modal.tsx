@@ -1,73 +1,153 @@
-import React, { ChangeEvent } from 'react';
+import React, { useState } from 'react';
+import { createValidator } from './validate';
+import visa from './visa.png';
+import master from './mastercard.png';
+import america from './americanexpress.png';
+import bankcard from './bank-card.png';
 import { modalId } from '../../interfase';
 
 function Modal ({ isOpened, setIsOpened }: modalId): JSX.Element {
-  const maxLength = (event: ChangeEvent<HTMLInputElement>): string | undefined => {
+  /* const maxLength = (event: ChangeEvent<HTMLInputElement>): string | undefined => {
     if (event.target.value.length > 3) {
       return event.target.value.slice(0, 3);
     }
-  };
+  }; */
+  const [imgCard, setImgCard] = useState(bankcard);
+
+  const validatorName = createValidator('name', '^([A-Za-z0-9А-Яа-я]{3,}( (?!$)|$)){2,}$', 'Error');
+  const validatorPhone = createValidator('phoneNumber', '^[+][0-9]{9,}$', 'Error');
+  const validatorDeliveryAdress = createValidator('deliveryAdress', '^([A-Za-z0-9А-Яа-я]{5,}( (?!$)|$)){3,}$', 'Error');
+  const validatorEmail = createValidator('email', '^[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}([.][A-Za-z0-9]{2,}){1,}$', 'Error');
+  const validatorCardNumber = createValidator('card-number', '[0-9]{16,16}' /* '([0-9]{4,4}( (?!$)|$)){4,4}' */, 'Error card number');
+  const validatorExpireDate = createValidator('validDate', '^(([0](?=[1-9])|([1](?=[0-2])))[0-9]([/]))([0-9]{2})', 'Error expire date', 3);
+  const validatorCVV = createValidator('cvv', '^([0-9]{3})', 'Error cvv', 4);
+
+  function inputCardNumber (): void {
+    const cardNumber = document.getElementById('card-number');
+    if (cardNumber instanceof HTMLInputElement) {
+      let text = cardNumber.value;
+      // text = text.replaceAll(' ', '');
+      text = text.split('')
+        .filter(el => el === String(Number.parseInt(el)))
+        .splice(0, 16)
+        .join('');
+      /* .reduce((str, el) => {
+          console.log(str.length);
+          str = str + (((str.length - Math.floor(str.length / 5) + 1) % 4 === 0 && str.length !== 0 && str.length < 17) ? String(el) + ' ' : String(el));
+          return str;
+        }, ''); */
+      cardNumber.value = text;
+
+      const paySystem = text.substring(0, 1);
+      console.log('paySystem');
+      switch (paySystem) {
+        case '4':
+          setImgCard(visa);
+          break;
+        case '5':
+          setImgCard(master);
+          break;
+        case '3':
+          setImgCard(america);
+          break;
+        default:
+          setImgCard(bankcard);
+      }
+    }
+  }
+
+  function inputExpireDate (): void {
+    const cardNumber = document.getElementById('validDate');
+    if (cardNumber instanceof HTMLInputElement) {
+      let text = cardNumber.value;
+      const arr = text.split('')
+        .filter(el => el === String(Number.parseInt(el)) || el === '/')
+        .splice(0, 5);
+      if (arr.length === 2 && arr.findIndex(el => el === '/') === -1) {
+        arr.push('/');
+      }
+      text = arr.join('');
+      cardNumber.value = text;
+    }
+  }
+
+  function inputCVV (): void {
+    const cardNumber = document.getElementById('cvv');
+    if (cardNumber instanceof HTMLInputElement) {
+      const text = cardNumber.value
+        .split('')
+        .filter(el => el === String(Number.parseInt(el)))
+        .splice(0, 3)
+        .join('');
+      cardNumber.value = text;
+    }
+  }
+
   return (
     <dialog open={isOpened}>
       <div className="modal-content">
         <h5>Personal details</h5>
         <div className="personal-data">
           <div className="personal-data-item">
-            <input type="text" id='name' placeholder='Enter name' pattern="\w{3,} \w{3,}"/>
-            {/* <label htmlFor="name">Enter name</label> */}
+            <input type="text" id='name' placeholder='Enter name' onBlur={validatorName}/>
           </div>
           <div className="personal-data-item">
-            {/* <label>
-                +<input
-                name="tel1"
-                type="tel"
-                pattern="[1-9]{3}"
-                placeholder="###"
-                aria-label="3-digit area code"
-                size={2} /> -
-                (<input
-                name="tel2"
-                type="tel"
-                pattern="[1-9]{2,2}"
-                placeholder="###"
-                aria-label="3-digit prefix"
-                size={2} />)
-                -
-                <input
-                name="tel3"
-                type="tel"
-                pattern="[0-9]{7,7}"
-                placeholder="####"
-                aria-label="4-digit number"
-                size={6} />
-            </label> */}
-            <input type="tel" id='phoneNumber' placeholder='+375(25)39490090' pattern="\+\d{3,3}\(\d{2,2}\)\d{7,7}"/>
-            {/* <label htmlFor="phoneNumber">Enter name</label> */}
+            <input type="tel" id='phoneNumber' placeholder='+123456789' onBlur={validatorPhone} />
           </div>
           <div className="personal-data-item">
-            <input type="text" id='deliveryAdress' placeholder='Enter delivery adress' pattern="\w{5,} \w{5,} \w{5,} \w{5,} \w{5,}"/>
-            {/* <label htmlFor="deliveryAdress">Enter name</label> */}
+            <input type="text" id='deliveryAdress' placeholder='Enter delivery adress'
+              onBlur={validatorDeliveryAdress}/>
           </div>
           <div className="personal-data-item">
-            <input type="email" id='email' placeholder='Enter email'/>
-            {/* <label htmlFor="name">Enter name</label> */}
+            <input type="text" id='email' placeholder='Enter email' onBlur={validatorEmail} />
           </div>
         </div>
         <div className="card-data">
           <h6>Credit card details</h6>
-          <div className="card-data-container">
-            <img src="" alt="" />
-            <input type="number" min={0}/>
-            <div className="card-valid">
-              <label htmlFor="validDate">Expire Date: </label>
-              <input type="month" name="validDate" id="validDate"/>
-              <label htmlFor="cvv">CVV: </label>
-              <input type="number" name="cvv" id="cvv" min={0} onChange={maxLength}/>
+          <div className="card-error">
+            <div className="card-data-container">
+              <img src={imgCard} alt="Pay system" id='imgBankCard'/>
+              <input type="text" id='card-number' placeholder='Card number'
+                onBlur={validatorCardNumber}
+                onInput={inputCardNumber}
+              />
+              <div className="card-valid">
+                <label htmlFor="validDate">Expire Date: </label>
+                <input type="text" placeholder='mm/yy' id="validDate"
+                  onBlur={validatorExpireDate}
+                  onInput={inputExpireDate}
+                />
+
+                <label htmlFor="cvv">CVV: </label>
+                <input type="text" name="cvv" id="cvv"
+                  onBlur={validatorCVV}
+                  onInput={inputCVV}
+                />
+              </div>
             </div>
           </div>
         </div>
-        <button>Confirm</button>
-        <button onClick={() => setIsOpened(false)}>Close</button>
+        <button className='buyProduct' onClick={(): void => {
+          const modul = document.getElementsByClassName('modal-content')[0];
+          console.log('fff');
+          validatorName();
+          validatorPhone();
+          validatorDeliveryAdress();
+          validatorEmail();
+          validatorCardNumber();
+          validatorExpireDate();
+          validatorCVV();
+
+          let mayBuy = true;
+          const inputs = modul.getElementsByTagName('input');
+          for (let i = 0; i < inputs.length; i += 1) {
+            if (!inputs[i].validity.valid) {
+              mayBuy = false;
+              break;
+            }
+          }
+          if (mayBuy) { alert('Вы удачно совершили покупку'); setIsOpened(false); }
+        }}>Confirm</button>
       </div>
     </dialog>
   );
