@@ -117,6 +117,8 @@ export interface IFilterData {
   loadQuery: Function;
 }
 
-export interface IRange {
+export type TRange = {
   title: string;
+  rangeData: IElementFilterMinMax;
+  loadQuery: Function;
 }
