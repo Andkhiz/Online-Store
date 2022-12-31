@@ -2,8 +2,9 @@ import React from 'react';
 import { IProductsCartRender } from '../../interfase';
 import { Link } from 'react-router-dom';
 import Cart from '../../controller/cart/cart';
+import './buttons.scss';
 
-function Item ({ title, price, id, cartCount, stock, thumbnail, setState }: IProductsCartRender): JSX.Element {
+function Item ({ title, price, id, cartCount, stock, thumbnail, setState, onCart }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
   return (
     <div className="item">
@@ -13,7 +14,7 @@ function Item ({ title, price, id, cartCount, stock, thumbnail, setState }: IPro
         <p>Price: {price}</p>
       </div>
       <div className="buttons">
-          <button onClick={() => {
+          <button className={onCart === true ? 'onCart' : 'notOnCart'} onClick={() => {
             cart.addProdurt(id, price, stock);
             setState(cart.loadTotalCartData());
           }}>Add</button>

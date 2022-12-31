@@ -21,6 +21,7 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
     setSelect(event.target.value);
     console.log(event.target.value);
   };
+  console.log(arr.products);
   return (
     <section className='main-info'>
       <div className="main-info-header">
@@ -35,6 +36,7 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
             <option value="discount-DESC">Discount DESC</option>
           </select>
         </form>
+        <span>{arr.products.length} goods was found!</span>
         <input type="search" placeholder='Search...' onChange={handleChange} value={input}/>
         <div className="view-options"></div>
       </div>
