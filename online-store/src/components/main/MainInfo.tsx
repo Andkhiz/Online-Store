@@ -16,12 +16,12 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
     setSearchParams(loader.loadQuery('filter', query, true));
   };
   const [select, setSelect] = useState(searchParams.get('sort') ?? 'Select options');
-  console.log(select);
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>): void => {
     setSearchParams(loader.loadQuery('sort', event.target.value, true));
     setSelect(event.target.value);
     console.log(event.target.value);
   };
+  console.log(arr.products);
   return (
     <section className='main-info'>
       <div className="main-info-header">
@@ -36,6 +36,7 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
             <option value="discount-DESC">Discount DESC</option>
           </select>
         </form>
+        <span>{arr.products.length} goods was found!</span>
         <input type="search" placeholder='Search...' onChange={handleChange} value={input}/>
         <div className="view-options"></div>
       </div>
@@ -57,6 +58,7 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
           thumbnail={el.thumbnail}
           images={el.images}
           setState={setCartPageData}
+          onCart={el.onCart}
         />)}
       </div>
     </section>

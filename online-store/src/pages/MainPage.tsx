@@ -31,8 +31,8 @@ function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
         </div>
         <MyCategoriesFilter filterElements={filters.categories} loadQuery={loader.loadQuery}/* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
         <MyBrandsFilter filterElements={filters.brands} loadQuery={loader.loadQuery} /* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
-        <MyInputRange title='Price'/>
-        <MyInputRange title='Stock'/>
+        <MyInputRange title='price' rangeData={filters.prices} loadQuery={loader.loadQuery}/>
+        <MyInputRange title='stock' rangeData={filters.stocks} loadQuery={loader.loadQuery}/>
       </aside>
       <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData}/>
     </main>

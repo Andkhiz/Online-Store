@@ -116,3 +116,9 @@ export interface IFilterData {
   filterElements: IElementFilterCategory[];
   loadQuery: Function;
 }
+
+export type TRange = {
+  title: string;
+  rangeData: IElementFilterMinMax;
+  loadQuery: Function;
+}

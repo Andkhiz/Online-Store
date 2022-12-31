@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IProductsCartRender } from '../../interfase';
 import { Link } from 'react-router-dom';
 import Cart from '../../controller/cart/cart';
+import './buttons.scss';
 
-function Item ({ title, price, id, cartCount, stock, thumbnail, setState }: IProductsCartRender): JSX.Element {
+function Item ({ title, price, id, cartCount, stock, thumbnail, setState, onCart }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
+  console.log(onCart);
   return (
     <div className="item">
     <img src={thumbnail} alt={title} width={150} height={150}/>
@@ -13,10 +15,10 @@ function Item ({ title, price, id, cartCount, stock, thumbnail, setState }: IPro
         <p>Price: {price}</p>
       </div>
       <div className="buttons">
-          <button onClick={() => {
-            cart.addProdurt(id, price, stock);
+          <button className={onCart ? 'onCart' : 'notOnCart'} onClick={() => {
+            onCart ? cart.deleteProduct(id) : cart.addProdurt(id, price, stock);
             setState(cart.loadTotalCartData());
-          }}>Add</button>
+          }}>{onCart ? 'Remove' : 'Add'}</button>
           <button><Link to={`/product/${id}`}>Info</Link></button>
       </div>
     </div>
