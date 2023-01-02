@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { IProductsCartRender } from '../../interfase';
+import { IProductsCartRender, ICartLayout, IProduct } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 
-function CartItem ({ id, title, description, rating, discountPercentage, price, cartCount, thumbnail, stock, setState }: IProductsCartRender): JSX.Element {
+function CartItem ({ id, title, description, rating, discountPercentage, price, cartCount, thumbnail, stock, setState, cartPageData }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
-  const cartData = cart.loadProductsCart();
+  // const cartData = cart.loadProductsCart();
+  const pageData: IProduct [] = JSON.parse(JSON.stringify(cartPageData));
+  console.log('CartItem');
+  console.log(pageData);
 
   const [counter, setCounter] = useState<number>(cartCount);
   const [finalPrice, setFinalPrice] = useState<number>(price * cartCount);
@@ -29,12 +32,14 @@ function CartItem ({ id, title, description, rating, discountPercentage, price, 
             if (stock <= cartCount) {
               console.log(stock, cartCount);
               setCounter(counter);
-              setState(cart.loadProductsCart().productsCart);
+              // setState(cart.loadProductsCart().productsCart);
             } else {
+              console.log(stock, cartCount);
               setCounter(counter + 1);
               setFinalPrice(finalPrice + price);
-              cart.loadTotalCartData();
-              setState(cart.loadProductsCart().productsCart);
+              // cart.loadTotalCartData();
+              pageData[pageData.findIndex(el => el.id === id)].cartCount += 1;
+              setState(pageData/* cart.loadProductsCart().productsCart */);
               cart.addProdurt(id, price, stock);
             }
           }}>+</button>

@@ -62,7 +62,7 @@ class Cart {
 
   deleteAllProdurt = (): void => {
     deleteLocalStorange('myCart');
-  }
+  };
 }
 
 export default Cart;

@@ -4,15 +4,15 @@ import CartSummury from './CartSummury';
 import Cart from '../../controller/cart/cart';
 import { ICartLayout } from '../../interfase';
 
-export default function CartItemsContainer ({ setCartPageData }: ICartLayout): JSX.Element {
+export default function CartItemsContainer ({ cartPageData, setCartPageData }: ICartLayout): JSX.Element {
   const cart = new Cart();
-  const cartData = cart.loadProductsCart();
+  // const cartData = cart.loadProductsCart();
   const totalCartData = cart.loadTotalCartData();
-  const cartItems = cartData.productsCart;
-  const [cartItemsState, setCartItemsState] = useState([cartData.productsCart]);
-  useEffect(() => {
+  const cartItems = cartPageData/* cartData.productsCart */;
+  // const [cartItemsState, setCartItemsState] = useState([/* cartPageData */cartData.productsCart]);
+  /* useEffect(() => {
     setCartPageData(cartItemsState);
-  }, [cartItemsState]);
+  }, [cartItemsState]); */
 
   return (
     <main className='cart'>
@@ -39,7 +39,8 @@ export default function CartItemsContainer ({ setCartPageData }: ICartLayout): J
           category={el.category}
           thumbnail={el.thumbnail}
           images={el.images}
-          setState={setCartItemsState}
+          setState={setCartPageData/* setCartItemsState */}
+          cartPageData={cartPageData}
           />)}
       </div>
       </div>

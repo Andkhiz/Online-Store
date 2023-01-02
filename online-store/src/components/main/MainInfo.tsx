@@ -58,6 +58,7 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
           thumbnail={el.thumbnail}
           images={el.images}
           setState={setCartPageData}
+          cartPageData={cartPageData}
           onCart={el.onCart}
         />)}
       </div>

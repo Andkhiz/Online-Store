@@ -8,15 +8,37 @@ import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
 import ErrorPage from './pages/ErrorPage';
 import Cart from './controller/cart/cart';
+import { loadProductsCart } from './controller/cart/loadProductCart';
+
+import { IProduct, TProductsDB, IProductDB } from './interfase';
 
 function App (): JSX.Element {
   console.log('Вызываем app');
-  const cart = new Cart();
-  const [cartPageData, setCartPageData] = useState(cart.loadProductsCart().productsCart);
+  const [cartPageData, setCartPageData] = useState<IProduct []>([]);
+
+  // const cart = new Cart();
+  // const [cartPageData, setCartPageData] = useState(cart.loadProductsCart().productsCart);
+  console.log('App');
   console.log(cartPageData);
+  const loadData = function (): void {
+    fetch('db.json', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(async (responce: Response) => {
+        if (!responce.ok) throw new Error(responce.statusText);
+        return await responce.json();
+      })
+      .then((result) => { console.log('result'); console.log(result); return loadProductsCart(result); })
+      .then(resu => { console.log('resu'); console.log(resu); setCartPageData(resu.productsCart); })
+      .catch(error => { throw Error(error); });
+  };
+
   useEffect(() => {
-    console.log('pageLayoutchange', cartPageData);
-  }, [cartPageData]);
+    // console.log('pageLayoutchange', cartPageData);
+    loadData();
+  }, []);
 
   return (
     <BrowserRouter>

@@ -18,6 +18,7 @@ export interface IProduct extends IProductDB {
 };
 
 export interface IProducts { products: IProduct []};
+export type TProductsDB = { products: IProductDB []};
 
 export interface IRenderProduct {
   title: string;
@@ -36,6 +37,7 @@ export interface IProductsCart { productsCart: IProduct [] }
 
 export interface IProductsCartRender extends IProduct {
   setState: Function;
+  cartPageData: IProduct[];
 }
 
 export interface ICartTotal {

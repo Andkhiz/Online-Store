@@ -6,7 +6,7 @@ import './buttons.scss';
 
 function Item ({ title, price, id, cartCount, stock, thumbnail, setState, onCart }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
-  console.log(onCart);
+  // console.log(onCart);
   return (
     <div className="item">
     <img src={thumbnail} alt={title} width={150} height={150}/>
@@ -17,7 +17,7 @@ function Item ({ title, price, id, cartCount, stock, thumbnail, setState, onCart
       <div className="buttons">
           <button className={onCart ? 'onCart' : 'notOnCart'} onClick={() => {
             onCart ? cart.deleteProduct(id) : cart.addProdurt(id, price, stock);
-            setState(cart.loadTotalCartData());
+            setState(cart.loadProductsCart().productsCart/* cart.loadTotalCartData() */);
           }}>{onCart ? 'Remove' : 'Add'}</button>
           <button><Link to={`/product/${id}`}>Info</Link></button>
       </div>
