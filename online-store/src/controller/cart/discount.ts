@@ -1,5 +1,5 @@
 import * as myType from '../../interfase';
-import { loadLocalStorage, saveLocalStorange } from './localStorage';
+import { loadLocalStorage, saveLocalStorage } from './localStorage';
 
 class Discount {
   loadDiscounts (): myType.TDiscounts {
@@ -11,7 +11,7 @@ class Discount {
     const itemDiscount = myDiscount.findIndex(el => el.id === id);
     if (itemDiscount === -1) {
       myDiscount.push({ id, name, discount });
-      saveLocalStorange('myDiscount', myDiscount);
+      saveLocalStorage('myDiscount', myDiscount);
     }
   }
 
@@ -20,7 +20,7 @@ class Discount {
     const itemDiscount = myDiscount.findIndex(el => el.id === id);
     if (itemDiscount !== -1) {
       myDiscount.splice(itemDiscount, 1);
-      saveLocalStorange('myDiscount', myDiscount);
+      saveLocalStorage('myDiscount', myDiscount);
     }
   }
 

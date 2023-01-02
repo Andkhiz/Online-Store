@@ -8,7 +8,7 @@ import { ICartLayout } from '../interfase';
 import Loader from '../controller/loader';
 import { useSearchParams } from 'react-router-dom';
 
-function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
+function MainPage ({ setCartPageData, cartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
   const loader = new Loader();
   // Why it is need?
@@ -34,7 +34,8 @@ function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
         <MyInputRange title='price' rangeData={filters.prices} loadQuery={loader.loadQuery}/>
         <MyInputRange title='stock' rangeData={filters.stocks} loadQuery={loader.loadQuery}/>
       </aside>
-      <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData}/>
+      <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData} totalCartData={totalCartData}
+              setTotalCartData={setTotalCartData}/>
     </main>
   );
 }

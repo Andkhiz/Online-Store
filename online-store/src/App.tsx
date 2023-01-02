@@ -9,13 +9,14 @@ import ProductPage from './pages/ProductPage';
 import ErrorPage from './pages/ErrorPage';
 import Cart from './controller/cart/cart';
 import { loadProductsCart } from './controller/cart/loadProductCart';
+import { loadTotalCartData } from './controller/cart/loadTotalCartData';
 
-import { IProduct, TProductsDB, IProductDB } from './interfase';
+import { IProduct, IProductDB, ICartTotal } from './interfase';
 
 function App (): JSX.Element {
   console.log('Вызываем app');
   const [cartPageData, setCartPageData] = useState<IProduct []>([]);
-
+  const [totalCartData, setTotalCartData] = useState<ICartTotal>(loadTotalCartData());
   // const cart = new Cart();
   // const [cartPageData, setCartPageData] = useState(cart.loadProductsCart().productsCart);
   console.log('App');
@@ -35,18 +36,30 @@ function App (): JSX.Element {
       .catch(error => { throw Error(error); });
   };
 
-  useEffect(() => {
-    // console.log('pageLayoutchange', cartPageData);
-    loadData();
-  }, []);
+  useEffect(() => { loadData(); }, []);
+  // useEffect(() => { setTotalCartData(loadTotalCartData()); }, []);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LayoutPage />}>
-          <Route index element={<MainPage cartPageData={cartPageData} setCartPageData={setCartPageData}/>} />
+          <Route index element={
+            <MainPage
+              cartPageData={cartPageData}
+              setCartPageData={setCartPageData}
+              totalCartData={totalCartData}
+              setTotalCartData={setTotalCartData}
+            />}
+          />
           <Route path="product/:id" element={<ProductPage />} />
-          <Route path="cart" element={<CartPage cartPageData={cartPageData} setCartPageData={setCartPageData} />} />
+          <Route path="cart" element={
+            <CartPage
+              cartPageData={cartPageData}
+              setCartPageData={setCartPageData}
+              totalCartData={totalCartData}
+              setTotalCartData={setTotalCartData}
+            />}
+          />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

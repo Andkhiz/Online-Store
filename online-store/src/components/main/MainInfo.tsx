@@ -5,7 +5,7 @@ import { ICartLayout } from '../../interfase';
 import EmptyMain from './EmptyMain';
 import { useSearchParams } from 'react-router-dom';
 
-function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
+function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
   const loader = new Loader();
   const arr = loader.loadProducts();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,21 +45,11 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
           ? <EmptyMain/>
           : arr.products.map((el) => <Item
           key={el.id}
-          id={el.id}
-          title={el.title}
-          description={el.description}
-          discountPercentage={el.discountPercentage}
-          rating={el.rating}
-          price={el.price}
-          cartCount={el.cartCount}
-          stock={el.stock}
-          brand={el.brand}
-          category={el.category}
-          thumbnail={el.thumbnail}
-          images={el.images}
-          setState={setCartPageData}
+          product={el}
+          setCartPageData={setCartPageData}
           cartPageData={cartPageData}
-          onCart={el.onCart}
+          totalCartData={totalCartData}
+          setTotalCartData={setTotalCartData}
         />)}
       </div>
     </section>

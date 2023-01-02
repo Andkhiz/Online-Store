@@ -10,7 +10,7 @@ export function loadLocalStorage <T> (key: string): T | [] {
   return [];
 }
 
-export function saveLocalStorange <T> (key: string, value: T): void {
+export function saveLocalStorage <T> (key: string, value: T): void {
   localStorage.setItem(key, JSON.stringify(value));
 }
 

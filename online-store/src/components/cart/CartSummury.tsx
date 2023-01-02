@@ -5,6 +5,12 @@ import Discount from '../../controller/cart/discount';
 import { ICartTotal } from '../../interfase';
 
 function CartSummury ({ totalSum, totalCount }: ICartTotal): JSX.Element {
+  // console.log('CartSummary');
+  // console.log(totalSum);
+  // console.log(totalCount);
+  // const [finalCount, setTotalSumCart] = useState(totalCount);
+  // const [finalPrice, setFinalPrice] = useState(totalSum);
+
   const discount = new Discount();
   const discounts = discount.loadDiscounts().map(el => el.id);
   const [input, setInput] = useState('');

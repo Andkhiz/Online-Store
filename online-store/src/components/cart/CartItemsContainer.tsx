@@ -4,15 +4,17 @@ import CartSummury from './CartSummury';
 import Cart from '../../controller/cart/cart';
 import { ICartLayout } from '../../interfase';
 
-export default function CartItemsContainer ({ cartPageData, setCartPageData }: ICartLayout): JSX.Element {
-  const cart = new Cart();
+export default function CartItemsContainer ({ cartPageData, setCartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
+  // const cart = new Cart();
   // const cartData = cart.loadProductsCart();
-  const totalCartData = cart.loadTotalCartData();
+  // const totalCartData = cart.loadTotalCartData();
   const cartItems = cartPageData/* cartData.productsCart */;
   // const [cartItemsState, setCartItemsState] = useState([/* cartPageData */cartData.productsCart]);
   /* useEffect(() => {
     setCartPageData(cartItemsState);
   }, [cartItemsState]); */
+  console.log('CartItemsContainer');
+  console.log(totalCartData);
 
   return (
     <main className='cart'>
@@ -27,24 +29,15 @@ export default function CartItemsContainer ({ cartPageData, setCartPageData }: I
       <div className="cart-items-body">
         {cartItems.map((el) => <CartItem
           key={el.id}
-          id={el.id}
-          title={el.title}
-          description={el.description}
-          discountPercentage={el.discountPercentage}
-          rating={el.rating}
-          price={el.price}
-          cartCount={el.cartCount}
-          stock={el.stock}
-          brand={el.brand}
-          category={el.category}
-          thumbnail={el.thumbnail}
-          images={el.images}
-          setState={setCartPageData/* setCartItemsState */}
+          product={el}
+          setTotalCartData={setTotalCartData/* setCartItemsState */}
           cartPageData={cartPageData}
+          totalCartData={totalCartData}
+          setCartPageData={setCartPageData}
           />)}
       </div>
       </div>
-      <CartSummury totalSum={totalCartData.totalSum} totalCount={totalCartData.totalCount}/>
+      <CartSummury {...totalCartData}/>
     </main>
   );
 }

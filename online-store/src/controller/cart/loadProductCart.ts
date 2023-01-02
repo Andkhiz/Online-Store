@@ -1,7 +1,7 @@
-import { IProduct, IProductsCart, TProductsDB } from '../../interfase';
+import { IProduct, IProductsCart, IProductsDB } from '../../interfase';
 import { loadCartLocalStorage } from './loadCartLocalStorage';
 
-export function loadProductsCart (db: TProductsDB): IProductsCart {
+export function loadProductsCart (db: IProductsDB): IProductsCart {
   console.log('db');
   console.log(db);
   const myCart = loadCartLocalStorage();

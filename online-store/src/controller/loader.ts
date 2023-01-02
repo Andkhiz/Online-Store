@@ -3,6 +3,7 @@ import * as myType from '../interfase';
 import { useSearchParams } from 'react-router-dom';
 import StartLoader from './startLoader';
 import Cart from './cart/cart';
+import { loadCartLocalStorage } from './cart/loadCartLocalStorage';
 
 export default class Loader {
   static startFilter = new StartLoader().loadStartFilter();
@@ -10,7 +11,7 @@ export default class Loader {
   // loadQuer = this.loadQuery;
 
   loadProducts (): myType.IProducts {
-    const productsCart = this.Cart.loadCart();
+    const productsCart = loadCartLocalStorage(); // this.Cart.loadCart();
     // console.log(productsCart);
 
     const myProduct = {
@@ -118,7 +119,7 @@ export default class Loader {
   loadProduct (idProduct: number): myType.IProduct | undefined {
     const product = db.products.find(prod => prod.id === idProduct);
     if (product === undefined) return undefined;
-    const myCart = this.Cart.loadCart().find(el => el.id === idProduct);
+    const myCart = loadCartLocalStorage().find(el => el.id === idProduct);
     const cartCount = myCart === undefined ? 0 : myCart.count;
     return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
   }

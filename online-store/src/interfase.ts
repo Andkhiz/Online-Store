@@ -12,13 +12,23 @@ export interface IProductDB {
   images: string [];
 }
 
+export interface IProductsDB { products: IProductDB []};
+
 export interface IProduct extends IProductDB {
   onCart?: boolean;
   cartCount: number;
 };
 
 export interface IProducts { products: IProduct []};
-export type TProductsDB = { products: IProductDB []};
+
+export interface ICartLayout {
+  // isEmpty: boolean;
+  setCartPageData: Function;
+  cartPageData: IProduct[];
+  totalCartData: ICartTotal;
+  setTotalCartData: Function;
+}
+
 
 export interface IRenderProduct {
   title: string;
@@ -35,9 +45,12 @@ export type TCarts = ICart[];
 
 export interface IProductsCart { productsCart: IProduct [] }
 
-export interface IProductsCartRender extends IProduct {
-  setState: Function;
+export interface IProductsCartRender {
+  product: IProduct;
+  setTotalCartData: Function;
+  setCartPageData: Function;
   cartPageData: IProduct[];
+  totalCartData: ICartTotal;
 }
 
 export interface ICartTotal {
@@ -94,13 +107,6 @@ export type TFilterReturn = {
   sort: TSort;
   filter: string;
 };
-
-export interface ICartLayout {
-  // isEmpty: boolean;
-  setCartPageData: Function;
-  cartPageData: IProduct[];
-}
-
 
 export interface IPromo {
   id: string;
