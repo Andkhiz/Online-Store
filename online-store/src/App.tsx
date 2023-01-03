@@ -32,8 +32,8 @@ function App (): JSX.Element {
         if (!responce.ok) throw new Error(responce.statusText);
         return await responce.json();
       })
-      .then((result) => { console.log('result'); console.log(result); return loadProductsCart(result); })
-      .then(resu => { console.log('resu'); console.log(resu); setCartPageData(resu.productsCart); })
+      .then((result) => loadProductsCart(result))
+      .then(resu => setCartPageData(resu.productsCart))
       .catch(error => { throw Error(error); });
   };
 

@@ -1,14 +1,32 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 import Item from './Item';
 import Loader from '../../controller/loader';
-import { ICartLayout } from '../../interfase';
+import { ICartLayout, IProduct } from '../../interfase';
 import EmptyMain from './EmptyMain';
 import { useSearchParams } from 'react-router-dom';
+import { loadProducts } from '../../controller/loadProgucts';
 
 function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams }: ICartLayout): JSX.Element {
-  const loader = new Loader();
-  const arr = loader.loadProducts();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [products, setProducts] = useState<IProduct []>([]);
+  const loadProductsData = function (params: URLSearchParams): void {
+    fetch('db.json', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(async (responce: Response) => {
+        if (!responce.ok) throw new Error(responce.statusText);
+        return await responce.json();
+      })
+      .then((result) => loadProducts(result, params))
+      .then((resu) => { setProducts(resu.products); })
+      .catch(error => { throw Error(error); });
+  };
+  useEffect(() => { loadProductsData(searchParams); }, [searchParams]);
+
+  const loader = new Loader();
+  // const arr = loader.loadProducts();
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const query = event.target.value.toLowerCase();
     setSearchParams(getQueryParams('filter', query, !(query === '')));
@@ -32,14 +50,14 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
             <option value="discount-DESC">Discount DESC</option>
           </select>
         </form>
-        <span>{arr.products.length} goods was found!</span>
+        <span>{products.length} goods was found!</span>
         <input type="search" placeholder='Search...' onChange={handleChange} value={loader.loadFilters().filter}/>
         <div className="view-options"></div>
       </div>
       <div className="main-info-content">
-        {arr.products.length === 0
+        {products.length === 0
           ? <EmptyMain/>
-          : arr.products.map((el) => <Item
+          : products.map((el) => <Item
           key={el.id}
           product={el}
           setCartPageData={setCartPageData}

@@ -2,10 +2,7 @@ import { IProduct, IProductsCart, IProductsDB } from '../../interfase';
 import { loadCartLocalStorage } from './loadCartLocalStorage';
 
 export function loadProductsCart (db: IProductsDB): IProductsCart {
-  console.log('db');
-  console.log(db);
   const myCart = loadCartLocalStorage();
-  console.log(myCart);
   const arr: IProductsCart = { productsCart: [] };
   myCart.forEach(cart => {
     if (Array.isArray(db.products)) {

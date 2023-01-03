@@ -19,6 +19,8 @@ function Item ({ product, setTotalCartData, setCartPageData, cartPageData }: IPr
       <div className="buttons">
           <button className={product.onCart ? 'onCart' : 'notOnCart'} onClick={() => {
             if (product.onCart === true) {
+              product.onCart = false;
+              product.cartCount = 0;
               cart.deleteProduct(product.id);
               pageData.splice(pageData.findIndex(el => el.id === product.id), 1);
             } else {
