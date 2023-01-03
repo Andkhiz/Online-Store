@@ -27,6 +27,7 @@ export interface ICartLayout {
   cartPageData: IProduct[];
   totalCartData: ICartTotal;
   setTotalCartData: Function;
+  getQueryParams: Function;
 }
 
 
@@ -128,5 +129,5 @@ export interface IFilterData {
 export type TRange = {
   title: string;
   rangeData: IElementFilterMinMax;
-  loadQuery: Function;
+  getQueryParams: Function;
 }

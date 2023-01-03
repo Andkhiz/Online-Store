@@ -5,7 +5,7 @@ import { ICartLayout } from '../../interfase';
 import EmptyMain from './EmptyMain';
 import { useSearchParams } from 'react-router-dom';
 
-function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
+function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams }: ICartLayout): JSX.Element {
   const loader = new Loader();
   const arr = loader.loadProducts();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,11 +13,11 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setInput(event.target.value.toLowerCase());
     const query = event.target.value.toLowerCase();
-    setSearchParams(loader.loadQuery('filter', query, true));
+    setSearchParams(getQueryParams('filter', query, true));
   };
   const [select, setSelect] = useState(searchParams.get('sort') ?? 'Select options');
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>): void => {
-    setSearchParams(loader.loadQuery('sort', event.target.value, true));
+    setSearchParams(getQueryParams('sort', event.target.value, true));
     setSelect(event.target.value);
     console.log(event.target.value);
   };

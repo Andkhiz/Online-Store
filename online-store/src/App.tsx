@@ -7,11 +7,12 @@ import MainPage from './pages/MainPage';
 import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
 import ErrorPage from './pages/ErrorPage';
-import Cart from './controller/cart/cart';
+// import Cart from './controller/cart/cart';
 import { loadProductsCart } from './controller/cart/loadProductCart';
 import { loadTotalCartData } from './controller/cart/loadTotalCartData';
+import { getQueryParams } from './controller/queryParams/queryParams';
 
-import { IProduct, IProductDB, ICartTotal } from './interfase';
+import { IProduct, /* IProductDB, */ ICartTotal } from './interfase';
 
 function App (): JSX.Element {
   console.log('Вызываем app');
@@ -49,6 +50,7 @@ function App (): JSX.Element {
               setCartPageData={setCartPageData}
               totalCartData={totalCartData}
               setTotalCartData={setTotalCartData}
+              getQueryParams={getQueryParams}
             />}
           />
           <Route path="product/:id" element={<ProductPage />} />
@@ -58,6 +60,7 @@ function App (): JSX.Element {
               setCartPageData={setCartPageData}
               totalCartData={totalCartData}
               setTotalCartData={setTotalCartData}
+              getQueryParams={getQueryParams}
             />}
           />
           <Route path="*" element={<ErrorPage />} />

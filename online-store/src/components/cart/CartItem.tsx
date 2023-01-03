@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { IProductsCartRender, ICartLayout, IProduct } from '../../interfase';
+import React /*, { useState } */ from 'react';
+import { IProductsCartRender, /* ICartLayout, */ IProduct } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
 
 function CartItem ({ product, setTotalCartData, setCartPageData, cartPageData }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
-  // const cartData = cart.loadProductsCart();
   const pageData: IProduct [] = JSON.parse(JSON.stringify(cartPageData));
   // console.log('CartItem');
   // console.log(product.cartCount);

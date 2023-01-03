@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React /*, { useState, useEffect } */ from 'react';
 import CartItem from './CartItem';
 import CartSummury from './CartSummury';
-import Cart from '../../controller/cart/cart';
+// import Cart from '../../controller/cart/cart';
 import { ICartLayout } from '../../interfase';
 
 export default function CartItemsContainer ({ cartPageData, setCartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
   // const cart = new Cart();
   // const cartData = cart.loadProductsCart();
   // const totalCartData = cart.loadTotalCartData();
-  const cartItems = cartPageData/* cartData.productsCart */;
+  // const cartItems = cartPageData/* cartData.productsCart */;
   // const [cartItemsState, setCartItemsState] = useState([/* cartPageData */cartData.productsCart]);
   /* useEffect(() => {
     setCartPageData(cartItemsState);
@@ -27,10 +27,10 @@ export default function CartItemsContainer ({ cartPageData, setCartPageData, tot
         </div>
       </div>
       <div className="cart-items-body">
-        {cartItems.map((el) => <CartItem
+        {cartPageData.map((el) => <CartItem
           key={el.id}
           product={el}
-          setTotalCartData={setTotalCartData/* setCartItemsState */}
+          setTotalCartData={setTotalCartData}
           cartPageData={cartPageData}
           totalCartData={totalCartData}
           setCartPageData={setCartPageData}

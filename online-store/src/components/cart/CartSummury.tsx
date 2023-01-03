@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, useState /*, useEffect */ } from 'react';
 import Modal from '../modal/Modal';
 import Promocode from './Promocode';
-import Discount from '../../controller/cart/discount';
+import Discount from '../../controller/discount/discount';
 import { ICartTotal } from '../../interfase';
 
 function CartSummury ({ totalSum, totalCount }: ICartTotal): JSX.Element {

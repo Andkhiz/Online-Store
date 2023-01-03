@@ -1,6 +1,6 @@
-import * as myType from '../../interfase';
-import db from '../db.json';
-import { loadLocalStorage, saveLocalStorage, deleteLocalStorange } from './localStorage';
+// import * as myType from '../../interfase';
+// import db from '../db.json';
+import { /* loadLocalStorage, saveLocalStorage, */ deleteLocalStorange } from '../localStogage/localStorage';
 import { loadCartLocalStorage } from './loadCartLocalStorage';
 import { saveCartLocalStorage } from './saveCartLocalStorage';
 
