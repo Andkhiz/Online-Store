@@ -1,34 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductInfo from '../components/product/ProductInfo';
 import ProductInfoNotFound from '../components/product/productInfoNotFound';
 import { useParams } from 'react-router-dom';
-import Loader from '../controller/loader';
+import { ICartLayout, IProduct } from '../interfase';
+import { loadProduct } from '../controller/loadProduct';
 
-function ProductPage (): JSX.Element {
+function ProductPage ({ setCartPageData, cartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
   const params = useParams();
-  const loader = new Loader();
-  console.log(params);
-  const item = loader.loadProduct(Number(params.id));
+  const [product, setProduct] = useState<IProduct>();
+
+  const loadProductData = function (): void {
+    fetch('../db.json', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(async (responce: Response) => {
+        if (!responce.ok) throw new Error(responce.statusText);
+        return await responce.json();
+      })
+      .then((result) => loadProduct(result, Number(params.id)))
+      .then((result) => setProduct(result))
+      .catch(error => { throw Error(error); });
+  };
+  useEffect(() => { loadProductData(); }, [Number(params.id)]);
+
   return (
     <main className='product'>
       <div className="product-path">
         store---smartphones---apple
       </div>
       {
-        item !== undefined
+        product !== undefined
           ? <ProductInfo
-          id={Number(item.id)}
-          title={item.title}
-          description={item.description}
-          price={item.price}
-          discountPercentage={item.discountPercentage}
-          category={item.category}
-          images={item.images}
-          cartCount={item.cartCount}
-          stock={item.stock}
-          brand={item.brand}
-          thumbnail={item.thumbnail}
-          rating={item.rating}
+          id={Number(product.id)}
+          title={product.title}
+          description={product.description}
+          price={product.price}
+          discountPercentage={product.discountPercentage}
+          category={product.category}
+          images={product.images}
+          cartCount={product.cartCount}
+          stock={product.stock}
+          brand={product.brand}
+          thumbnail={product.thumbnail}
+          rating={product.rating}
         />
           : <ProductInfoNotFound/>
       }

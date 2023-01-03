@@ -52,7 +52,13 @@ function App (): JSX.Element {
               getQueryParams={getQueryParams}
             />}
           />
-          <Route path="product/:id" element={<ProductPage />} />
+          <Route path="product/:id" element={<ProductPage
+            cartPageData={cartPageData}
+            setCartPageData={setCartPageData}
+            totalCartData={totalCartData}
+            setTotalCartData={setTotalCartData}
+            getQueryParams={getQueryParams}
+          />} />
           <Route path="cart" element={
             <CartPage
               cartPageData={cartPageData}

@@ -4,7 +4,6 @@ import MyCategoriesFilter from '../components/main/MyCategoriesFilter';
 import MyBrandsFilter from '../components/main/MyBrandsFilter';
 import MyInputRange from '../components/main/MyInputRange';
 import { ICartLayout, TFilterReturn } from '../interfase';
-// import Loader from '../controller/loader';
 import { useSearchParams } from 'react-router-dom';
 import { loadProducts } from '../controller/loadProgucts';
 import { loadFilters } from '../controller/loadFilters';
@@ -40,8 +39,7 @@ function MainPage ({
       .catch(error => { throw Error(error); });
   };
   useEffect(() => { loadFilersData(); }, [searchParams]);
-  // const loader = new Loader();
-  // const filters = loader.loadFilters();
+
   return (
     <main>
       <aside className='side-bar'>
