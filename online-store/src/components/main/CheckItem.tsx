@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IElementFilterCategoryRender } from '../../interfase';
-import { useSearchParams, redirect } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 function CheckItem ({ name, filterCount, count, checked, category, loadQuery }: IElementFilterCategoryRender): JSX.Element {
   // console.log('checkItem');

@@ -33,7 +33,13 @@ function ProductPage ({ setCartPageData, cartPageData, totalCartData, setTotalCa
       {
         product !== undefined
           ? <ProductInfo
-          id={Number(product.id)}
+          // key={el.id}
+          product={product}
+          setCartPageData={setCartPageData}
+          cartPageData={cartPageData}
+          totalCartData={totalCartData}
+          setTotalCartData={setTotalCartData}
+          /* id={Number(product.id)}
           title={product.title}
           description={product.description}
           price={product.price}
@@ -44,7 +50,7 @@ function ProductPage ({ setCartPageData, cartPageData, totalCartData, setTotalCa
           stock={product.stock}
           brand={product.brand}
           thumbnail={product.thumbnail}
-          rating={product.rating}
+          rating={product.rating} */
         />
           : <ProductInfoNotFound/>
       }

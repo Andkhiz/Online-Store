@@ -26,7 +26,6 @@ export function loadStartFilter (db: myType.IProductsDB): myType.TFilterReturn {
   brand.sort((a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0; });
   category.sort((a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0; });
 
-  console.log('create StartFilter');
   return {
     brands: brand,
     categories: category,
