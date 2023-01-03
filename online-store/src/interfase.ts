@@ -88,7 +88,7 @@ interface IElementFilterMinMax {
   max: number;
 }
 
-export type TSort = ''|"price-ASC"|"price-DESC"|"rating-ASC"|"rating-DESC"|"discount-ASC"|"discount-DESC";
+export type TSort = 'Select options'|"price-ASC"|"price-DESC"|"rating-ASC"|"rating-DESC"|"discount-ASC"|"discount-DESC";
 
 export type TFilter = {
   brand: string[];

@@ -45,7 +45,7 @@ export default class StartLoader {
         min: stockMin,
         max: stockMax
       },
-      sort: '',
+      sort: 'Select options',
       filter: ''
     };
   }

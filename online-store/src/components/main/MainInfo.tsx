@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import Item from './Item';
 import Loader from '../../controller/loader';
 import { ICartLayout } from '../../interfase';
@@ -9,24 +9,20 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
   const loader = new Loader();
   const arr = loader.loadProducts();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [input, setInput] = useState(loader.loadFilters().filter);
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setInput(event.target.value.toLowerCase());
     const query = event.target.value.toLowerCase();
-    setSearchParams(getQueryParams('filter', query, true));
+    setSearchParams(getQueryParams('filter', query, !(query === '')));
   };
-  const [select, setSelect] = useState(searchParams.get('sort') ?? 'Select options');
+
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>): void => {
     setSearchParams(getQueryParams('sort', event.target.value, true));
-    setSelect(event.target.value);
-    console.log(event.target.value);
   };
-  console.log(arr.products);
+  // console.log(arr.products);
   return (
     <section className='main-info'>
       <div className="main-info-header">
         <form>
-          <select value={select} onChange={handleSelectChange}>
+          <select value={loader.loadFilters().sort} onChange={handleSelectChange}>
             <option disabled value="Select options">Select options</option>
             <option value="price-ASC">Price ASC</option>
             <option value="price-DESC">Price DESC</option>
@@ -37,7 +33,7 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
           </select>
         </form>
         <span>{arr.products.length} goods was found!</span>
-        <input type="search" placeholder='Search...' onChange={handleChange} value={input}/>
+        <input type="search" placeholder='Search...' onChange={handleChange} value={loader.loadFilters().filter}/>
         <div className="view-options"></div>
       </div>
       <div className="main-info-content">
