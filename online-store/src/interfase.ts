@@ -30,6 +30,10 @@ export interface ICartLayout {
   getQueryParams: Function;
 }
 
+export interface IMainInfo extends ICartLayout {
+  filter: string;
+  sort: TSort;
+}
 
 export interface IRenderProduct {
   title: string;

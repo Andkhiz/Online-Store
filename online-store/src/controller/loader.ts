@@ -10,10 +10,9 @@ export default class Loader {
   Cart = new Cart();
   // loadQuer = this.loadQuery;
 
-  loadProducts (): myType.IProducts {
+  /* loadProducts (): myType.IProducts {
     const productsCart = loadCartLocalStorage(); // this.Cart.loadCart();
     // console.log(productsCart);
-
     const myProduct = {
       products: db.products.map((product) => {
         const cart = productsCart.find(el => el.id === product.id);
@@ -71,7 +70,7 @@ export default class Loader {
     return myProduct;
   }
 
-  loadFilters (): myType.TFilterReturn {
+  /* loadFilters (): myType.TFilterReturn {
     const myFilter: myType.TFilterReturn = JSON.parse(JSON.stringify(Loader.startFilter));
     // console.log(myFilter);
     const myProduct = this.loadProducts();
@@ -114,7 +113,7 @@ export default class Loader {
       }
     });
     return myFilter;
-  }
+  } */
 
   loadProduct (idProduct: number): myType.IProduct | undefined {
     const product = db.products.find(prod => prod.id === idProduct);

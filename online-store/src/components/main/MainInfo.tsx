@@ -1,12 +1,11 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import Item from './Item';
-import Loader from '../../controller/loader';
-import { ICartLayout, IProduct } from '../../interfase';
+import { IMainInfo, IProduct } from '../../interfase';
 import EmptyMain from './EmptyMain';
 import { useSearchParams } from 'react-router-dom';
 import { loadProducts } from '../../controller/loadProgucts';
 
-function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams }: ICartLayout): JSX.Element {
+function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams, filter, sort }: IMainInfo): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<IProduct []>([]);
   const loadProductsData = function (params: URLSearchParams): void {
@@ -25,8 +24,6 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
   };
   useEffect(() => { loadProductsData(searchParams); }, [searchParams]);
 
-  const loader = new Loader();
-  // const arr = loader.loadProducts();
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const query = event.target.value.toLowerCase();
     setSearchParams(getQueryParams('filter', query, !(query === '')));
@@ -40,7 +37,7 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
     <section className='main-info'>
       <div className="main-info-header">
         <form>
-          <select value={loader.loadFilters().sort} onChange={handleSelectChange}>
+          <select value={sort} onChange={handleSelectChange}>
             <option disabled value="Select options">Select options</option>
             <option value="price-ASC">Price ASC</option>
             <option value="price-DESC">Price DESC</option>
@@ -51,7 +48,7 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
           </select>
         </form>
         <span>{products.length} goods was found!</span>
-        <input type="search" placeholder='Search...' onChange={handleChange} value={loader.loadFilters().filter}/>
+        <input type="search" placeholder='Search...' onChange={handleChange} value={filter}/>
         <div className="view-options"></div>
       </div>
       <div className="main-info-content">

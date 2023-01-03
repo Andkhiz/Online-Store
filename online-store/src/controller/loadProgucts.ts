@@ -1,7 +1,7 @@
-import * as myType from '../interfase';
+import { IProductsDB, IProducts } from '../interfase';
 import { loadCartLocalStorage } from './cart/loadCartLocalStorage';
 
-export function loadProducts (db: myType.IProductsDB, params: URLSearchParams): myType.IProducts {
+export function loadProducts (db: IProductsDB, params: URLSearchParams): IProducts {
   const productsCart = loadCartLocalStorage();
   const myProduct = {
     products: db.products.map((product) => {
