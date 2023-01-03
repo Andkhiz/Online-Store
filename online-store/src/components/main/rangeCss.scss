@@ -6,10 +6,15 @@
 }
 .example-thumb{
 	height: 25px;
-	width: 28px;
+	width: 40px;
 	text-align: center;
 	background-color: #f568a9;
 	border: 1px solid #852c55;
     border-radius: 5px;
 	box-sizing: border-box;
+	left: 220px;
+	cursor: pointer;
+}
+.example-thumb-1 {
+	left: 220px;
 }
