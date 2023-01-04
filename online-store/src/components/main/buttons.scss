@@ -1,6 +1,12 @@
 .onCart{
     background-color: #16ee45;
 }
-.notOnCart{
-    background-color: red;
+
+button {
+  outline: none;
+  width: 66px;
+  height: 25px;
+  border-radius: 10px;
+  border: 1px solid darken($color: rgba(209, 209, 209, 1), $amount: 20%);
+  transition: all 0.7 ease-in-out;
 }
