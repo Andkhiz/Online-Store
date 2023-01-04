@@ -1,6 +1,6 @@
 import React from 'react';
 import { IPromo } from '../../interfase';
-import Discount from '../../controller/cart/discount';
+import Discount from '../../controller/discount/discount';
 
 export default function Promocode ({ id, name, discountPercentage, promocodeUsed, setPromocodeUsed }: IPromo): JSX.Element {
   const discount = new Discount();

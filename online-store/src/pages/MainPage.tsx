@@ -1,25 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainInfo from '../components/main/MainInfo';
 import MyCategoriesFilter from '../components/main/MyCategoriesFilter';
 import MyBrandsFilter from '../components/main/MyBrandsFilter';
 import MyInputRange from '../components/main/MyInputRange';
-import { ICartLayout } from '../interfase';
-// import StartLoader from '../controller/startLoader';
-import Loader from '../controller/loader';
+import { ICartLayout, TFilterReturn } from '../interfase';
 import { useSearchParams } from 'react-router-dom';
+import { loadProducts } from '../controller/loadProgucts';
+import { loadFilters } from '../controller/loadFilters';
+import { loadStartFilter } from '../controller/loadStartFilters';
 
-function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
+function MainPage ({
+  setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams
+}: ICartLayout): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
-  const loader = new Loader();
-  // Why it is need?
-  const filters = loader.loadFilters();
-  // const loadQuery = loader.loadQuery;
-  /* const brands = loader.loadFilters().brands;
-  const categories = loader.loadFilters().categories;
-  const prices = loader.loadFilters().prices;
-  const stocks = loader.loadFilters().stocks;
-  const sort = loader.loadFilters().sort;
-  const filter = loader.loadFilters().filter; */
+  const [filters, setFilters] = useState<TFilterReturn>({
+    brands: [],
+    categories: [],
+    prices: { min: 0, startMin: 0, max: 1000, startMax: 1000 },
+    stocks: { min: 0, startMin: 0, max: 100, startMax: 100 },
+    sort: 'Select options',
+    filter: ''
+  });
+
+  const loadFilersData = function (): void {
+    fetch('db.json', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(async (responce: Response) => {
+        if (!responce.ok) throw new Error(responce.statusText);
+        return await responce.json();
+      })
+      .then((result) => { return { startFilter: loadStartFilter(result), db: result }; })
+      .then((result) => { return { startFilter: result.startFilter, products: loadProducts(result.db, searchParams) }; })
+      .then((result) => loadFilters(result.products, searchParams, result.startFilter))
+      .then(resu => setFilters(resu))
+      .catch(error => { throw Error(error); });
+  };
+  useEffect(() => { loadFilersData(); }, [searchParams]);
+
   return (
     <main>
       <aside className='side-bar'>
@@ -29,12 +49,15 @@ function MainPage ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
           }}>Reset filter</button>
           <button>Copy link</button>
         </div>
-        <MyCategoriesFilter filterElements={filters.categories} loadQuery={loader.loadQuery}/* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
-        <MyBrandsFilter filterElements={filters.brands} loadQuery={loader.loadQuery} /* brands={brands} categories={categories} prices={prices} stocks={stocks} sort={sort} filter={filter} *//>
-        <MyInputRange title='price' rangeData={filters.prices} loadQuery={loader.loadQuery}/>
-        <MyInputRange title='stock' rangeData={filters.stocks} loadQuery={loader.loadQuery}/>
+        <MyCategoriesFilter filterElements={filters.categories} loadQuery={getQueryParams}/>
+        <MyBrandsFilter filterElements={filters.brands} loadQuery={getQueryParams}/>
+        <MyInputRange title='price' rangeData={filters.prices} getQueryParams={getQueryParams}/>
+        <MyInputRange title='stock' rangeData={filters.stocks} getQueryParams={getQueryParams}/>
       </aside>
-      <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData}/>
+      <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData} totalCartData={totalCartData}
+              setTotalCartData={setTotalCartData} getQueryParams={getQueryParams}
+              filter={filters.filter} sort={filters.sort}
+      />
     </main>
   );
 }

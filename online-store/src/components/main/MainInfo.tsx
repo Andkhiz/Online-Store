@@ -1,32 +1,43 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 import Item from './Item';
-import Loader from '../../controller/loader';
-import { ICartLayout } from '../../interfase';
+import { IMainInfo, IProduct } from '../../interfase';
 import EmptyMain from './EmptyMain';
 import { useSearchParams } from 'react-router-dom';
+import { loadProducts } from '../../controller/loadProgucts';
 
-function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element {
-  const loader = new Loader();
-  const arr = loader.loadProducts();
+function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams, filter, sort }: IMainInfo): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [input, setInput] = useState(loader.loadFilters().filter);
+  const [products, setProducts] = useState<IProduct []>([]);
+  const loadProductsData = function (params: URLSearchParams): void {
+    fetch('db.json', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(async (responce: Response) => {
+        if (!responce.ok) throw new Error(responce.statusText);
+        return await responce.json();
+      })
+      .then((result) => loadProducts(result, params))
+      .then((resu) => { setProducts(resu.products); })
+      .catch(error => { throw Error(error); });
+  };
+  useEffect(() => { loadProductsData(searchParams); }, [searchParams]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setInput(event.target.value.toLowerCase());
     const query = event.target.value.toLowerCase();
-    setSearchParams(loader.loadQuery('filter', query, true));
+    setSearchParams(getQueryParams('filter', query, !(query === '')));
   };
-  const [select, setSelect] = useState(searchParams.get('sort') ?? 'Select options');
+
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>): void => {
-    setSearchParams(loader.loadQuery('sort', event.target.value, true));
-    setSelect(event.target.value);
-    console.log(event.target.value);
+    setSearchParams(getQueryParams('sort', event.target.value, true));
   };
-  console.log(arr.products);
+  // console.log(arr.products);
   return (
     <section className='main-info'>
       <div className="main-info-header">
         <form>
-          <select value={select} onChange={handleSelectChange}>
+          <select value={sort} onChange={handleSelectChange}>
             <option disabled value="Select options">Select options</option>
             <option value="price-ASC">Price ASC</option>
             <option value="price-DESC">Price DESC</option>
@@ -36,29 +47,20 @@ function MainInfo ({ setCartPageData, cartPageData }: ICartLayout): JSX.Element 
             <option value="discount-DESC">Discount DESC</option>
           </select>
         </form>
-        <span>{arr.products.length} goods was found!</span>
-        <input type="search" placeholder='Search...' onChange={handleChange} value={input}/>
+        <span>{products.length} goods was found!</span>
+        <input type="search" placeholder='Search...' onChange={handleChange} value={filter}/>
         <div className="view-options"></div>
       </div>
       <div className="main-info-content">
-        {arr.products.length === 0
+        {products.length === 0
           ? <EmptyMain/>
-          : arr.products.map((el) => <Item
+          : products.map((el) => <Item
           key={el.id}
-          id={el.id}
-          title={el.title}
-          description={el.description}
-          discountPercentage={el.discountPercentage}
-          rating={el.rating}
-          price={el.price}
-          cartCount={el.cartCount}
-          stock={el.stock}
-          brand={el.brand}
-          category={el.category}
-          thumbnail={el.thumbnail}
-          images={el.images}
-          setState={setCartPageData}
-          onCart={el.onCart}
+          product={el}
+          setCartPageData={setCartPageData}
+          cartPageData={cartPageData}
+          totalCartData={totalCartData}
+          setTotalCartData={setTotalCartData}
         />)}
       </div>
     </section>

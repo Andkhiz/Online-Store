@@ -1,62 +1,55 @@
-import React, { useState } from 'react';
-import { IProductsCartRender } from '../../interfase';
+import React /*, { useState } */ from 'react';
+import { IProductsCartRender, /* ICartLayout, */ IProduct } from '../../interfase';
 import Cart from '../../controller/cart/cart';
+import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
 
-function CartItem ({ id, title, description, rating, discountPercentage, price, cartCount, thumbnail, stock, setState }: IProductsCartRender): JSX.Element {
+function CartItem ({ product, setTotalCartData, setCartPageData, cartPageData }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
-  const cartData = cart.loadProductsCart();
+  const pageData: IProduct [] = JSON.parse(JSON.stringify(cartPageData));
+  // console.log('CartItem');
+  // console.log(product.cartCount);
 
-  const [counter, setCounter] = useState<number>(cartCount);
-  const [finalPrice, setFinalPrice] = useState<number>(price * cartCount);
+  // const [counter, setCounter] = useState<number>(product.cartCount);
+  // const [finalPrice, setFinalPrice] = useState<number>(product.price * product.cartCount);
 
   return (
     <div className="cart-item">
       <div className="item-id">1</div>
-      <img src={thumbnail} alt="" />
+      <img src={product.thumbnail} alt="" />
       <div className="cart-item-description">
-        <h5>{title}</h5>
-        <p>{description}</p>
+        <h5>{product.title}</h5>
+        <p>{product.description}</p>
         <div>
-          <p>rating: {rating}</p>
-          <p>discount: {discountPercentage}</p>
-          <p>{stock} left</p>
+          <p>rating: {product.rating}</p>
+          <p>discount: {product.discountPercentage}</p>
+          <p>{product.stock} left</p>
         </div>
       </div>
       <div className="purchase-data">
         <div className="stock"></div>
         <div className="counter">
+        <button onClick={() => {
+          cart.decreaseProduct(product.id);
+          setTotalCartData(loadTotalCartData());
+          if (product.cartCount <= 1) {
+            pageData.splice(pageData.findIndex(el => el.id === product.id), 1);
+          } else {
+            pageData[pageData.findIndex(el => el.id === product.id)].cartCount -= 1;
+          }
+          setCartPageData(pageData);
+        }}
+          >-</button>
+          <p>{product.cartCount}</p>
           <button onClick={() => {
-            if (stock <= cartCount) {
-              console.log(stock, cartCount);
-              setCounter(counter);
-              setState(cart.loadProductsCart().productsCart);
-            } else {
-              setCounter(counter + 1);
-              setFinalPrice(finalPrice + price);
-              cart.loadTotalCartData();
-              setState(cart.loadProductsCart().productsCart);
-              cart.addProdurt(id, price, stock);
+            if (product.stock > product.cartCount) {
+              cart.addProdurt(product.id, product.price, product.stock);
+              setTotalCartData(loadTotalCartData());
+              pageData[pageData.findIndex(el => el.id === product.id)].cartCount += 1;
+              setCartPageData(pageData);
             }
           }}>+</button>
-          <p>{counter}</p>
-          <button onClick={() => {
-            if (counter <= 0) {
-              cart.decreaseProduct(id);
-              setCounter(counter);
-              console.log('from cart item', cart.loadProductsCart().productsCart);
-              setState(cart.loadProductsCart().productsCart);
-            } else {
-              cart.decreaseProduct(id);
-              setCounter(counter - 1);
-              setFinalPrice(finalPrice - price);
-              cart.loadTotalCartData();
-              console.log('from cart item', cart.loadProductsCart().productsCart);
-              setState(cart.loadProductsCart().productsCart);
-            }
-          }}
-          >-</button>
         </div>
-        <div className="price">{finalPrice}</div>
+        <div className="price">{product.price * product.cartCount}</div>
       </div>
     </div>
   );

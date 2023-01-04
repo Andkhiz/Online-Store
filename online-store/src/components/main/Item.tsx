@@ -1,25 +1,38 @@
 import React, { useState } from 'react';
-import { IProductsCartRender } from '../../interfase';
+import { IProductsCartRender, IProduct } from '../../interfase';
 import { Link } from 'react-router-dom';
 import Cart from '../../controller/cart/cart';
 import './buttons.scss';
+import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
 
-function Item ({ title, price, id, cartCount, stock, thumbnail, setState, onCart }: IProductsCartRender): JSX.Element {
+function Item ({ product, setTotalCartData, setCartPageData, cartPageData }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
-  console.log(onCart);
+  const pageData: IProduct [] = JSON.parse(JSON.stringify(cartPageData));
+
   return (
     <div className="item">
-    <img src={thumbnail} alt={title} width={150} height={150}/>
+    <img src={product.thumbnail} alt={product.title} width={150} height={150}/>
       <div className="description">
-        <p>{title}</p>
-        <p>Price: {price}</p>
+        <p>{product.title}</p>
+        <p>Price: {product.price}</p>
       </div>
       <div className="buttons">
-          <button className={onCart ? 'onCart' : 'notOnCart'} onClick={() => {
-            onCart ? cart.deleteProduct(id) : cart.addProdurt(id, price, stock);
-            setState(cart.loadTotalCartData());
-          }}>{onCart ? 'Remove' : 'Add'}</button>
-          <button><Link to={`/product/${id}`}>Info</Link></button>
+          <button className={product.onCart ? 'onCart' : 'notOnCart'} onClick={() => {
+            if (product.onCart === true) {
+              product.onCart = false;
+              product.cartCount = 0;
+              cart.deleteProduct(product.id);
+              pageData.splice(pageData.findIndex(el => el.id === product.id), 1);
+            } else {
+              cart.addProdurt(product.id, product.price, product.stock);
+              product.onCart = true;
+              product.cartCount = 1;
+              pageData.push(product);
+            }
+            setTotalCartData(loadTotalCartData());
+            setCartPageData(pageData);
+          }}>{product.onCart ? 'Remove' : 'Add'}</button>
+          <button><Link to={`/product/${String(product.id)}`}>Info</Link></button>
       </div>
     </div>
   );

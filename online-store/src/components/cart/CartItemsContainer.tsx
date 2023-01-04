@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React /*, { useState, useEffect } */ from 'react';
 import CartItem from './CartItem';
 import CartSummury from './CartSummury';
-import Cart from '../../controller/cart/cart';
+// import Cart from '../../controller/cart/cart';
 import { ICartLayout } from '../../interfase';
 
-export default function CartItemsContainer ({ setCartPageData }: ICartLayout): JSX.Element {
-  const cart = new Cart();
-  const cartData = cart.loadProductsCart();
-  const totalCartData = cart.loadTotalCartData();
-  const cartItems = cartData.productsCart;
-  const [cartItemsState, setCartItemsState] = useState([cartData.productsCart]);
-  useEffect(() => {
+export default function CartItemsContainer ({ cartPageData, setCartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
+  // const cart = new Cart();
+  // const cartData = cart.loadProductsCart();
+  // const totalCartData = cart.loadTotalCartData();
+  // const cartItems = cartPageData/* cartData.productsCart */;
+  // const [cartItemsState, setCartItemsState] = useState([/* cartPageData */cartData.productsCart]);
+  /* useEffect(() => {
     setCartPageData(cartItemsState);
-  }, [cartItemsState]);
+  }, [cartItemsState]); */
+  console.log('CartItemsContainer');
+  console.log(totalCartData);
 
   return (
     <main className='cart'>
@@ -25,25 +27,17 @@ export default function CartItemsContainer ({ setCartPageData }: ICartLayout): J
         </div>
       </div>
       <div className="cart-items-body">
-        {cartItems.map((el) => <CartItem
+        {cartPageData.map((el) => <CartItem
           key={el.id}
-          id={el.id}
-          title={el.title}
-          description={el.description}
-          discountPercentage={el.discountPercentage}
-          rating={el.rating}
-          price={el.price}
-          cartCount={el.cartCount}
-          stock={el.stock}
-          brand={el.brand}
-          category={el.category}
-          thumbnail={el.thumbnail}
-          images={el.images}
-          setState={setCartItemsState}
+          product={el}
+          setTotalCartData={setTotalCartData}
+          cartPageData={cartPageData}
+          totalCartData={totalCartData}
+          setCartPageData={setCartPageData}
           />)}
       </div>
       </div>
-      <CartSummury totalSum={totalCartData.totalSum} totalCount={totalCartData.totalCount}/>
+      <CartSummury {...totalCartData}/>
     </main>
   );
 }

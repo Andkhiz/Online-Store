@@ -12,12 +12,28 @@ export interface IProductDB {
   images: string [];
 }
 
+export interface IProductsDB { products: IProductDB []};
+
 export interface IProduct extends IProductDB {
   onCart?: boolean;
   cartCount: number;
 };
 
 export interface IProducts { products: IProduct []};
+
+export interface ICartLayout {
+  // isEmpty: boolean;
+  setCartPageData: Function;
+  cartPageData: IProduct[];
+  totalCartData: ICartTotal;
+  setTotalCartData: Function;
+  getQueryParams: Function;
+}
+
+export interface IMainInfo extends ICartLayout {
+  filter: string;
+  sort: TSort;
+}
 
 export interface IRenderProduct {
   title: string;
@@ -34,8 +50,12 @@ export type TCarts = ICart[];
 
 export interface IProductsCart { productsCart: IProduct [] }
 
-export interface IProductsCartRender extends IProduct {
-  setState: Function;
+export interface IProductsCartRender {
+  product: IProduct;
+  setTotalCartData: Function;
+  setCartPageData: Function;
+  cartPageData: IProduct[];
+  totalCartData: ICartTotal;
 }
 
 export interface ICartTotal {
@@ -72,7 +92,7 @@ interface IElementFilterMinMax {
   max: number;
 }
 
-export type TSort = ''|"price-ASC"|"price-DESC"|"rating-ASC"|"rating-DESC"|"discount-ASC"|"discount-DESC";
+export type TSort = 'Select options'|"price-ASC"|"price-DESC"|"rating-ASC"|"rating-DESC"|"discount-ASC"|"discount-DESC";
 
 export type TFilter = {
   brand: string[];
@@ -92,13 +112,6 @@ export type TFilterReturn = {
   sort: TSort;
   filter: string;
 };
-
-export interface ICartLayout {
-  // isEmpty: boolean;
-  setCartPageData: Function;
-  cartPageData: IProduct[];
-}
-
 
 export interface IPromo {
   id: string;
@@ -120,5 +133,5 @@ export interface IFilterData {
 export type TRange = {
   title: string;
   rangeData: IElementFilterMinMax;
-  loadQuery: Function;
+  getQueryParams: Function;
 }

@@ -1,10 +1,16 @@
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, useState /*, useEffect */ } from 'react';
 import Modal from '../modal/Modal';
 import Promocode from './Promocode';
-import Discount from '../../controller/cart/discount';
+import Discount from '../../controller/discount/discount';
 import { ICartTotal } from '../../interfase';
 
 function CartSummury ({ totalSum, totalCount }: ICartTotal): JSX.Element {
+  // console.log('CartSummary');
+  // console.log(totalSum);
+  // console.log(totalCount);
+  // const [finalCount, setTotalSumCart] = useState(totalCount);
+  // const [finalPrice, setFinalPrice] = useState(totalSum);
+
   const discount = new Discount();
   const discounts = discount.loadDiscounts().map(el => el.id);
   const [input, setInput] = useState('');

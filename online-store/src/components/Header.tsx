@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Cart from '../controller/cart/cart';
 import { ICartLayout } from '../interfase';
+import { loadTotalCartData } from '../controller/cart/loadTotalCartData';
 
 function Header (): JSX.Element {
-  const cart = new Cart();
-  const totalCartData = cart.loadTotalCartData();
+  const totalCartData = loadTotalCartData();
 
   return (
     <header>
