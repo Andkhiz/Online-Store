@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IProduct, IProductsCartRender } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
+import { saveLocalStorage } from '../../controller/localStogage/localStorage';
 
 export default function ProductInfo ({ product, setTotalCartData, setCartPageData, cartPageData }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
@@ -58,9 +59,12 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
           setCartPageData(pageData);
         }}>{product.onCart === true ? 'Remove' : 'Add'}</button>
           <button className='buy-now'><Link to='/cart' onClick={() => {
-            addToCart();
-            setTotalCartData(loadTotalCartData());
-            setCartPageData(pageData);
+            if (!product.onCart) {
+              addToCart();
+              setTotalCartData(loadTotalCartData());
+              setCartPageData(pageData);
+              saveLocalStorage('isModalOpened', true);
+            }
           }}>buy now</Link></button>
       </div>
     </div>
