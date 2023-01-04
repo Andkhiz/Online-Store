@@ -1,10 +1,15 @@
+@import url(./components/main/buttons.scss);
 $background-color: #fff;
 $border-color: rgba(209, 209, 209, 1);
 $font-color: rgba(21, 21, 21, 1);
 $active-input: rgb(41, 241, 141);
 $green-button: rgba(70, 118, 10, 1);
 
-
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 body{
   background-color: $background-color;
   color: $font-color;
@@ -48,6 +53,7 @@ header{
 main{
   display: flex;
   justify-content: center;
+  flex-grow: 1;
   margin: 0 40px;
   width: 1440px;
   margin: 0 auto;
@@ -209,6 +215,7 @@ main{
       height: 50px;
       text-transform: uppercase;
       background-color: $green-button;
+      border: 1px solid darken($color: $green-button, $amount: 20%);
       color: #fff;
     }
   }
@@ -217,6 +224,9 @@ main{
   flex: 1;
   flex-direction: column;
   .product-path{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
     margin: 20px auto;
   }
   .product-container{
@@ -225,6 +235,23 @@ main{
     display: flex;
     justify-content: space-between;
 
+    .product-img-container{
+      display: flex;
+      img{
+        width: 300px;
+        height: 300px;
+        border-radius: 10px;
+      }
+    }
+    .aside-img{
+      margin-right: 10px;
+      img{
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
     .product-description-container{
       p{
         margin: 5px;
@@ -233,19 +260,23 @@ main{
     .product-purchase{
       display: flex;
       flex-direction: column;
-      width: 100px;
+      width: 150px;
       button{
         margin: 10px auto;
         width: 150px;
         height: 50px;
         text-transform: uppercase;
-        background-color: $green-button;
+      }
+      .buy-now{
         color: #fff;
+        background-color: $green-button;
+        border: 1px solid darken($color: $green-button, $amount: 20%);
       }
     }
   }
 }
 footer{
+  flex-shrink: 0;
   nav{
     ul{
       margin: 0 30px;

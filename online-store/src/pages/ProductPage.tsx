@@ -8,6 +8,8 @@ import { loadProduct } from '../controller/loadProduct';
 function ProductPage ({ setCartPageData, cartPageData, totalCartData, setTotalCartData }: ICartLayout): JSX.Element {
   const params = useParams();
   const [product, setProduct] = useState<IProduct>();
+  console.log(product);
+  console.log(totalCartData);
 
   const loadProductData = function (): void {
     fetch('../db.json', {
@@ -28,29 +30,16 @@ function ProductPage ({ setCartPageData, cartPageData, totalCartData, setTotalCa
   return (
     <main className='product'>
       <div className="product-path">
-        store---smartphones---apple
+        store---{product ? product.category : ''}---{product ? product.brand : ''}---{product ? product.title : ''}
       </div>
       {
         product !== undefined
           ? <ProductInfo
-          // key={el.id}
           product={product}
           setCartPageData={setCartPageData}
           cartPageData={cartPageData}
           totalCartData={totalCartData}
           setTotalCartData={setTotalCartData}
-          /* id={Number(product.id)}
-          title={product.title}
-          description={product.description}
-          price={product.price}
-          discountPercentage={product.discountPercentage}
-          category={product.category}
-          images={product.images}
-          cartCount={product.cartCount}
-          stock={product.stock}
-          brand={product.brand}
-          thumbnail={product.thumbnail}
-          rating={product.rating} */
         />
           : <ProductInfoNotFound/>
       }

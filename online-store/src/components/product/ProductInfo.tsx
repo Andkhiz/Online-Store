@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { MouseEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IProduct, IProductsCartRender } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
+import { saveLocalStorage } from '../../controller/localStogage/localStorage';
 
 export default function ProductInfo ({ product, setTotalCartData, setCartPageData, cartPageData }: IProductsCartRender): JSX.Element {
   const cart = new Cart();
   const pageData: IProduct [] = JSON.parse(JSON.stringify(cartPageData));
 
+  const mainImg = product.thumbnail;
+  const [targetImg, setTargetImg] = useState(mainImg);
+
+  function handleClick (event: MouseEvent<HTMLImageElement>): void {
+    // targetImg = event.target;
+    const target = event.target as HTMLImageElement;
+    console.log(target.src);
+    setTargetImg(target.src);
+  }
+  function addToCart (): void {
+    cart.addProdurt(product.id, product.price, product.stock);
+    product.onCart = true;
+    product.cartCount = 1;
+    pageData.push(product);
+  }
+
   return (
     <div className="product-container">
       <div className="product-img-container">
-        <div className="aside-img"></div>
+        <div className="aside-img">
+          {product.images.map((el, i) => <img src={el} key={i} onClick={handleClick}/>)}
+        </div>
         <div className="main-img">
-          <img src={product.thumbnail} alt={product.title} width='200' height='200' />
+          <img src={targetImg} alt={product.title} width='200' height='200' />
         </div>
       </div>
       <div className="product-description-container">
@@ -33,15 +53,19 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
             cart.deleteProduct(product.id);
             pageData.splice(pageData.findIndex(el => el.id === product.id), 1);
           } else {
-            cart.addProdurt(product.id, product.price, product.stock);
-            product.onCart = true;
-            product.cartCount = 1;
-            pageData.push(product);
+            addToCart();
           }
           setTotalCartData(loadTotalCartData());
           setCartPageData(pageData);
         }}>{product.onCart === true ? 'Remove' : 'Add'}</button>
-        <button>buy now</button>
+          <button className='buy-now'><Link to='/cart' onClick={() => {
+            if (!product.onCart) {
+              addToCart();
+              setTotalCartData(loadTotalCartData());
+              setCartPageData(pageData);
+              saveLocalStorage('isModalOpened', true);
+            }
+          }}>buy now</Link></button>
       </div>
     </div>
   );

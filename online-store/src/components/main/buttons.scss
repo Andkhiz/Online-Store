@@ -1,12 +1,15 @@
 .onCart{
-    background-color: #16ee45;
+  background-color: #16ee45;
+  border: 1px solid darken($color:#16ee45, $amount: 20%);
+  color: #fff;
 }
 
 button {
+  font-weight: 700;
   outline: none;
   width: 66px;
   height: 25px;
   border-radius: 10px;
   border: 1px solid darken($color: rgba(209, 209, 209, 1), $amount: 20%);
-  transition: all 0.7 ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
