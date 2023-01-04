@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { IProduct, IProductsCartRender } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
@@ -7,12 +7,24 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
   const cart = new Cart();
   const pageData: IProduct [] = JSON.parse(JSON.stringify(cartPageData));
 
+  const mainImg = product.thumbnail;
+  const [targetImg, setTargetImg] = useState(mainImg);
+
+  function handleClick (event: MouseEvent<HTMLImageElement>): void {
+    // targetImg = event.target;
+    const target = event.target as HTMLImageElement;
+    console.log(target.src);
+    setTargetImg(target.src);
+  }
+
   return (
     <div className="product-container">
       <div className="product-img-container">
-        <div className="aside-img"></div>
+        <div className="aside-img">
+          {product.images.map((el, i) => <img src={el} key={i} onClick={handleClick}/>)}
+        </div>
         <div className="main-img">
-          <img src={product.thumbnail} alt={product.title} width='200' height='200' />
+          <img src={targetImg} alt={product.title} width='200' height='200' />
         </div>
       </div>
       <div className="product-description-container">
@@ -41,7 +53,7 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
           setTotalCartData(loadTotalCartData());
           setCartPageData(pageData);
         }}>{product.onCart === true ? 'Remove' : 'Add'}</button>
-        <button>buy now</button>
+        <button className='buy-now'>buy now</button>
       </div>
     </div>
   );
