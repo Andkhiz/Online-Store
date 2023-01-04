@@ -137,3 +137,8 @@ export type TRange = {
   rangeData: IElementFilterMinMax;
   getQueryParams: Function;
 }
+
+export interface IGeneralCartData {
+  page: number,
+  limit: number
+}
