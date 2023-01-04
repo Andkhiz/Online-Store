@@ -1,4 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IProduct, IProductsCartRender } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
@@ -15,6 +16,12 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
     const target = event.target as HTMLImageElement;
     console.log(target.src);
     setTargetImg(target.src);
+  }
+  function addToCart (): void {
+    cart.addProdurt(product.id, product.price, product.stock);
+    product.onCart = true;
+    product.cartCount = 1;
+    pageData.push(product);
   }
 
   return (
@@ -45,15 +52,16 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
             cart.deleteProduct(product.id);
             pageData.splice(pageData.findIndex(el => el.id === product.id), 1);
           } else {
-            cart.addProdurt(product.id, product.price, product.stock);
-            product.onCart = true;
-            product.cartCount = 1;
-            pageData.push(product);
+            addToCart();
           }
           setTotalCartData(loadTotalCartData());
           setCartPageData(pageData);
         }}>{product.onCart === true ? 'Remove' : 'Add'}</button>
-        <button className='buy-now'>buy now</button>
+          <button className='buy-now'><Link to='/cart' onClick={() => {
+            addToCart();
+            setTotalCartData(loadTotalCartData());
+            setCartPageData(pageData);
+          }}>buy now</Link></button>
       </div>
     </div>
   );
