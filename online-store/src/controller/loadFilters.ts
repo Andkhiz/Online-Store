@@ -41,6 +41,13 @@ export function loadFilters (myProduct: myType.IProducts, searchParams: URLSearc
     if (key === 'filter') {
       myFilter.filter = el;
     }
+    if (key === 'itemBig' && ((el === 'true') || (el === 'false'))) {
+      if (el === 'true') {
+        myFilter.itemBig = true;
+      } else {
+        myFilter.itemBig = false;
+      }
+    }
   });
   return myFilter;
 }

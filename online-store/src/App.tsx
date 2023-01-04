@@ -20,6 +20,7 @@ function App (): JSX.Element {
   // const cart = new Cart();
   // const [cartPageData, setCartPageData] = useState(cart.loadProductsCart().productsCart);
   console.log('App');
+  console.log('cartPageData');
   console.log(cartPageData);
   const loadData = function (): void {
     fetch('db.json', {
