@@ -101,6 +101,7 @@ export type TFilter = {
   stock: [number, number];
   sort: TSort;
   filter: string;
+  itemBig: boolean;
 }
 
 /* при определении можно использовать Partial<TFilterReturn> - все элементы необязательные тогда */
@@ -111,6 +112,7 @@ export type TFilterReturn = {
   stocks: IElementFilterMinMax;
   sort: TSort;
   filter: string;
+  itemBig: boolean;
 };
 
 export interface IPromo {

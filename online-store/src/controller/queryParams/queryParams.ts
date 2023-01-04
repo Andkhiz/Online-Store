@@ -1,6 +1,7 @@
 
 export function getQueryParams (category: string, value: string, onVisible: boolean): string {
   let myPath = '';
+  const paramValue = value.replaceAll(' ', '%20').replaceAll('&', '%26');
   const oldQuery = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
   const arr = oldQuery.split('&');
   let use = false;
@@ -10,7 +11,7 @@ export function getQueryParams (category: string, value: string, onVisible: bool
       use = true;
       if (category === 'brand' || category === 'category') {
         if (onVisible) {
-          query += el + '↕' + value + '&';
+          query += el + '↕' + paramValue + '&';
         } else {
           const myValues = myParam[1].split('%E2%86%95');
           myValues.splice(myValues.findIndex(item => item === value), 1);
@@ -20,7 +21,7 @@ export function getQueryParams (category: string, value: string, onVisible: bool
         }
       }
       if (category === 'price' || category === 'stock' || category === 'sort' || category === 'filter') {
-        if (onVisible) { query += category + '=' + value + '&'; }
+        if (onVisible) { query += category + '=' + paramValue + '&'; }
       }
     } else {
       query += el + (el === '' ? '' : '&');
@@ -30,7 +31,7 @@ export function getQueryParams (category: string, value: string, onVisible: bool
   if (use) {
     myPath = myPath.slice(0, -1);
   } else {
-    if (onVisible) { myPath += category + '=' + value; }
+    if (onVisible) { myPath += category + '=' + paramValue; }
   }
   return myPath;
 }

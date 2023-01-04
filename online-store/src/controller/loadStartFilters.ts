@@ -42,6 +42,7 @@ export function loadStartFilter (db: myType.IProductsDB): myType.TFilterReturn {
       max: stockMax
     },
     sort: 'Select options',
-    filter: ''
+    filter: '',
+    itemBig: true
   };
 }

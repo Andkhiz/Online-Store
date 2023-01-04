@@ -19,7 +19,8 @@ function MainPage ({
     prices: { min: 0, startMin: 0, max: 1000, startMax: 1000 },
     stocks: { min: 0, startMin: 0, max: 100, startMax: 100 },
     sort: 'Select options',
-    filter: ''
+    filter: '',
+    itemBig: true
   });
 
   const loadFilersData = function (): void {

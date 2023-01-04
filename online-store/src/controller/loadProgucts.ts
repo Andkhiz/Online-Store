@@ -50,6 +50,9 @@ export function loadProducts (db: IProductsDB, params: URLSearchParams): IProduc
           String(product.stock).includes(el));
         throw BreakError;
       }
+      if (key === 'itemBig') {
+        throw BreakError;
+      }
       console.log('error');
       myProduct.products = [];
     } catch (er) {
