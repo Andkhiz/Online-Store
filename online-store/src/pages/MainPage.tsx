@@ -57,7 +57,7 @@ function MainPage ({
       </aside>
       <MainInfo cartPageData={cartPageData} setCartPageData={setCartPageData} totalCartData={totalCartData}
               setTotalCartData={setTotalCartData} getQueryParams={getQueryParams}
-              filter={filters.filter} sort={filters.sort}
+              filter={filters.filter} sort={filters.sort} itemBig={filters.itemBig}
       />
     </main>
   );

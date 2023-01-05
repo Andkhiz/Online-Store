@@ -1,3 +1,6 @@
+$border-color: rgba(209, 209, 209, 1);
+$green-button: rgba(70, 118, 10, 1);
+
 dialog {
   top: 20%;
   left: 30%;
@@ -29,7 +32,7 @@ dialog {
   height: 100%;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   z-index: 1;
 }
 .modal-background-hiden{

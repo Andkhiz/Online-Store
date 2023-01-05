@@ -1,9 +1,7 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import MultiRangeSlider, { ChangeResult } from 'multi-range-slider-react';
 import { TRange } from '../../interfase';
 import ReactSlider from 'react-slider';
-import './rangeCss.scss';
 
 function MyInputRange ({ title, rangeData, getQueryParams }: TRange): JSX.Element {
   const [value, setValue] = useState([rangeData.min, rangeData.max]);
