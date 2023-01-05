@@ -14,7 +14,13 @@ function CartSummury ({ totalSum, totalCount }: ICartTotal): JSX.Element {
   const discount = new Discount();
   const discounts = discount.loadDiscounts().map(el => el.id);
   const [input, setInput] = useState('');
-  const [isOpened, setIsOpened] = useState(false);
+  const a = localStorage.getItem('isModalOpened');
+  let modalIsOpen = false;
+  if (a !== null && a === 'true') {
+    modalIsOpen = true;
+  }
+  // document.body.onclick(() => console.log('body click'));
+  const [isOpened, setIsOpened] = useState(modalIsOpen);
   // const [discount, setDiscount] = useState('');
   const [promocodeUsed, setPromocodeUsed] = useState(discounts);
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
