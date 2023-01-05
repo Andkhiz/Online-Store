@@ -19,6 +19,7 @@ function CartSummury ({ totalSum, totalCount }: ICartTotal): JSX.Element {
   if (a !== null && a === 'true') {
     modalIsOpen = true;
   }
+
   // document.body.onclick(() => console.log('body click'));
   const [isOpened, setIsOpened] = useState(modalIsOpen);
   // const [discount, setDiscount] = useState('');
