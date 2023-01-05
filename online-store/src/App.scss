@@ -26,6 +26,9 @@ body{
   button, select{
     cursor: pointer;
   }
+  li{
+    list-style-type: none;
+  }
 
 }
 .App{
@@ -49,6 +52,28 @@ header{
   .cart{
     display: flex;
     align-items: center;
+
+    img{
+      height: 30px;
+      width: 30px;
+    }
+    .cart-count{
+      position: relative;
+      left: -5px;
+      top: 35px;
+      background-color: $green-button;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+    }
+    p{
+      font-weight: 700;
+      font-size: 20px;
+      color: $green-button;
+    }
   }
 }
 main{
@@ -277,13 +302,24 @@ main{
   }
 }
 footer{
+  margin-top: 50px;
   flex-shrink: 0;
+  height: 50px;
   nav{
     ul{
       margin: 0 30px;
       display: flex;
+      align-items: center;
       flex-direction: row;
       justify-content: space-between;
+
+      li{
+        height: 50px;
+        width: 50px;
+        img{
+          height: 40px;
+        }
+      }
     }
   }
 }
