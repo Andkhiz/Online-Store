@@ -46,9 +46,9 @@ export default function CartItemsContainer ({ cartPageData, setCartPageData, tot
             <input className='cart-state__limit' type={'number'} min={1} max={cartPageData.length} value={generalCartData.limit}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const newValue = e.target.value;
-              console.log('limit change');
-              console.log(newValue);
-              console.log(getCartQueryParams('limit', String(newValue), cartPageData.length));
+              // console.log('limit change');
+              // console.log(newValue);
+              // console.log(getCartQueryParams('limit', String(newValue), cartPageData.length));
               setSearchParams(getCartQueryParams('limit', String(newValue), cartPageData.length));
             }}
             />
@@ -64,13 +64,15 @@ export default function CartItemsContainer ({ cartPageData, setCartPageData, tot
         {cartPageData.filter((item, index) => {
           return index >= ((generalCartData.page - 1) * generalCartData.limit) &&
             index <= ((generalCartData.page * generalCartData.limit - 1));
-        }).map((el) => <CartItem
+        }).map((el, index) => <CartItem
           key={el.id}
+          itemIndex={((generalCartData.page - 1) * generalCartData.limit) + index + 1}
           product={el}
           setTotalCartData={setTotalCartData}
           cartPageData={cartPageData}
           totalCartData={totalCartData}
           setCartPageData={setCartPageData}
+          generalCartData={generalCartData}
           />)}
       </div>
       </div>

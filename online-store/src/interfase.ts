@@ -63,6 +63,11 @@ export interface ICartTotal {
   totalSum: number;
 }
 
+export interface IProductsCartRenderItem extends IProductsCartRender {
+  generalCartData: IGeneralCartData;
+  itemIndex: number;
+}
+
 interface IDiscount {
   id: string;
   name: string;
