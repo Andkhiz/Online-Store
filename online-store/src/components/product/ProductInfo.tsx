@@ -63,8 +63,8 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
               addToCart();
               setTotalCartData(loadTotalCartData());
               setCartPageData(pageData);
-              saveLocalStorage('isModalOpened', true);
             }
+            saveLocalStorage('isModalOpened', true);
           }}>buy now</Link></button>
       </div>
     </div>

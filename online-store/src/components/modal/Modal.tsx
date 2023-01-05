@@ -12,6 +12,8 @@ function Modal ({ isOpened, setIsOpened }: modalId): JSX.Element {
       return event.target.value.slice(0, 3);
     }
   }; */
+
+  localStorage.removeItem('isModalOpened');
   const [imgCard, setImgCard] = useState(bankcard);
 
   const validatorName = createValidator('name', '^([A-Za-z0-9А-Яа-я]{3,}( (?!$)|$)){2,}$', 'Error');
