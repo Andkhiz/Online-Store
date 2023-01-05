@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { createValidator } from './validate';
 import visa from './visa.png';
 import master from './mastercard.png';
 import america from './americanexpress.png';
 import bankcard from './bank-card.png';
 import { modalId } from '../../interfase';
+import { redirect } from 'react-router-dom';
 
 function Modal ({ isOpened, setIsOpened }: modalId): JSX.Element {
   /* const maxLength = (event: ChangeEvent<HTMLInputElement>): string | undefined => {
@@ -85,8 +86,18 @@ function Modal ({ isOpened, setIsOpened }: modalId): JSX.Element {
     }
   }
 
+  const closeModal: MouseEventHandler = event => {
+    event.preventDefault();
+    const target = event.target as HTMLElement;
+    if (target.className === 'modal-background') {
+      setIsOpened(false);
+    }
+    console.log(target.className);
+  };
+
   return (
-    <dialog open={isOpened}>
+    <div className={isOpened ? 'modal-background' : 'modal-background-hiden'} onClick={ closeModal }>
+      <dialog open={ isOpened }>
       <div className="modal-content">
         <h5>Personal details</h5>
         <div className="personal-data">
@@ -152,6 +163,8 @@ function Modal ({ isOpened, setIsOpened }: modalId): JSX.Element {
         }}>Confirm</button>
       </div>
     </dialog>
+    </div>
+
   );
 }
 export default Modal;
