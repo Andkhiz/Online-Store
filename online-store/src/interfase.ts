@@ -58,6 +58,11 @@ export interface IProductsCartRender {
   totalCartData: ICartTotal;
 }
 
+export interface ICartTotalSummary {
+  totalCartData: ICartTotal;
+  setCartPageData: Function;
+}
+
 export interface ICartTotal {
   totalCount: number;
   totalSum: number;
@@ -130,6 +135,7 @@ export interface IPromo {
 export interface modalId {
   isOpened: boolean;
   setIsOpened: Function;
+  setCartPageData: Function;
 }
 
 export interface IFilterData {

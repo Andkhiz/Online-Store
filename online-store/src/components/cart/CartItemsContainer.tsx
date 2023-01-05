@@ -76,7 +76,7 @@ export default function CartItemsContainer ({ cartPageData, setCartPageData, tot
           />)}
       </div>
       </div>
-      <CartSummury {...totalCartData}/>
+      <CartSummury totalCartData={totalCartData} setCartPageData={setCartPageData}/>
     </main>
   );
 }
