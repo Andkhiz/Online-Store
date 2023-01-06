@@ -1,11 +1,14 @@
 import React /*, { useState } */ from 'react';
-import { IProductsCartRender, /* ICartLayout, */ IProduct } from '../../interfase';
+import { IProductsCartRenderItem, /* ICartLayout, */ IProduct } from '../../interfase';
 import Cart from '../../controller/cart/cart';
 import { loadTotalCartData } from '../../controller/cart/loadTotalCartData';
+import { useSearchParams } from 'react-router-dom';
+import { getCartQueryParams } from '../../controller/queryParams/queryCartParams';
 
-function CartItem ({ product, setTotalCartData, setCartPageData, cartPageData }: IProductsCartRender): JSX.Element {
+function CartItem ({ itemIndex, product, setTotalCartData, setCartPageData, cartPageData, generalCartData }: IProductsCartRenderItem): JSX.Element {
   const cart = new Cart();
   const pageData: IProduct [] = JSON.parse(JSON.stringify(cartPageData));
+  const [searchParams, setSearchParams] = useSearchParams();
   // console.log('CartItem');
   // console.log(product.cartCount);
 
@@ -14,7 +17,7 @@ function CartItem ({ product, setTotalCartData, setCartPageData, cartPageData }:
 
   return (
     <div className="cart-item">
-      <div className="item-id">1</div>
+      <div className="item-id">{itemIndex}</div>
       <img src={product.thumbnail} alt="" />
       <div className="cart-item-description">
         <h5>{product.title}</h5>
@@ -33,6 +36,7 @@ function CartItem ({ product, setTotalCartData, setCartPageData, cartPageData }:
           setTotalCartData(loadTotalCartData());
           if (product.cartCount <= 1) {
             pageData.splice(pageData.findIndex(el => el.id === product.id), 1);
+            setSearchParams(getCartQueryParams('limit', String(generalCartData.limit), cartPageData.length - 1));
           } else {
             pageData[pageData.findIndex(el => el.id === product.id)].cartCount -= 1;
           }

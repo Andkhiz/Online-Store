@@ -62,9 +62,19 @@ export interface IProductsMainRender extends IProductsCartRender {
   view: boolean;
 }
 
+export interface ICartTotalSummary {
+  totalCartData: ICartTotal;
+  setCartPageData: Function;
+}
+
 export interface ICartTotal {
   totalCount: number;
   totalSum: number;
+}
+
+export interface IProductsCartRenderItem extends IProductsCartRender {
+  generalCartData: IGeneralCartData;
+  itemIndex: number;
 }
 
 interface IDiscount {
@@ -129,6 +139,7 @@ export interface IPromo {
 export interface modalId {
   isOpened: boolean;
   setIsOpened: Function;
+  setCartPageData: Function;
 }
 
 export interface IFilterData {
