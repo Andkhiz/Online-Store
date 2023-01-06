@@ -1,0 +1,128 @@
+$border-color: rgba(209, 209, 209, 1);
+$green-button: rgba(70, 118, 10, 1);
+
+.product{
+  flex: 1;
+  flex-direction: column;
+  .product-path{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin: 20px auto;
+  }
+  .product-container{
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .product-img-container{
+      display: flex;
+      img{
+        width: 300px;
+        height: 300px;
+        border-radius: 10px;
+      }
+    }
+    .aside-img{
+      margin-right: 10px;
+      img{
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+         cursor: pointer;
+      }
+    }
+    .product-description-container{
+      p{
+        margin: 5px;
+      }
+    }
+    .product-purchase{
+      display: flex;
+      flex-direction: column;
+      width: 150px;
+      button{
+        margin: 10px auto;
+        width: 150px;
+        height: 50px;
+        text-transform: uppercase;
+      }
+      .buy-now{
+        color: #fff;
+        background-color: $green-button;
+        border: 1px solid darken($color: $green-button, $amount: 20%);
+      }
+    }
+  }
+}
+@media screen and (max-width: 1440px) {
+  .product{
+    .product-container{
+    width: 920px;
+
+    .product-img-container{
+      display: flex;
+      img{
+        width: 250px;
+        height: 250px;
+      }
+    }
+    .aside-img{
+      margin-right: 10px;
+      width: 250px;
+      img{
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .product-purchase{
+      display: flex;
+      flex-direction: column;
+      width: 120px;
+      button{
+        margin: 10px auto;
+        width: 120px;
+        height: 50px;
+        text-transform: uppercase;
+      }
+      .buy-now{
+        color: #fff;
+        background-color: $green-button;
+        border: 1px solid darken($color: $green-button, $amount: 20%);
+      }
+    }
+    }
+  }
+}
+@media screen and (max-width: 960px) {
+  .product{
+    .product-container{
+      width: 620px;
+      min-height: 400px;
+      .product-img-container{
+        display: flex;
+        img{
+          width: 200px;
+          height: 200px;
+        }
+      }
+      .aside-img{
+        margin-right: 10px;
+        width: 80px;
+        img{
+          width: 80px;
+          height: 80px;
+        }
+      }
+      .product-purchase{
+        width: 100px;
+        button{
+          margin: 5px auto;
+          width: 100px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}

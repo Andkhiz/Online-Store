@@ -33,6 +33,7 @@ export interface ICartLayout {
 export interface IMainInfo extends ICartLayout {
   filter: string;
   sort: TSort;
+  itemBig: boolean;
 }
 
 export interface IRenderProduct {
@@ -56,6 +57,9 @@ export interface IProductsCartRender {
   setCartPageData: Function;
   cartPageData: IProduct[];
   totalCartData: ICartTotal;
+}
+export interface IProductsMainRender extends IProductsCartRender {
+  view: boolean;
 }
 
 export interface ICartTotal {

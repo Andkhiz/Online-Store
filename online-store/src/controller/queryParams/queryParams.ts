@@ -20,7 +20,7 @@ export function getQueryParams (category: string, value: string, onVisible: bool
           }
         }
       }
-      if (category === 'price' || category === 'stock' || category === 'sort' || category === 'filter') {
+      if (category === 'price' || category === 'stock' || category === 'sort' || category === 'filter' || category === 'itemBig') {
         if (onVisible) { query += category + '=' + paramValue + '&'; }
       }
     } else {
