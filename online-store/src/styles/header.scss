@@ -1,0 +1,41 @@
+$border-color: rgba(209, 209, 209, 1);
+$green-button: rgba(70, 118, 10, 1);
+
+header{
+  margin: 0 40px 60px;
+  nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 60px;
+    border-bottom: 1px solid $border-color;
+  }
+  h1{
+    font-size: 20px;
+  }
+  .cart{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    .cart-count{
+      position: relative;
+      top: 40px;
+      left: -7px;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      background-color: $green-button;
+      color: #fff;
+      text-align: center;
+      vertical-align: middle;
+    }
+    img{
+      height: 30px;
+      margin-bottom: 20px;
+    }
+    p{
+      font-size: 20px;
+      color: $green-button;
+    }
+  }
+}

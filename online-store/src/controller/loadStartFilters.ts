@@ -20,8 +20,8 @@ export function loadStartFilter (db: myType.IProductsDB): myType.TFilterReturn {
 
     if (priceMin > product.price) priceMin = product.price;
     if (priceMax < product.price) priceMax = product.price;
-    if (stockMin > product.stock) stockMin = product.price;
-    if (stockMax < product.stock) stockMax = product.price;
+    if (stockMin > product.stock) stockMin = product.stock;
+    if (stockMax < product.stock) stockMax = product.stock;
   });
   brand.sort((a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0; });
   category.sort((a, b) => { if (a.name < b.name) return -1; if (a.name > b.name) return 1; return 0; });
