@@ -2,6 +2,7 @@ $border-color: rgba(209, 209, 209, 1);
 $font-color: rgba(21, 21, 21, 1);
 $active-input: rgb(41, 241, 141);
 $green-button: rgba(70, 118, 10, 1);
+
 main{
     display: flex;
     justify-content: center;
@@ -54,6 +55,21 @@ main{
         border: 1px solid $border-color;
         outline: none;
       }
+      .view-options{
+        button{
+          padding: 0;
+          width: 24px;
+          height: 24px;
+          margin: 10px;
+          background-color: #fff;
+          img{
+            border-radius: 10px;
+            width: 20px;
+            height: 20px;
+            margin: 1px;
+          }
+        }
+      }
     }
 
     .main-info-content{
@@ -103,6 +119,7 @@ main{
         transition: all 0.5s ease-in-out;
         flex-direction: column;
         flex-wrap: nowrap;
+
          .item-horisontal-view{
           box-sizing: border-box;
           transition: all 0.5s ease-in-out;
@@ -114,7 +131,7 @@ main{
           flex-direction: row;
           border-radius: 10px;
           border: 1px solid $border-color;
-          margin: 5px 0;
+          margin: 5px;
 
           img{
             border-radius: 10px;
@@ -175,7 +192,7 @@ main{
       }
       .horisontal-view{
          .item-horisontal-view{
-          width: 760px;
+          width: 750px;
         }
       }
     }
@@ -201,6 +218,19 @@ main{
           font-size: 16px;
           text-align: center;
         }
+        .view-options{
+          width: 35px;
+          button{
+            width: 24px;
+            height: 24px;
+            margin: -1px;
+            img{
+              width: 20px;
+              height: 20px;
+              margin: 1px;
+            }
+          }
+        }
       }
       .main-info-content{
         width: 440px;
@@ -219,7 +249,7 @@ main{
         flex-direction: column;
         flex-wrap: nowrap;
          .item-horisontal-view{
-          width: 440px;
+          width: 430px;
           height: 153px;
           padding: 10px;
           display: flex;
@@ -269,6 +299,10 @@ main{
           font-size: 12px;
           text-align: center;
         }
+        .view-options{
+          width: 60px;
+          display: flex;
+        }
       }
       .main-info-content{
         width: 300px;
@@ -286,7 +320,7 @@ main{
       }
       .horisontal-view{
          .item-horisontal-view{
-          width: 300px;
+          width: 290px;
           height: 123px;
           padding: 10px;
           display: flex;

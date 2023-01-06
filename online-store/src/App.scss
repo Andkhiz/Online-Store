@@ -1,3 +1,4 @@
+@import url(./styles/reset.scss);
 @import url(./styles/buttons.scss);
 @import url(./styles/cart.scss);
 @import url(./styles/footer.scss);
@@ -18,29 +19,7 @@ $green-button: rgba(70, 118, 10, 1);
   flex-direction: column;
   min-height: 100vh;
 }
-body{
-  background-color: $background-color;
-  color: $font-color;
-  a{
-    text-decoration: none;
-    color: $font-color
-  }
-  p{
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-    color: $font-color;
-  }
-  button, select{
-    cursor: pointer;
-  }
-  li{
-    list-style-type: none;
-  }
-  h5{
-    margin: 12px 0;
-  }
-}
+
 .App{
   margin: 0 auto;
   overflow-x: hidden;

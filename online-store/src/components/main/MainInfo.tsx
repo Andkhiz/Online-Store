@@ -4,6 +4,8 @@ import { IMainInfo, IProduct } from '../../interfase';
 import EmptyMain from './EmptyMain';
 import { useSearchParams } from 'react-router-dom';
 import { loadProducts } from '../../controller/loadProgucts';
+import tile from '../../assets/tile.png';
+import line from '../../assets/menu-icon.png';
 
 function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams, filter, sort, itemBig }: IMainInfo): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -61,8 +63,8 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
         <span>Found: {products.length}</span>
         <input type="search" placeholder='Search...' onChange={handleChange} value={filter}/>
         <div className="view-options">
-          <button onClick={changeViewToBig}>big</button>
-          <button onClick={changeViewToSmall}>lil</button>
+          <button onClick={changeViewToBig}><img src={tile} alt="Big"/></button>
+          <button onClick={changeViewToSmall}><img src={line} alt="Small"/></button>
         </div>
       </div>
       <div className={view ? 'main-info-content' : 'horisontal-view'}>
