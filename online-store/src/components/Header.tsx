@@ -11,7 +11,7 @@ function Header (): JSX.Element {
     <header>
       <nav>
         <Link to='/'><h1>Online Store</h1></Link>
-        <div className="cart">
+        <div className="header-cart">
           <Link to="cart">
             <div className='cart-count'>{totalCartData.totalCount}</div>
             <img src={cartLogo} alt="Cart" />

@@ -50,11 +50,19 @@ dialog {
 }
 .modal-buy-over{
   display: block;
+  text-align: center;
 }
 .modal-buy-over_close{
   display: none;
 }
-@media screen and (max-width: 960) {
+.modal-content{
+  display: block;
+
+}
+.modal-content_close{
+  display: none;
+}
+@media screen and (min-width: 960) {
   dialog {
     top: 15%;
     left: 20%;

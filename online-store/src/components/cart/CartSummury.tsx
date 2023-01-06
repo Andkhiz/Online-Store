@@ -30,10 +30,10 @@ function CartSummury ({ totalCartData, setCartPageData }: ICartTotalSummary): JS
   return (
     <div className="summary">
       <h1>Summury</h1>
-      <p>products: {totalCartData.totalCount}</p>
-      <p>Total: {totalCartData.totalSum}</p>
+      <p>Products: {totalCartData.totalCount}</p>
+      <p className={promocodeUsed.length >= 1 ? 'crossed-price' : 'price'}>Total: {totalCartData.totalSum}</p>
       {promocodeUsed.length > 0 &&
-        <p>Total: {Math.round(totalCartData.totalSum * (1 - discount.loadTotalDiscount() / 100))}</p>
+        <p className={promocodeUsed.length >= 1 ? 'price' : 'crossed-price'}>Total: {Math.round(totalCartData.totalSum * (1 - discount.loadTotalDiscount() / 100))}</p>
       }
       <input type="text" id="promoCode" name='input' onChange={handleChange}/>
       <label htmlFor="promoCode">Promo for test: RS, EPM</label>

@@ -37,6 +37,7 @@ $green-button: rgba(70, 118, 10, 1);
 
     .item-id{
       width: 30px;
+      align-self: center;
     }
     img{
       height: 180px;
@@ -46,6 +47,13 @@ $green-button: rgba(70, 118, 10, 1);
 
     .cart-item-description{
       flex: 1;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      .description{
+        font-weight: 300;
+        margin: 5px 0;
+      }
     }
     .counter{
       display: flex;
@@ -69,6 +77,22 @@ $green-button: rgba(70, 118, 10, 1);
     .summary{
       width: 400px;
       margin: 0 10px;
+      .crossed-price{
+        font-size: 20px;
+        text-decoration: line-through;
+        text-decoration-color: red;
+        color: red;
+        margin: 5px 0;
+      }
+      .price{
+        font-weight: 700;
+        font-size: 20px;
+        color: $green-button;
+        margin: 5px 0;
+      }
+      input{
+        height: 20px;
+      }
       label{
         display: block;
         margin: 5px 0;
@@ -111,6 +135,66 @@ $green-button: rgba(70, 118, 10, 1);
       width: 170px;
       input{
         width: 170px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 660px) {
+  .cart{
+    width: 460px;
+    box-sizing: border-box;
+    h5{
+      margin: 0;
+    }
+    .cart-items-conrainer{
+      width: 360px;
+      padding: 10px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .cart-item {
+      height: 180px;
+      .item-id{
+      width: 10px;
+      }
+      .cart-item-description{
+        .description{
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -moz-box;
+          -moz-box-orient: vertical;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          line-clamp: 3;
+          box-orient: vertical;
+        }
+      }
+      .purchase-data{
+        button {
+          width: 20px;
+        }
+        p{
+          width: 15px;
+        }
+      }
+    }
+    img{
+      height: 100px;
+      width: 100px;
+      margin: 35px 5px 0 0;
+    }
+
+    .summary{
+      width: 100px;
+      h1{
+        font-size: 23px;
+      }
+      input{
+        width: 90px;
+      }
+      button{
+        width: 100px;
       }
     }
   }
