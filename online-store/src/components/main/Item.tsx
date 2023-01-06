@@ -33,7 +33,7 @@ function Item ({ product, setTotalCartData, setCartPageData, cartPageData, view 
             setTotalCartData(loadTotalCartData());
             setCartPageData(pageData);
           }}>{product.onCart ? 'Remove' : 'Add'}</button>
-          <button><Link to={`/product/${String(product.id)}`}>Info</Link></button>
+          <Link to={`/product/${String(product.id)}`}><button>Info</button></Link>
       </div>
     </div>
   );
