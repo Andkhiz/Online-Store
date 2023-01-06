@@ -3,19 +3,15 @@ import { IElementFilterCategoryRender } from '../../interfase';
 import { useSearchParams } from 'react-router-dom';
 
 function CheckItem ({ name, filterCount, count, checked, category, loadQuery }: IElementFilterCategoryRender): JSX.Element {
-  // console.log('checkItem');
-  // console.log(category, name, checked);
-  // const loader = new Loader();
-  // const [isChecked, setIsChecked] = useState(checked);
   const [searchParams, setSearchParams] = useSearchParams();
-  // const setSearchParams = useSearchParams()[1];
+  // console.log(filterCount, count);
   return (
     <div className="check-item">
       <input type="checkbox" id={name} checked={checked} readOnly /* onChange={() => { const a = undefined; }} */ onClick={() => {
-        // setIsChecked(!isChecked);
         setSearchParams(loadQuery(category, name, !checked));
       }}/>
       <label htmlFor={name}>{name}</label>
+      <span>{`${filterCount}/${count}`}</span>
     </div>
   );
 }

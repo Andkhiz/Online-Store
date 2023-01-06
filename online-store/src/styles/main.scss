@@ -13,6 +13,13 @@ main{
     .filter-body{
       height: 200px;
       overflow-y: scroll;
+      .check-item{
+        display: flex;
+        justify-content: space-between;
+        span{
+          margin: 0 5px 0 auto;
+        }
+      }
     }
 
   .main-info{
@@ -75,6 +82,12 @@ main{
           height: 180px;
           width: 235px;
         }
+        .description{
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
         .buttons{
           display: flex;
           justify-content: space-between;
@@ -86,12 +99,12 @@ main{
         box-shadow: 0 0 20px $border-color;
       }
     }
-    // .main-info-content.
    .horisontal-view{
         transition: all 0.5s ease-in-out;
         flex-direction: column;
         flex-wrap: nowrap;
          .item-horisontal-view{
+          box-sizing: border-box;
           transition: all 0.5s ease-in-out;
           width: 1120px;
           height: 153px;
@@ -99,13 +112,19 @@ main{
           display: flex;
           justify-content: space-between;
           flex-direction: row;
+          border-radius: 10px;
+          border: 1px solid $border-color;
+          margin: 5px 0;
+
           img{
             border-radius: 10px;
             height: 132px;
             width: 210px;
+            flex-shrink: 0;
           }
-          .cart-item-description{
+          .description{
             margin: 0 10px;
+            flex-grow: 1;
           }
           .buttons{
             width: 80px;
@@ -113,6 +132,7 @@ main{
             flex-direction: column;
             align-items: center;
             align-self: center;
+            flex-shrink: 0;
             button{
               margin: 10px 0;
             }
@@ -207,10 +227,7 @@ main{
           flex-direction: row;
           img{
             height: 132px;
-            width: 210px;
-          }
-          .cart-item-description{
-            margin: 0 10px;
+            width: 180px;
           }
           .buttons{
             width: 80px;
