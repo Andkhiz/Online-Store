@@ -7,6 +7,7 @@ dialog {
   border-radius: 20px;
   width: 500px;
   outline: none;
+  border: 1px solid $border-color;
   margin: 0;
 }
 .modal-content{
@@ -26,6 +27,15 @@ dialog {
     outline: none;
   }
 }
+.cart .summary .modal-content{
+  label{
+    display: inline-block;
+    margin: 0 0 0 10px;
+  }
+  button{
+    margin: 30px 175px 0;
+  }
+}
 .modal-background{
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -37,4 +47,56 @@ dialog {
 }
 .modal-background-hiden{
   display: none;
+}
+.modal-buy-over{
+  display: block;
+}
+.modal-buy-over_close{
+  display: none;
+}
+@media screen and (max-width: 960) {
+  dialog {
+    top: 15%;
+    left: 20%;
+    width: 500px;
+  }
+  .cart .summary .modal-content{
+  label{
+    display: inline-block;
+    margin: 0 0 0 10px;
+  }
+  button{
+    margin: 30px 175px 0;
+  }
+}
+  .modal-content{
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    input {
+      border: 1px solid $border-color;
+      outline: none;
+    }
+    input:focus {
+      border: 1px solid green;
+      outline: none;
+    }
+    input:invalid {
+      border: red solid 1px;
+      outline: none;
+    }
+  }
+  
+}
+@media screen and (max-width: 660) {
+  dialog {
+    top: 10%;
+    left: 15%;
+    width: 420px;
+  }
+  .cart .summary .modal-content{
+    button{
+      margin: 20px 135px 0;
+    }
+  }
 }

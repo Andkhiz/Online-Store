@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function ProductInfoNotFound (): JSX.Element {
   return (
-    <main className="cart">
+    <section className='main-info'>
       <h1>Product not found</h1>
-    </main>
+    </section>
   );
 }
