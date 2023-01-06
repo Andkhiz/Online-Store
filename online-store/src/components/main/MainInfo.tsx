@@ -9,6 +9,7 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<IProduct []>([]);
   const [view, setView] = useState(itemBig);
+
   const loadProductsData = function (params: URLSearchParams): void {
     fetch('db.json', {
       headers: {
@@ -23,8 +24,9 @@ function MainInfo ({ setCartPageData, cartPageData, totalCartData, setTotalCartD
       .then((resu) => { setProducts(resu.products); })
       .catch(error => { throw Error(error); });
   };
-  useEffect(() => { loadProductsData(searchParams); }, [searchParams]);
 
+  useEffect(() => { loadProductsData(searchParams); }, [searchParams]);
+  useEffect(() => { setView(itemBig); }, [itemBig]);
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const query = event.target.value.toLowerCase();
     setSearchParams(getQueryParams('filter', query, !(query === '')));

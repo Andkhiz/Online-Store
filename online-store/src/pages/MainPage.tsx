@@ -13,6 +13,17 @@ function MainPage ({
   setCartPageData, cartPageData, totalCartData, setTotalCartData, getQueryParams
 }: ICartLayout): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  let itemBig = true;
+  const strItemBig = searchParams.get('itemBig');
+  if (strItemBig !== null && ((strItemBig === 'true') || (strItemBig === 'false'))) {
+    if (strItemBig === 'true') {
+      itemBig = true;
+    } else {
+      itemBig = false;
+    }
+  }
+
   const [filters, setFilters] = useState<TFilterReturn>({
     brands: [],
     categories: [],
@@ -20,7 +31,7 @@ function MainPage ({
     stocks: { min: 0, startMin: 0, max: 100, startMax: 100 },
     sort: 'Select options',
     filter: '',
-    itemBig: true
+    itemBig
   });
 
   const loadFilersData = function (): void {
