@@ -13,9 +13,10 @@ function Item ({ product, setTotalCartData, setCartPageData, cartPageData, view 
     <div className={view ? 'item' : 'item-horisontal-view'}>
     <img src={product.thumbnail} alt={product.title} width={150} height={150}/>
       <div className="description">
-        <p>{product.title}</p>
+        <h5>{product.title}</h5>
         {/* <p>{product.description}</p> */}
         <b>{product.price}$</b>
+        <p>{product.stock} available</p>
       </div>
       <div className="buttons">
           <button className={product.onCart ? 'onCart' : 'notOnCart'} onClick={() => {
@@ -33,7 +34,7 @@ function Item ({ product, setTotalCartData, setCartPageData, cartPageData, view 
             setTotalCartData(loadTotalCartData());
             setCartPageData(pageData);
           }}>{product.onCart ? 'Remove' : 'Add'}</button>
-          <button><Link to={`/product/${String(product.id)}`}>Info</Link></button>
+          <Link to={`/product/${String(product.id)}`}><button>Info</button></Link>
       </div>
     </div>
   );

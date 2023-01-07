@@ -40,15 +40,12 @@ export default function CartItemsContainer ({ cartPageData, setCartPageData, tot
     <main className='cart'>
       <div className="cart-items-conrainer">
       <div className="cart-items-header">
-        <h2>products in cart</h2>
+        <h2>Products in cart:</h2>
         <div className="cart-state">
           <p>Limit
             <input className='cart-state__limit' type={'number'} min={1} max={cartPageData.length} value={generalCartData.limit}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const newValue = e.target.value;
-              // console.log('limit change');
-              // console.log(newValue);
-              // console.log(getCartQueryParams('limit', String(newValue), cartPageData.length));
               setSearchParams(getCartQueryParams('limit', String(newValue), cartPageData.length));
             }}
             />

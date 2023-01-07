@@ -6,7 +6,7 @@ export default function Promocode ({ id, name, discountPercentage, promocodeUsed
   const discount = new Discount();
   return (
     <div>
-      <p>your discount is {discountPercentage}%!</p>
+      <p>Your discount is {discountPercentage}%!</p>
       <button onClick={() => {
         if (promocodeUsed.includes(id)) {
           discount.deleteDiscount(id);

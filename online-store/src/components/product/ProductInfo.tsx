@@ -58,14 +58,14 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
           setTotalCartData(loadTotalCartData());
           setCartPageData(pageData);
         }}>{product.onCart === true ? 'Remove' : 'Add'}</button>
-          <button className='buy-now'><Link to='/cart' onClick={() => {
+          <Link to='/cart'><button className='buy-now' onClick={() => {
             if (!product.onCart) {
               addToCart();
               setTotalCartData(loadTotalCartData());
               setCartPageData(pageData);
             }
             saveLocalStorage('isModalOpened', true);
-          }}>buy now</Link></button>
+          }}>buy now</button></Link>
       </div>
     </div>
   );

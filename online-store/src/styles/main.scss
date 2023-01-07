@@ -2,6 +2,7 @@ $border-color: rgba(209, 209, 209, 1);
 $font-color: rgba(21, 21, 21, 1);
 $active-input: rgb(41, 241, 141);
 $green-button: rgba(70, 118, 10, 1);
+
 main{
     display: flex;
     justify-content: center;
@@ -13,6 +14,13 @@ main{
     .filter-body{
       height: 200px;
       overflow-y: scroll;
+      .check-item{
+        display: flex;
+        justify-content: space-between;
+        span{
+          margin: 0 5px 0 auto;
+        }
+      }
     }
 
   .main-info{
@@ -47,6 +55,21 @@ main{
         border: 1px solid $border-color;
         outline: none;
       }
+      .view-options{
+        button{
+          padding: 0;
+          width: 24px;
+          height: 24px;
+          margin: 10px;
+          background-color: #fff;
+          img{
+            border-radius: 10px;
+            width: 20px;
+            height: 20px;
+            margin: 1px;
+          }
+        }
+      }
     }
 
     .main-info-content{
@@ -75,6 +98,12 @@ main{
           height: 180px;
           width: 235px;
         }
+        .description{
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
         .buttons{
           display: flex;
           justify-content: space-between;
@@ -86,12 +115,13 @@ main{
         box-shadow: 0 0 20px $border-color;
       }
     }
-    // .main-info-content.
    .horisontal-view{
         transition: all 0.5s ease-in-out;
         flex-direction: column;
         flex-wrap: nowrap;
+
          .item-horisontal-view{
+          box-sizing: border-box;
           transition: all 0.5s ease-in-out;
           width: 1120px;
           height: 153px;
@@ -99,13 +129,19 @@ main{
           display: flex;
           justify-content: space-between;
           flex-direction: row;
+          border-radius: 10px;
+          border: 1px solid $border-color;
+          margin: 5px;
+
           img{
             border-radius: 10px;
             height: 132px;
             width: 210px;
+            flex-shrink: 0;
           }
-          .cart-item-description{
+          .description{
             margin: 0 10px;
+            flex-grow: 1;
           }
           .buttons{
             width: 80px;
@@ -113,6 +149,7 @@ main{
             flex-direction: column;
             align-items: center;
             align-self: center;
+            flex-shrink: 0;
             button{
               margin: 10px 0;
             }
@@ -155,7 +192,7 @@ main{
       }
       .horisontal-view{
          .item-horisontal-view{
-          width: 760px;
+          width: 750px;
         }
       }
     }
@@ -181,6 +218,19 @@ main{
           font-size: 16px;
           text-align: center;
         }
+        .view-options{
+          width: 35px;
+          button{
+            width: 24px;
+            height: 24px;
+            margin: -1px;
+            img{
+              width: 20px;
+              height: 20px;
+              margin: 1px;
+            }
+          }
+        }
       }
       .main-info-content{
         width: 440px;
@@ -199,7 +249,7 @@ main{
         flex-direction: column;
         flex-wrap: nowrap;
          .item-horisontal-view{
-          width: 440px;
+          width: 430px;
           height: 153px;
           padding: 10px;
           display: flex;
@@ -207,10 +257,7 @@ main{
           flex-direction: row;
           img{
             height: 132px;
-            width: 210px;
-          }
-          .cart-item-description{
-            margin: 0 10px;
+            width: 180px;
           }
           .buttons{
             width: 80px;
@@ -252,6 +299,10 @@ main{
           font-size: 12px;
           text-align: center;
         }
+        .view-options{
+          width: 60px;
+          display: flex;
+        }
       }
       .main-info-content{
         width: 300px;
@@ -269,7 +320,7 @@ main{
       }
       .horisontal-view{
          .item-horisontal-view{
-          width: 300px;
+          width: 290px;
           height: 123px;
           padding: 10px;
           display: flex;

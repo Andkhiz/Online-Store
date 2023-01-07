@@ -21,10 +21,10 @@ function CartItem ({ itemIndex, product, setTotalCartData, setCartPageData, cart
       <img src={product.thumbnail} alt="" />
       <div className="cart-item-description">
         <h5>{product.title}</h5>
-        <p>{product.description}</p>
+        <p className='description'>{product.description}</p>
         <div>
-          <p>rating: {product.rating}</p>
-          <p>discount: {product.discountPercentage}</p>
+          <p>Rating: {product.rating}</p>
+          <p>Discount: {product.discountPercentage}%</p>
           <p>{product.stock} left</p>
         </div>
       </div>
@@ -53,7 +53,7 @@ function CartItem ({ itemIndex, product, setTotalCartData, setCartPageData, cart
             }
           }}>+</button>
         </div>
-        <div className="price">{product.price * product.cartCount}</div>
+        <div className="price">{product.price * product.cartCount}$</div>
       </div>
     </div>
   );
