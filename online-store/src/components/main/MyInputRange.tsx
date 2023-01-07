@@ -10,7 +10,7 @@ function MyInputRange ({ title, rangeData, getQueryParams }: TRange): JSX.Elemen
 
   return (
     <div style={{ height: 50 }}>
-      <b>{title}</b>
+      <b style={{ textTransform: 'capitalize' }}>{title}</b>
       <ReactSlider
         min={rangeData.startMin}
         max={rangeData.startMax}

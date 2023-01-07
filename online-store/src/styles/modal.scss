@@ -26,6 +26,11 @@ dialog {
     border: red solid 1px;
     outline: none;
   }
+  .personal-data{
+      label{
+        color: red;
+      }
+    }
 }
 .cart .summary .modal-content{
   label{
@@ -57,15 +62,15 @@ dialog {
 }
 .modal-content{
   display: block;
-
 }
 .modal-content_close{
   display: none;
 }
-@media screen and (min-width: 960) {
+
+@media screen and (max-width: 960px) {
   dialog {
     top: 15%;
-    left: 20%;
+    left: 15%;
     width: 500px;
   }
   .cart .summary .modal-content{
@@ -94,12 +99,11 @@ dialog {
       outline: none;
     }
   }
-  
 }
-@media screen and (max-width: 660) {
+@media screen and (max-width: 660px) {
   dialog {
     top: 10%;
-    left: 15%;
+    left: 5%;
     width: 420px;
   }
   .cart .summary .modal-content{

@@ -5,7 +5,7 @@ import { TFilterReturn, IFilterData } from '../../interfase';
 function MyBrandsFilter ({ filterElements, loadQuery }: IFilterData): JSX.Element {
   return (
     <div className="filter-container">
-      <h3>{'brands'}</h3>
+      <h3>{'Brands'}</h3>
       <div className="filter-body">
         {filterElements.length <= 0
           ? filterElements.length

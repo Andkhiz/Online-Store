@@ -48,10 +48,16 @@ $green-button: rgba(70, 118, 10, 1);
         height: 50px;
         text-transform: uppercase;
       }
+      button:hover{
+        background-color: lighten($color: #16ee45, $amount: 20%);
+      }
       .buy-now{
         color: #fff;
         background-color: $green-button;
         border: 1px solid darken($color: $green-button, $amount: 20%);
+      }
+      .buy-now:hover{
+        background-color: lighten($color: $green-button, $amount: 20%);
       }
     }
   }
