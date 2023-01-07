@@ -24,6 +24,19 @@ function MainPage ({
     }
   }
 
+  const [copyLink, setCopyLink] = useState('Copy link');
+
+  const copyClipboard = function (): void {
+    setCopyLink('Copied!');
+    const copyFn = (): void => {
+      clearInterval(intervalId);
+      setCopyLink('Copy link');
+    };
+    const intervalId = setInterval(copyFn, 1000);
+    navigator.clipboard.writeText(window.location.href)
+      .catch((e) => console.error(e));
+  };
+
   const [filters, setFilters] = useState<TFilterReturn>({
     brands: [],
     categories: [],
@@ -59,7 +72,7 @@ function MainPage ({
           <button onClick={() => {
             setSearchParams('');
           }}>Reset filter</button>
-          <button>Copy link</button>
+          <button onClick={copyClipboard}>{copyLink}</button>
         </div>
         <MyCategoriesFilter filterElements={filters.categories} loadQuery={getQueryParams}/>
         <MyBrandsFilter filterElements={filters.brands} loadQuery={getQueryParams}/>
