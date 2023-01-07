@@ -10,7 +10,7 @@ export function loadProducts (db: IProductsDB, params: URLSearchParams): IProduc
       return Object.assign(product, { onCart: Boolean(cartCount), cartCount });
     })
   };
-  const searchParams = params; // useSearchParams()[0];
+  const searchParams = params;
   const BreakError: Error = { name: 'continue', message: 'myMessage' };
 
   searchParams.forEach((el, key) => {

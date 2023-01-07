@@ -2,10 +2,6 @@ import { IProduct, IProductsDB } from '../interfase';
 import { loadCartLocalStorage } from './cart/loadCartLocalStorage';
 
 export function loadProduct (db: IProductsDB, idProduct: number): IProduct | undefined {
-  console.log('db');
-  console.log(db);
-  console.log(idProduct);
-
   const product = db.products.find(prod => prod.id === idProduct);
   if (product === undefined) return undefined;
   const myCart = loadCartLocalStorage().find(el => el.id === idProduct);

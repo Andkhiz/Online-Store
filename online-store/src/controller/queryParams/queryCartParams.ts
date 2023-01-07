@@ -1,6 +1,4 @@
 export function getCartQueryParams (category: string, value: string, cartLength: number): string {
-  console.log(category);
-  console.log(value);
   let myPath = '';
   const oldQuery = window.location.href.indexOf('?') > 0 ? window.location.href.slice(window.location.href.indexOf('?') + 1) : '';
   const arr = oldQuery.split('&');
@@ -25,8 +23,6 @@ export function getCartQueryParams (category: string, value: string, cartLength:
     return query;
   }, '');
 
-  console.log('----------');
-  console.log(myPath);
   if (use) {
     myPath = myPath.slice(0, -1);
   } else {
