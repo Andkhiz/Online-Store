@@ -117,7 +117,7 @@ function Modal ({ isOpened, setIsOpened, setCartPageData }: modalId): JSX.Elemen
           </div>
         </div>
         <div className="card-data">
-          <h6>Credit card details</h6>
+          <h5>Credit card details</h5>
           <div className="card-error">
             <div className="card-data-container">
               <img src={imgCard} alt="Pay system" id='imgBankCard'/>

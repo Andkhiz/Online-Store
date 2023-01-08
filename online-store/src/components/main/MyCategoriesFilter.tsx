@@ -7,7 +7,7 @@ function MyCategoriesFilter ({ filterElements, loadQuery }: IFilterData): JSX.El
   // console.log(loadQuery);
   return (
     <form className="filter-container">
-      <h3>{'categories'}</h3>
+      <h3>{'Categories'}</h3>
       <div className="filter-body">
         {filterElements.length <= 0
           ? filterElements.length

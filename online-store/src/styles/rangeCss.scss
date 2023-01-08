@@ -1,3 +1,5 @@
+$green-button: rgba(70, 118, 10, 1);
+
 .horizontal-slider{
 	// background-color: chocolate;
     height: 25px;
@@ -8,8 +10,9 @@
 	height: 25px;
 	width: 40px;
 	text-align: center;
-	background-color: #f568a9;
-	border: 1px solid #852c55;
+	background-color: $green-button;
+	border: 1px solid darken($color: $green-button, $amount: 20);
+	color: #fff;
     border-radius: 5px;
 	box-sizing: border-box;
 	left: 220px;
