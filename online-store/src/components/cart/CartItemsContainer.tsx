@@ -50,11 +50,11 @@ export default function CartItemsContainer ({ cartPageData, setCartPageData, tot
             }}
             />
           </p>
-          <p>
-          page:
+          <div>
             <button className='cart-state__Button-page' onClick={ pageMinus }> {'<'}</button>
-            {generalCartData.page}</p>
+            {generalCartData.page}
             <button className='cart-state__Button-page' onClick={ pagePlus }> {'>'}</button>
+          </div>
         </div>
       </div>
       <div className="cart-items-body">

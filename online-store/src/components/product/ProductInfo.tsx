@@ -36,16 +36,14 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
         </div>
       </div>
       <div className="product-description-container">
-        <p>{product.title}</p>
-        <p>{product.description}</p>
-        <p>discount: {product.discountPercentage}</p>
-        <p>price: {product.price}</p>
-        <p>{product.brand}</p>
-        <p>{product.category}</p>
-        <p></p>
+        <h5>{product.title}</h5>
+        <p className='description'>{product.description}</p>
+        <p>Brand: {product.brand}</p>
+        <p>Category: {product.category}</p>
+        <p>discount: {product.discountPercentage}%</p>
+        <b>{product.price}$</b>
       </div>
       <div className="product-purchase">
-        <p></p>
         <button className={product.onCart === true ? 'onCart' : 'notOnCart'} onClick={() => {
           if (product.onCart === true) {
             product.onCart = false;

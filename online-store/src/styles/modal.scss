@@ -27,6 +27,7 @@ dialog {
     outline: none;
   }
   .personal-data{
+    margin-bottom: 20px;
       label{
         color: red;
       }
@@ -98,16 +99,35 @@ dialog {
       border: red solid 1px;
       outline: none;
     }
+    .personal-data{
+      input{
+        width: 150px;
+      }
+    }
+    .card-data-container{
+      img{
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 }
 @media screen and (max-width: 660px) {
   dialog {
     top: 10%;
-    left: 5%;
+    left: 5vw;
     width: 420px;
+  }
+  .modal-content{
+    .card-data-container{
+      input{
+        width: 120px;
+      }
+    }
   }
   .cart .summary .modal-content{
     button{
+      width: 150px;
       margin: 20px 135px 0;
     }
   }

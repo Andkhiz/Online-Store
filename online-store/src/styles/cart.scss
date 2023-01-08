@@ -9,9 +9,9 @@ $green-button: rgba(70, 118, 10, 1);
     justify-content: space-between;
     align-items: center;
     .cart-state{
-        width: 220px;
+        width: 90px;
         display: flex;
-        // flex-direction: column;
+        flex-direction: column;
         button{
             width: 30px;
             margin: 0 5px;
