@@ -47,7 +47,7 @@
     "category":"smartphones",
     "thumbnail":"https://i.dummyjson.com/data/products/3/thumbnail.jpg",
     "images":[
-    "https://i.dummyjson.com/data/products/3/1.jpg",
+      "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
     "https://i.dummyjson.com/data/products/4/4.jpg"
     ]
     },
@@ -81,7 +81,7 @@
     "category":"smartphones",
     "thumbnail":"https://i.dummyjson.com/data/products/5/thumbnail.jpg",
     "images":[
-    "https://i.dummyjson.com/data/products/5/1.jpg",
+      "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
     "https://i.dummyjson.com/data/products/5/2.jpg",
     "https://i.dummyjson.com/data/products/5/3.jpg"
     ]
@@ -98,7 +98,7 @@
     "category":"laptops",
     "thumbnail":"https://i.dummyjson.com/data/products/6/thumbnail.png",
     "images":[
-    "https://i.dummyjson.com/data/products/6/1.png",
+      "https://i.dummyjson.com/data/products/6/thumbnail.png",
     "https://i.dummyjson.com/data/products/6/2.jpg",
     "https://i.dummyjson.com/data/products/6/3.png",
     "https://i.dummyjson.com/data/products/6/4.jpg"
@@ -372,7 +372,7 @@
     "category":"groceries",
     "thumbnail":"https://i.dummyjson.com/data/products/21/thumbnail.png",
     "images":[
-    "https://i.dummyjson.com/data/products/21/1.png",
+      "https://i.dummyjson.com/data/products/21/thumbnail.png",
     "https://i.dummyjson.com/data/products/21/2.jpg",
     "https://i.dummyjson.com/data/products/21/3.jpg"
     ]
@@ -391,7 +391,7 @@
     "images":[
     "https://i.dummyjson.com/data/products/22/1.jpg",
     "https://i.dummyjson.com/data/products/22/2.jpg",
-    "https://i.dummyjson.com/data/products/22/3.jpg"
+    "https://i.dummyjson.com/data/products/22/thumbnail.jpg"
     ]
     },
     {
@@ -691,7 +691,7 @@
     "https://i.dummyjson.com/data/products/38/1.png",
     "https://i.dummyjson.com/data/products/38/2.jpg",
     "https://i.dummyjson.com/data/products/38/3.jpg",
-    "https://i.dummyjson.com/data/products/38/4.jpg"
+    "https://i.dummyjson.com/data/products/38/thumbnail.jpg"
     ]
     },
     {
@@ -726,7 +726,8 @@
     "thumbnail":"https://i.dummyjson.com/data/products/40/thumbnail.jpg",
     "images":[
     "https://i.dummyjson.com/data/products/40/1.jpg",
-    "https://i.dummyjson.com/data/products/40/2.jpg"
+    "https://i.dummyjson.com/data/products/40/2.jpg",
+    "https://i.dummyjson.com/data/products/40/thumbnail.jpg"
     ]
     },
     {
@@ -912,7 +913,8 @@
     "images":[
     "https://i.dummyjson.com/data/products/50/1.jpeg",
     "https://i.dummyjson.com/data/products/50/2.jpg",
-    "https://i.dummyjson.com/data/products/50/3.jpg"
+    "https://i.dummyjson.com/data/products/50/3.jpg",
+    "https://i.dummyjson.com/data/products/50/thumbnail.jpg"
     ]
     },
     {
@@ -1114,7 +1116,7 @@
     "category":"mens-watches",
     "thumbnail":"https://i.dummyjson.com/data/products/61/thumbnail.jpg",
     "images":[
-    "https://i.dummyjson.com/data/products/61/1.jpg",
+      "https://i.dummyjson.com/data/products/61/thumbnail.jpg",
     "https://i.dummyjson.com/data/products/61/2.png",
     "https://i.dummyjson.com/data/products/61/3.jpg"
     ]
@@ -1132,7 +1134,7 @@
     "thumbnail":"https://i.dummyjson.com/data/products/62/thumbnail.jpg",
     "images":[
     "https://i.dummyjson.com/data/products/62/1.jpg",
-    "https://i.dummyjson.com/data/products/62/2.jpg"
+    "https://i.dummyjson.com/data/products/62/thumbnail.jpg"
     ]
     },
     {
@@ -1150,7 +1152,8 @@
     "https://i.dummyjson.com/data/products/63/1.jpg",
     "https://i.dummyjson.com/data/products/63/2.jpg",
     "https://i.dummyjson.com/data/products/63/3.png",
-    "https://i.dummyjson.com/data/products/63/4.jpeg"
+    "https://i.dummyjson.com/data/products/63/4.jpeg",
+    "https://i.dummyjson.com/data/products/63/thumbnail.webp"
     ]
     },
     {
@@ -1241,7 +1244,8 @@
     "thumbnail":"https://i.dummyjson.com/data/products/68/thumbnail.webp",
     "images":[
     "https://i.dummyjson.com/data/products/68/1.jpg",
-    "https://i.dummyjson.com/data/products/68/2.jpg"
+    "https://i.dummyjson.com/data/products/68/2.jpg",
+    "https://i.dummyjson.com/data/products/68/thumbnail.webp"
     ]
     },
     {
@@ -1670,7 +1674,7 @@
     "category":"motorcycle",
     "thumbnail":"https://i.dummyjson.com/data/products/92/thumbnail.jpg",
     "images":[
-    "https://i.dummyjson.com/data/products/92/1.jpg",
+    "https://i.dummyjson.com/data/products/92/thumbnail.jpg",
     "https://i.dummyjson.com/data/products/92/2.jpg",
     "https://i.dummyjson.com/data/products/92/3.jpg",
     "https://i.dummyjson.com/data/products/92/4.jpg"
