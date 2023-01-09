@@ -207,3 +207,44 @@ $green-button: rgba(70, 118, 10, 1);
     }
   }
 }
+@media screen and (max-width: 480px) {
+  .cart{
+    width: 420px;
+
+    .cart-items-conrainer{
+      width: 320px;
+    }
+    .cart-item {
+      height: 180px;
+      .item-id{
+      width: 10px;
+      }
+      .purchase-data{
+        button {
+          width: 20px;
+        }
+        p{
+          width: 15px;
+        }
+      }
+    img{
+      height: 100px;
+      width: 100px;
+      margin: 35px 5px 0 0;
+    }
+  }
+
+    .summary{
+      width: 100px;
+      h1{
+        font-size: 23px;
+      }
+      input{
+        width: 90px;
+      }
+      button{
+        width: 100px;
+      }
+    }
+  }
+}

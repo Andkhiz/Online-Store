@@ -11,11 +11,11 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
 
   const mainImg = product.thumbnail;
   const [targetImg, setTargetImg] = useState(mainImg);
+  const [isActive, setIsActive] = useState('');
 
   function handleClick (event: MouseEvent<HTMLImageElement>): void {
-    // targetImg = event.target;
     const target = event.target as HTMLImageElement;
-    console.log(target.src);
+    setIsActive(target.src);
     setTargetImg(target.src);
   }
   function addToCart (): void {
@@ -24,12 +24,13 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
     product.cartCount = 1;
     pageData.push(product);
   }
+  // const imgClasses = `aside-img ${isActive ? 'active' : ''}`;
 
   return (
     <div className="product-container">
       <div className="product-img-container">
-        <div className="aside-img">
-          {product.images.map((el, i) => <img src={el} key={i} onClick={handleClick}/>)}
+        <div className='aside-img'>
+          {product.images.map((el, i) => <img src={el} key={i} onClick={handleClick} className={isActive === el ? 'active' : ''}/>)}
         </div>
         <div className="main-img">
           <img src={targetImg} alt={product.title} width='200' height='200' />
@@ -40,7 +41,9 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
         <p className='description'>{product.description}</p>
         <p>Brand: {product.brand}</p>
         <p>Category: {product.category}</p>
-        <p>discount: {product.discountPercentage}%</p>
+        <p>Rating: {product.rating}/5</p>
+        <p>Discount: {product.discountPercentage}%</p>
+        <p>{product.stock} available</p>
         <b>{product.price}$</b>
       </div>
       <div className="product-purchase">

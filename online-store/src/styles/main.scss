@@ -20,6 +20,9 @@ main{
         span{
           margin: 0 5px 0 auto;
         }
+        label{
+          margin: 0 2px 0 0 ;
+        }
       }
     }
 
@@ -315,6 +318,65 @@ main{
           img{
             height: 132px;
             width: 190px;
+          }
+        }
+      }
+      .horisontal-view{
+         .item-horisontal-view{
+          width: 290px;
+          height: 123px;
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
+          align-items: center;
+          img{
+            height: 72px;
+            width: 90px;
+          }
+          .description{
+            margin: 0 5px;
+          }
+          .buttons{
+            width: 45px;
+            button{
+              padding: 1px;
+              font-size: 10px;
+              width: 45px;
+              margin: 10px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  main{
+    width: 420px;
+    margin: 0 auto;
+    .side-bar{
+      font-size: 14px;
+      width: 120px;
+      .side-buttons{
+        button{
+          width: 50px;
+          height: 35px;
+          margin: 0 2px;
+        }
+      }
+    }
+    .main-info{
+      .main-info-header{
+        flex-wrap: wrap;
+        height: 60px;
+        border-radius: 20px;
+        span{
+          margin: 5px 10px;
+        }
+        .view-options{
+          button{
+            margin: 0 2px;
           }
         }
       }
