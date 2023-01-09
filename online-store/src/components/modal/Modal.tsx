@@ -29,6 +29,7 @@ function Modal ({ isOpened, setIsOpened, setCartPageData }: modalId): JSX.Elemen
     if (second - sMinus <= 0) {
       clearInterval(intervalId);
       setCartPageData([]);
+      localStorage.removeItem('myDiscount');
       location.href = '/';
     }
   }
