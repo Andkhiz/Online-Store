@@ -11,7 +11,7 @@ export default function ProductInfo ({ product, setTotalCartData, setCartPageDat
 
   const mainImg = product.thumbnail;
   const [targetImg, setTargetImg] = useState(mainImg);
-  const [isActive, setIsActive] = useState('');
+  const [isActive, setIsActive] = useState(mainImg);
 
   function handleClick (event: MouseEvent<HTMLImageElement>): void {
     const target = event.target as HTMLImageElement;
