@@ -1,0 +1,29 @@
+@import url(./styles/reset.scss);
+@import url(./styles/buttons.scss);
+@import url(./styles/cart.scss);
+@import url(./styles/footer.scss);
+@import url(./styles/header.scss);
+@import url(./styles/main.scss);
+@import url(./styles/modal.scss);
+@import url(./styles/product.scss);
+@import url(./styles/rangeCss.scss);
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
+
+$background-color: #fff;
+$border-color: rgba(209, 209, 209, 1);
+$font-color: rgba(21, 21, 21, 1);
+$active-input: rgb(41, 241, 141);
+$green-button: rgba(70, 118, 10, 1);
+
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+}
+
+.App{
+  margin: 0 auto;
+  overflow-x: hidden;
+}

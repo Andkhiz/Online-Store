@@ -1,0 +1,159 @@
+export interface IProductDB {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string [];
+}
+
+export interface IProductsDB { products: IProductDB []};
+
+export interface IProduct extends IProductDB {
+  onCart?: boolean;
+  cartCount: number;
+};
+
+export interface IProducts { products: IProduct []};
+
+export interface ICartLayout {
+  // isEmpty: boolean;
+  setCartPageData: Function;
+  cartPageData: IProduct[];
+  totalCartData: ICartTotal;
+  setTotalCartData: Function;
+  getQueryParams: Function;
+}
+
+export interface IMainInfo extends ICartLayout {
+  filter: string;
+  sort: TSort;
+  itemBig: boolean;
+}
+
+export interface IRenderProduct {
+  title: string;
+  category: string;
+};
+
+interface ICart {
+  id: number;
+  count: number;
+  price: number;
+};
+
+export type TCarts = ICart[];
+
+export interface IProductsCart { productsCart: IProduct [] }
+
+export interface IProductsCartRender {
+  product: IProduct;
+  setTotalCartData: Function;
+  setCartPageData: Function;
+  cartPageData: IProduct[];
+  totalCartData: ICartTotal;
+}
+export interface IProductsMainRender extends IProductsCartRender {
+  view: boolean;
+}
+
+export interface ICartTotalSummary {
+  totalCartData: ICartTotal;
+  setCartPageData: Function;
+}
+
+export interface ICartTotal {
+  totalCount: number;
+  totalSum: number;
+}
+
+export interface IProductsCartRenderItem extends IProductsCartRender {
+  generalCartData: IGeneralCartData;
+  itemIndex: number;
+}
+
+interface IDiscount {
+  id: string;
+  name: string;
+  discount: number;
+}
+
+export type TDiscounts = IDiscount[];
+
+export interface IElementFilterCategory {
+  name: string;
+  filterCount: number;
+  count: number;
+  checked: boolean;
+}
+
+export interface IElementFilterCategoryRender extends IElementFilterCategory {
+  category: string;
+  loadQuery: Function;
+  // searchParams: URLSearchParams;
+  // setSearchParams: Function;
+}
+
+interface IElementFilterMinMax {
+  startMin: number;
+  startMax: number;
+  min: number;
+  max: number;
+}
+
+export type TSort = 'Select options'|"price-ASC"|"price-DESC"|"rating-ASC"|"rating-DESC"|"discount-ASC"|"discount-DESC";
+
+export type TFilter = {
+  brand: string[];
+  category: string[];
+  price: [number, number];
+  stock: [number, number];
+  sort: TSort;
+  filter: string;
+  itemBig: boolean;
+}
+
+/* при определении можно использовать Partial<TFilterReturn> - все элементы необязательные тогда */
+export type TFilterReturn = {
+  brands: IElementFilterCategory[];
+  categories: IElementFilterCategory[];
+  prices: IElementFilterMinMax;
+  stocks: IElementFilterMinMax;
+  sort: TSort;
+  filter: string;
+  itemBig: boolean;
+};
+
+export interface IPromo {
+  id: string;
+  name: string;
+  discountPercentage: number;
+  promocodeUsed: Array<string>;
+  setPromocodeUsed: Function;
+}
+export interface modalId {
+  isOpened: boolean;
+  setIsOpened: Function;
+  setCartPageData: Function;
+}
+
+export interface IFilterData {
+  filterElements: IElementFilterCategory[];
+  loadQuery: Function;
+}
+
+export type TRange = {
+  title: string;
+  rangeData: IElementFilterMinMax;
+  getQueryParams: Function;
+}
+
+export interface IGeneralCartData {
+  page: number,
+  limit: number
+}

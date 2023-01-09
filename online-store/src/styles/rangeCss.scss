@@ -1,0 +1,23 @@
+$green-button: rgba(70, 118, 10, 1);
+
+.horizontal-slider{
+	// background-color: chocolate;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.example-thumb{
+	height: 25px;
+	width: 40px;
+	text-align: center;
+	background-color: $green-button;
+	border: 1px solid darken($color: $green-button, $amount: 20);
+	color: #fff;
+    border-radius: 5px;
+	box-sizing: border-box;
+	left: 220px;
+	cursor: pointer;
+}
+.example-thumb-1 {
+	left: 220px;
+}
