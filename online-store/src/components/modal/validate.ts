@@ -32,6 +32,7 @@ export function createValidator (id: string, regExp: string, labelText: string, 
 function createLabelError (idFor: string, labelText: string): HTMLElement {
   const lab = document.createElement('label');
   lab.id = idFor + 'Error';
+  lab.className = 'cart__modal-error';
   lab.htmlFor = idFor;
   lab.innerHTML = labelText;
   return lab;

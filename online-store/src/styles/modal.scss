@@ -67,6 +67,9 @@ dialog {
 .modal-content_close{
   display: none;
 }
+.cart__modal-error{
+    color: red;
+  }
 
 @media screen and (max-width: 960px) {
   dialog {
