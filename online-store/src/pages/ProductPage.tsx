@@ -30,7 +30,7 @@ function ProductPage ({ setCartPageData, cartPageData, totalCartData, setTotalCa
   return (
     <main className='product'>
       <div className="product-path">
-        store---{product ? product.category : ''}---{product ? product.brand : ''}---{product ? product.title : ''}
+        Store   &rarr;   {product ? product.category : ''}   &rarr;   {product ? product.brand : ''}   &rarr;   {product ? product.title : ''}
       </div>
       {
         product !== undefined

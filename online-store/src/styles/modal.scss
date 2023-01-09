@@ -132,3 +132,16 @@ dialog {
     }
   }
 }
+@media screen and (max-width: 480px) {
+  dialog {
+    box-sizing: border-box;
+    top: 10%;
+    left: 10px;
+    width: 420px;
+  }
+  .cart .summary .modal-content{
+    button{
+      margin: 20px 115px 0;
+    }
+  }
+}
